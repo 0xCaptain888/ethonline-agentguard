@@ -9,6 +9,7 @@
     "typecheck": "tsc --noEmit",
     "deploy:testnet": "hardhat run scripts/deploy.ts --network monadTestnet",
     "fund:seller": "hardhat run scripts/fund-seller.ts --network monadTestnet",
+    "fund:verifier": "hardhat run scripts/fund-verifier.ts --network monadTestnet",
     "task:testnet": "hardhat run scripts/run-testnet-task.ts --network monadTestnet",
     "tasks:failure-paths": "hardhat run scripts/run-failure-tasks.ts --network monadTestnet",
     "benchmark": "hardhat run scripts/benchmark.ts",

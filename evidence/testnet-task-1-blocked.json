@@ -2,44 +2,51 @@
   "evidenceVersion": "1",
   "network": "Monad Testnet",
   "chainId": 10143,
-  "contract": "0x8b284E27563aE33a71b170386eC8e8abab1d7067",
+  "contract": "0x7D9204Ce050cb917b2Db703ec2a63CC987C15235",
   "buyer": "0xd64Fac11d711d7278a8Bb6D7be1E2De1fdBCC564",
   "seller": "0x637a61f2644E43aDa1eEeEb6Ff827B2aD60e669b",
+  "verifier": "0xE01337d3F0E061017d8Ce547e11d86C0705e8526",
   "taskId": "1",
   "state": "BLOCKED",
   "value": "10000000000000000",
   "transactions": {
     "buyerRegister": {
-      "hash": "0xf23bc6cc20027a84fa485e25569cf0e1738315d64a9db12686bffecd8fcf7157",
-      "blockNumber": 59080193,
+      "hash": "0x1dc577e3d676e283a13ec7c4668197499d640869dbb7e1ccacf8c2ccdc652ee7",
+      "blockNumber": 59089876,
       "status": 1,
-      "explorerUrl": "https://testnet.monadscan.com/tx/0xf23bc6cc20027a84fa485e25569cf0e1738315d64a9db12686bffecd8fcf7157"
+      "explorerUrl": "https://testnet.monadscan.com/tx/0x1dc577e3d676e283a13ec7c4668197499d640869dbb7e1ccacf8c2ccdc652ee7"
     },
     "sellerRegister": {
-      "hash": "0xdeb0b8ab55bbcca7290f61d94fc900b5312a3014497b8dcafffb4cdc587933f5",
-      "blockNumber": 59080202,
+      "hash": "0x47070671960e01ae4dd0390f35c0e971a1a7917d88bb0c60a849b4c575f1385a",
+      "blockNumber": 59089884,
       "status": 1,
-      "explorerUrl": "https://testnet.monadscan.com/tx/0xdeb0b8ab55bbcca7290f61d94fc900b5312a3014497b8dcafffb4cdc587933f5"
+      "explorerUrl": "https://testnet.monadscan.com/tx/0x47070671960e01ae4dd0390f35c0e971a1a7917d88bb0c60a849b4c575f1385a"
     },
     "policy": {
-      "hash": "0x22fdfc34a44b0effc41ec056c583f0ac2cd326e20304d21f1819d410f2f415ab",
-      "blockNumber": 59080210,
+      "hash": "0xd862b1aa2f73a27b096bd24aaa4f03f97e93f3c511d549ceefcfba2b441dffb6",
+      "blockNumber": 59089889,
       "status": 1,
-      "explorerUrl": "https://testnet.monadscan.com/tx/0x22fdfc34a44b0effc41ec056c583f0ac2cd326e20304d21f1819d410f2f415ab"
+      "explorerUrl": "https://testnet.monadscan.com/tx/0xd862b1aa2f73a27b096bd24aaa4f03f97e93f3c511d549ceefcfba2b441dffb6"
+    },
+    "verifier": {
+      "hash": "0x8830e67a584cc170f32ef88a26ad3f5a89e571522f1714f3bcfa4d41b50d12d4",
+      "blockNumber": 59089898,
+      "status": 1,
+      "explorerUrl": "https://testnet.monadscan.com/tx/0x8830e67a584cc170f32ef88a26ad3f5a89e571522f1714f3bcfa4d41b50d12d4"
     },
     "createTask": {
-      "hash": "0x9fb6ed42675955aedcc65d2a9f6ab916b678bb9995b86e3effa50b401662f91f",
-      "blockNumber": 59080218,
+      "hash": "0x7c0d196a4c5e8079ac0509dcfd24cb59301f9579e179287169510c7bc00a2e12",
+      "blockNumber": 59089907,
       "status": 1,
-      "explorerUrl": "https://testnet.monadscan.com/tx/0x9fb6ed42675955aedcc65d2a9f6ab916b678bb9995b86e3effa50b401662f91f"
+      "explorerUrl": "https://testnet.monadscan.com/tx/0x7c0d196a4c5e8079ac0509dcfd24cb59301f9579e179287169510c7bc00a2e12"
     },
     "blockTask": {
-      "hash": "0x759fc86dfff8da3893c977a1c3e40a9db2191f857a842f3d914f4e3924c3c287",
-      "blockNumber": 59080227,
+      "hash": "0x9edf71e46139e44cf8447e0203d9fdc4f79464e481687255be0ee4528b473383",
+      "blockNumber": 59089913,
       "status": 1,
-      "explorerUrl": "https://testnet.monadscan.com/tx/0x759fc86dfff8da3893c977a1c3e40a9db2191f857a842f3d914f4e3924c3c287"
+      "explorerUrl": "https://testnet.monadscan.com/tx/0x9edf71e46139e44cf8447e0203d9fdc4f79464e481687255be0ee4528b473383"
     }
   },
-  "generatedAt": "2026-09-02T14:03:12.886Z",
-  "evidenceHash": "0x5fccc5795b8aecff12575ca6df1844b6e6ab81c8d602595976b291044387b167"
+  "generatedAt": "2026-09-02T14:52:10.950Z",
+  "evidenceHash": "0x92f7c0deb84ba5efba535b8fabaae729ebccf21ad8b239d53ef5b7f4f043f600"
 }

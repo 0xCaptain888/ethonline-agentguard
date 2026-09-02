@@ -72,6 +72,7 @@ For a first live run, use two dedicated Monad Testnet wallets:
 | --- | --- | ---: |
 | Buyer / deployer | `0xd64Fac11d711d7278a8Bb6D7be1E2De1fdBCC564` | `1 MON` |
 | Seller agent | `0x637a61f2644E43aDa1eEeEb6Ff827B2aD60e669b` | `0.1 MON` |
+| Independent verifier | `0xE01337d3F0E061017d8Ce547e11d86C0705e8526` | `0.1 MON` |
 
 Get testnet MON from the [Monad faucet](https://faucet.monad.xyz). Keep `.env` local and never commit it.
 
@@ -86,11 +87,11 @@ Get testnet MON from the [Monad faucet](https://faucet.monad.xyz). Keep `.env` l
 
 ## Status
 
-This is an active Metropolis build. A live Monad Testnet contract and one end-to-end `VERIFIED` task are now available in [`docs/live-testnet-evidence.md`](docs/live-testnet-evidence.md). The dated build plan and submission checklist are in [`docs/metropolis-plan.md`](docs/metropolis-plan.md).
+This is an active Metropolis build. A live Monad Testnet contract and end-to-end `VERIFIED`, `BLOCKED`, and `FROZEN` tasks are now available in [`docs/live-testnet-evidence.md`](docs/live-testnet-evidence.md). The dated build plan and submission checklist are in [`docs/metropolis-plan.md`](docs/metropolis-plan.md).
 
 ## Judge demo
 
-The static demo is in [`site/index.html`](site/index.html) and is published by GitHub Pages after the Pages workflow is enabled in repository settings. It intentionally labels live deployment as pending until a real Monad Testnet receipt exists.
+The static demo is in [`site/index.html`](site/index.html) and is published by GitHub Pages. It displays the live contract, independent verifier, three task states, and receipt links.
 
 ## License
 

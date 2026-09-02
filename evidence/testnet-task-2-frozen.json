@@ -2,50 +2,57 @@
   "evidenceVersion": "1",
   "network": "Monad Testnet",
   "chainId": 10143,
-  "contract": "0x8b284E27563aE33a71b170386eC8e8abab1d7067",
+  "contract": "0x7D9204Ce050cb917b2Db703ec2a63CC987C15235",
   "buyer": "0xd64Fac11d711d7278a8Bb6D7be1E2De1fdBCC564",
   "seller": "0x637a61f2644E43aDa1eEeEb6Ff827B2aD60e669b",
+  "verifier": "0xE01337d3F0E061017d8Ce547e11d86C0705e8526",
   "taskId": "2",
   "state": "FROZEN",
   "value": "10000000000000000",
   "transactions": {
     "buyerRegister": {
-      "hash": "0xf23bc6cc20027a84fa485e25569cf0e1738315d64a9db12686bffecd8fcf7157",
-      "blockNumber": 59080193,
+      "hash": "0x1dc577e3d676e283a13ec7c4668197499d640869dbb7e1ccacf8c2ccdc652ee7",
+      "blockNumber": 59089876,
       "status": 1,
-      "explorerUrl": "https://testnet.monadscan.com/tx/0xf23bc6cc20027a84fa485e25569cf0e1738315d64a9db12686bffecd8fcf7157"
+      "explorerUrl": "https://testnet.monadscan.com/tx/0x1dc577e3d676e283a13ec7c4668197499d640869dbb7e1ccacf8c2ccdc652ee7"
     },
     "sellerRegister": {
-      "hash": "0xdeb0b8ab55bbcca7290f61d94fc900b5312a3014497b8dcafffb4cdc587933f5",
-      "blockNumber": 59080202,
+      "hash": "0x47070671960e01ae4dd0390f35c0e971a1a7917d88bb0c60a849b4c575f1385a",
+      "blockNumber": 59089884,
       "status": 1,
-      "explorerUrl": "https://testnet.monadscan.com/tx/0xdeb0b8ab55bbcca7290f61d94fc900b5312a3014497b8dcafffb4cdc587933f5"
+      "explorerUrl": "https://testnet.monadscan.com/tx/0x47070671960e01ae4dd0390f35c0e971a1a7917d88bb0c60a849b4c575f1385a"
     },
     "policy": {
-      "hash": "0x22fdfc34a44b0effc41ec056c583f0ac2cd326e20304d21f1819d410f2f415ab",
-      "blockNumber": 59080210,
+      "hash": "0xd862b1aa2f73a27b096bd24aaa4f03f97e93f3c511d549ceefcfba2b441dffb6",
+      "blockNumber": 59089889,
       "status": 1,
-      "explorerUrl": "https://testnet.monadscan.com/tx/0x22fdfc34a44b0effc41ec056c583f0ac2cd326e20304d21f1819d410f2f415ab"
+      "explorerUrl": "https://testnet.monadscan.com/tx/0xd862b1aa2f73a27b096bd24aaa4f03f97e93f3c511d549ceefcfba2b441dffb6"
+    },
+    "verifier": {
+      "hash": "0x8830e67a584cc170f32ef88a26ad3f5a89e571522f1714f3bcfa4d41b50d12d4",
+      "blockNumber": 59089898,
+      "status": 1,
+      "explorerUrl": "https://testnet.monadscan.com/tx/0x8830e67a584cc170f32ef88a26ad3f5a89e571522f1714f3bcfa4d41b50d12d4"
     },
     "createTask": {
-      "hash": "0x28a43c8bf8a2a8ebfc6d455c5fe58c2c884b9619ef63b4c3aa754ea1b79a312b",
-      "blockNumber": 59080235,
+      "hash": "0xe1de3e25ad11dfcafcaf18e7f05d18b13e57a81c797fb055b8e6dbadef6263e4",
+      "blockNumber": 59089923,
       "status": 1,
-      "explorerUrl": "https://testnet.monadscan.com/tx/0x28a43c8bf8a2a8ebfc6d455c5fe58c2c884b9619ef63b4c3aa754ea1b79a312b"
+      "explorerUrl": "https://testnet.monadscan.com/tx/0xe1de3e25ad11dfcafcaf18e7f05d18b13e57a81c797fb055b8e6dbadef6263e4"
     },
     "submitResult": {
-      "hash": "0x352dbbeb1f32930a193c292542aaa5f4cca130de38d1bd6d6bce55a84a1c4cee",
-      "blockNumber": 59080243,
+      "hash": "0x3c2ea27c2011aa363b20c813480739c016a808583ebd06b5b583e781a5d6a72c",
+      "blockNumber": 59089930,
       "status": 1,
-      "explorerUrl": "https://testnet.monadscan.com/tx/0x352dbbeb1f32930a193c292542aaa5f4cca130de38d1bd6d6bce55a84a1c4cee"
+      "explorerUrl": "https://testnet.monadscan.com/tx/0x3c2ea27c2011aa363b20c813480739c016a808583ebd06b5b583e781a5d6a72c"
     },
     "verifyTask": {
-      "hash": "0x517632f06d89652893ea51c484e56983dec912b3ace69c675d983d7c78b514c4",
-      "blockNumber": 59080252,
+      "hash": "0xb57dab7d9db6391bd64c9338b03c11f2e76bdaec80eb4080e9cdb811f6e9c51c",
+      "blockNumber": 59089937,
       "status": 1,
-      "explorerUrl": "https://testnet.monadscan.com/tx/0x517632f06d89652893ea51c484e56983dec912b3ace69c675d983d7c78b514c4"
+      "explorerUrl": "https://testnet.monadscan.com/tx/0xb57dab7d9db6391bd64c9338b03c11f2e76bdaec80eb4080e9cdb811f6e9c51c"
     }
   },
-  "generatedAt": "2026-09-02T14:03:12.886Z",
-  "evidenceHash": "0xc521267d0862ee3cf54fb982c2bcbc75492201d1dcb4440fce24743a8ccd868f"
+  "generatedAt": "2026-09-02T14:52:10.952Z",
+  "evidenceHash": "0x83495f54f0b4166491c49e87064f23a7999998e064ed3c4e52e205c8ef60dd2f"
 }
