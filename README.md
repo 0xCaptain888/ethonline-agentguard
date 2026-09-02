@@ -46,6 +46,7 @@ npm install
 npm run build
 npm test
 npm run demo
+npm run benchmark
 ```
 
 Deploy to Monad Testnet after funding a dedicated test wallet:
@@ -62,6 +63,8 @@ npm run task:testnet
 ```
 
 The runner registers buyer and seller identities, creates a `0.01 MON` escrow task, submits a result, verifies it, reads the final task state back from Monad, and writes `evidence/testnet-task-<id>.json`. The evidence file includes the intent/policy/result hashes, receipt status, block number, Explorer links, and a deterministic evidence hash. It never prints or persists private keys.
+
+The contract also supports a real independent verifier signature through `setVerifier` and `verifyTaskBySignature`. The seller (or another verifier wallet) signs the task decision off-chain; the contract recovers that signer before releasing or freezing escrow. `npm run benchmark` provides a reproducible local throughput baseline; it is deliberately labelled simulation until run against Monad Testnet.
 
 For a first live run, use two dedicated Monad Testnet wallets:
 

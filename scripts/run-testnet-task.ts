@@ -11,8 +11,11 @@ async function main() {
   };
   const [buyer] = await ethers.getSigners();
   const sellerKey = process.env.SELLER_PRIVATE_KEY;
+  const verifierKey = process.env.VERIFIER_PRIVATE_KEY;
   if (!sellerKey) throw new Error("SELLER_PRIVATE_KEY is required");
+  if (!verifierKey) throw new Error("VERIFIER_PRIVATE_KEY is required");
   const seller = new ethers.Wallet(sellerKey, ethers.provider);
+  const verifier = new ethers.Wallet(verifierKey, ethers.provider);
   const guard = (await ethers.getContractAt(
     "MonadAgentGuard",
     deployment.address,
@@ -55,6 +58,7 @@ async function main() {
     "policy",
     await guard.connect(buyer).setPolicy(ethers.parseEther("1"), true),
   );
+  await record("verifier", await guard.connect(buyer).setVerifier(verifier.address));
   await record(
     "createTask",
     await guard
@@ -65,9 +69,16 @@ async function main() {
     "submitResult",
     await guard.connect(seller).submitResult(taskId, resultHash),
   );
+  const verificationDigest = ethers.keccak256(
+    ethers.solidityPacked(
+      ["uint256", "address", "uint256", "bool", "bytes32"],
+      [network.chainId, deployment.address, taskId, true, resultHash],
+    ),
+  );
+  const verifierSignature = await verifier.signMessage(ethers.getBytes(verificationDigest));
   await record(
     "verifyTask",
-    await guard.connect(buyer).verifyTask(taskId, true),
+    await guard.connect(buyer).verifyTaskBySignature(taskId, true, verifierSignature),
   );
 
   const onchainTask = await guard.tasks(taskId);
@@ -87,6 +98,7 @@ async function main() {
     intentHash,
     policyHash,
     resultHash,
+    verifier: verifier.address,
     state: "VERIFIED",
     onchainState,
     value: value.toString(),

@@ -11,6 +11,7 @@
     "fund:seller": "hardhat run scripts/fund-seller.ts --network monadTestnet",
     "task:testnet": "hardhat run scripts/run-testnet-task.ts --network monadTestnet",
     "tasks:failure-paths": "hardhat run scripts/run-failure-tasks.ts --network monadTestnet",
+    "benchmark": "hardhat run scripts/benchmark.ts",
     "demo": "tsx scripts/demo.ts"
   },
   "devDependencies": {
