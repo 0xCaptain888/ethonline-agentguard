@@ -25,6 +25,9 @@ MonadScan links:
 Each receipt includes intent, policy, result and evidence hashes. The verifier
 address is independent of both buyer and seller.
 
+For the Monad-specific rationale, see [why Monad](why-monad.md). For a direct
+mapping from judge questions to artifacts, see the [scorecard](scorecard.md).
+
 ## 4. Reproduce locally (90 seconds)
 
 ```bash

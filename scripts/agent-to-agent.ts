@@ -1,3 +1,4 @@
+import { keccak256, toUtf8Bytes } from "ethers";
 import { evaluatePolicy } from "../src/policy-engine.js";
 
 /**
@@ -21,7 +22,9 @@ const request = {
 };
 
 const decision = evaluatePolicy(request);
-const resultHash = "0x" + "research-result-placeholder".repeat(4).slice(0, 64);
+const blockedRequest = { ...request, taskId: "research-monad-liquidity-002", valueWei: 80_000_000_000_000_000n, allowedSeller: false, confirmationProvided: false };
+const blockedDecision = evaluatePolicy(blockedRequest);
+const resultHash = keccak256(toUtf8Bytes("YieldScout:research-monad-liquidity-001:v1"));
 console.log(JSON.stringify({
   evidenceClass: "SIMULATION",
   workflow: [
@@ -34,5 +37,10 @@ console.log(JSON.stringify({
   request: { ...request, valueWei: request.valueWei.toString(), maxValueWei: request.maxValueWei.toString(), dailySpentWei: request.dailySpentWei.toString(), dailyLimitWei: request.dailyLimitWei.toString() },
   decision,
   resultHash,
+  blockedPreview: {
+    request: { ...blockedRequest, valueWei: blockedRequest.valueWei.toString(), maxValueWei: blockedRequest.maxValueWei.toString(), dailySpentWei: blockedRequest.dailySpentWei.toString(), dailyLimitWei: blockedRequest.dailyLimitWei.toString() },
+    decision: blockedDecision,
+    contractAction: "blockTask(taskId, reasonHash) → refund buyer",
+  },
   nextLiveCommand: "npm run task:testnet",
 }, null, 2));

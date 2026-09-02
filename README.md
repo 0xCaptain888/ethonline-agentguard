@@ -40,7 +40,9 @@ This repository is a new Monad-native implementation built during Metropolis. It
 
 The policy engine is intentionally side-effect free and emits reason codes and
 decision hashes before the transaction boundary. See the [architecture](docs/architecture.md)
-and [judge quick review](docs/judge-guide.md) for the complete path.
+and [judge quick review](docs/judge-guide.md) for the complete path. The
+[scorecard](docs/scorecard.md) maps each judge question to a reproducible
+artifact, while [Why Monad](docs/why-monad.md) explains the execution choice.
 
 The AI planner is not trusted by the contract. The contract and verifier are the authority boundaries.
 
