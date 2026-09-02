@@ -8,6 +8,7 @@
     "test": "hardhat test",
     "typecheck": "tsc --noEmit",
     "deploy:testnet": "hardhat run scripts/deploy.ts --network monadTestnet",
+    "task:testnet": "hardhat run scripts/run-testnet-task.ts --network monadTestnet",
     "demo": "tsx scripts/demo.ts"
   },
   "devDependencies": {
