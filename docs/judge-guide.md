@@ -25,8 +25,12 @@ MonadScan links:
 Each receipt includes intent, policy, result and evidence hashes. The verifier
 address is independent of both buyer and seller.
 
+Run `npm run evidence:verify` to recompute every committed receipt's evidence
+hash and validate its state, network and transaction trail. This is read-only.
+
 For the Monad-specific rationale, see [why Monad](why-monad.md). For a direct
 mapping from judge questions to artifacts, see the [scorecard](scorecard.md).
+The FROZEN recovery boundary is documented separately in [frozen-recovery.md](frozen-recovery.md).
 
 ## 4. Reproduce locally (90 seconds)
 

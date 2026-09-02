@@ -63,6 +63,7 @@ npm run build
 npm test
 npm run demo
 npm run benchmark
+npm run evidence:verify
 ```
 
 Deploy to Monad Testnet after funding a dedicated test wallet:
@@ -114,6 +115,10 @@ The demo is in [`site/index.html`](site/index.html) and is published by GitHub P
 - **LIVE_TESTNET**: the deployed contract and the three MonadScan-linked task receipts in [live evidence](docs/live-testnet-evidence.md).
 - **SIMULATION**: `npm run agent:flow` and `npm run benchmark`; these move no funds.
 - **DESIGN**: dispute/recovery, multi-verifier quorum and production monitoring are follow-on work.
+
+`npm run evidence:verify` is a read-only integrity check for the committed
+receipts. It recomputes each evidence hash and validates the Monad Testnet
+transaction trail.
 
 `FROZEN` deliberately isolates escrow after a failed result. This hackathon
 MVP does not claim an automatic dispute payout or recovery path.
