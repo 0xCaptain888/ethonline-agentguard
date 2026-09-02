@@ -1,4 +1,5 @@
 import { ethers } from "hardhat";
+import type { ContractTransactionResponse } from "ethers";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import type { MonadAgentGuard } from "../typechain-types/index.js";
 
@@ -22,13 +23,24 @@ async function main() {
   const resultHash = ethers.id(`monad-agentguard:result:task-${taskId}`);
   const value = ethers.parseEther("0.01");
 
-  const txs: Record<string, string> = {};
+  const txs: Record<
+    string,
+    { hash: string; blockNumber: number; status: number; explorerUrl: string }
+  > = {};
   async function record(
     name: string,
-    tx: { hash: string; wait(): Promise<unknown> },
+    tx: ContractTransactionResponse,
   ) {
-    txs[name] = tx.hash;
-    await tx.wait();
+    const receipt = await tx.wait();
+    if (!receipt || receipt.status !== 1) {
+      throw new Error(`${name} transaction failed: ${tx.hash}`);
+    }
+    txs[name] = {
+      hash: tx.hash,
+      blockNumber: receipt.blockNumber,
+      status: receipt.status,
+      explorerUrl: `https://testnet.monadexplorer.com/tx/${tx.hash}`,
+    };
   }
 
   await record(
@@ -58,6 +70,12 @@ async function main() {
     await guard.connect(buyer).verifyTask(taskId, true),
   );
 
+  const onchainTask = await guard.tasks(taskId);
+  const onchainState = Number(onchainTask.state);
+  if (onchainState !== 2) {
+    throw new Error(`expected VERIFIED (2), got task state ${onchainState}`);
+  }
+
   const evidencePayload = {
     evidenceVersion: "1",
     network: "Monad Testnet",
@@ -70,6 +88,7 @@ async function main() {
     policyHash,
     resultHash,
     state: "VERIFIED",
+    onchainState,
     value: value.toString(),
     transactions: txs,
   };
