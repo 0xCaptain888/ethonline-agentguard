@@ -85,6 +85,10 @@ Get testnet MON from the [Monad faucet](https://faucet.monad.xyz). Keep `.env` l
 
 This is an active Metropolis build. The first commit is the protocol skeleton; testnet deployment and live task evidence are the next milestones. See [`docs/metropolis-plan.md`](docs/metropolis-plan.md) for the dated build plan and submission checklist.
 
+## Judge demo
+
+The static demo is in [`site/index.html`](site/index.html) and is published by GitHub Pages after the Pages workflow is enabled in repository settings. It intentionally labels live deployment as pending until a real Monad Testnet receipt exists.
+
 ## License
 
 MIT

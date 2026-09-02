@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Monad AgentGuard — bounded authority for agents</title>
+  <style>
+    :root { color-scheme: dark; --bg:#080b14; --panel:#111827; --line:#263249; --text:#edf2ff; --muted:#9aa8c2; --green:#36d399; --amber:#fbbf24; --red:#fb7185; --blue:#7dd3fc; }
+    * { box-sizing:border-box } body { margin:0; font:15px/1.5 Inter,ui-sans-serif,system-ui,sans-serif; color:var(--text); background:radial-gradient(circle at 20% 0,#172554 0,#080b14 42%); }
+    main { max-width:1100px; margin:auto; padding:56px 22px 80px } .eyebrow { color:var(--blue); letter-spacing:.14em; text-transform:uppercase; font-size:12px; font-weight:700 }
+    h1 { font-size:clamp(38px,7vw,72px); line-height:1.02; margin:14px 0 18px; max-width:850px } h2 { margin-top:0 } p { color:var(--muted); max-width:760px }
+    .pill { border:1px solid var(--line); border-radius:999px; padding:7px 12px; display:inline-flex; gap:8px; align-items:center; color:var(--muted) } .dot { width:8px; height:8px; border-radius:50%; background:var(--amber) }
+    .actions { display:flex; flex-wrap:wrap; gap:12px; margin:28px 0 44px } a.btn { text-decoration:none; color:#07111d; background:var(--blue); padding:11px 16px; border-radius:10px; font-weight:700 } a.btn.alt { color:var(--text); background:transparent; border:1px solid var(--line) }
+    .flow { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin:26px 0 48px } .step { border:1px solid var(--line); background:rgba(17,24,39,.8); border-radius:12px; padding:14px; min-height:92px } .step b { display:block; color:var(--blue); font-size:12px; margin-bottom:7px }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px } .card { border:1px solid var(--line); background:rgba(17,24,39,.85); border-radius:16px; padding:20px } .state { font-size:12px; letter-spacing:.12em; font-weight:800 } .verified { color:var(--green) } .blocked { color:var(--amber) } .frozen { color:var(--red) } .card code { color:#cbd5e1; font-size:12px; word-break:break-all }
+    .evidence { margin-top:36px; border:1px solid var(--line); background:#0d1322; border-radius:16px; padding:22px } .evidence-row { display:flex; justify-content:space-between; gap:16px; padding:10px 0; border-bottom:1px solid #1d2940 } .evidence-row:last-child { border:0 } .label { color:var(--muted) } .pending { color:var(--amber) }
+    footer { margin-top:48px; color:var(--muted); font-size:13px } @media(max-width:760px){ .flow,.grid { grid-template-columns:1fr } .evidence-row { flex-direction:column; gap:3px } }
+  </style>
+</head>
+<body>
+<main>
+  <span class="eyebrow">Monad Metropolis · Trust, Identity &amp; AI Infrastructure</span>
+  <h1>Bounded authority for autonomous agents.</h1>
+  <p>Monad AgentGuard lets an agent propose and execute a task while policy, escrow and an independent verifier decide whether authority is released. The planner can suggest; it cannot certify its own work.</p>
+  <div class="actions">
+    <span class="pill"><span class="dot"></span> Monad Testnet · chain 10143</span>
+    <a class="btn" href="https://github.com/0xCaptain888/monad-agentguard">View source</a>
+    <a class="btn alt" href="https://faucet.monad.xyz">Get testnet MON</a>
+  </div>
+  <h2>One task, three safety outcomes</h2>
+  <div class="flow"><div class="step"><b>01 · IDENTITY</b>Buyer and seller agents register metadata hashes.</div><div class="step"><b>02 · POLICY</b>Buyer sets a maximum value and confirmation rule.</div><div class="step"><b>03 · ESCROW</b>Native MON is locked against a task intent.</div><div class="step"><b>04 · VERIFY</b>Seller submits; a separate verifier checks the result.</div><div class="step"><b>05 · RECEIPT</b>State, hashes and events become auditable evidence.</div></div>
+  <div class="grid">
+    <article class="card"><div class="state verified">VERIFIED</div><h3>Release after proof</h3><p>The result matches the declared intent and policy. Escrow releases to the seller.</p><code>independent verification → release</code></article>
+    <article class="card"><div class="state blocked">BLOCKED</div><h3>Stop before execution</h3><p>The policy engine rejects an over-budget or unauthorized task. Escrow refunds the buyer.</p><code>policy denial → refund</code></article>
+    <article class="card"><div class="state frozen">FROZEN</div><h3>Contain bad output</h3><p>Execution happened, but the result failed verification. Funds remain isolated for review.</p><code>mismatch → no release</code></article>
+  </div>
+  <section class="evidence"><h2>Evidence console</h2><div class="evidence-row"><span class="label">Contract deployment</span><span class="pending">Awaiting Monad Testnet RPC</span></div><div class="evidence-row"><span class="label">Live task receipt</span><span class="pending">Will appear after <code>npm run task:testnet</code></span></div><div class="evidence-row"><span class="label">Simulation proof</span><span>Run <code>npm run demo</code> locally</span></div><div class="evidence-row"><span class="label">Reproduction guide</span><a href="https://github.com/0xCaptain888/monad-agentguard/blob/main/docs/testnet-runbook.md">docs/testnet-runbook.md</a></div></section>
+  <footer>Hackathon MVP · testnet only · not audited production software · <a href="https://github.com/0xCaptain888/monad-agentguard/blob/main/SECURITY.md">security notes</a></footer>
+</main>
+</body></html>
