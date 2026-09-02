@@ -23,3 +23,14 @@ This receipt was generated on **September 2, 2026** by `npm run task:testnet`.
 - [Independent verification and release](https://testnet.monadscan.com/tx/0xd67f7a7d553a0ff9859d5e8edf7a62603b7abb51e5ce9d66729ee3fc6dc28b1b)
 
 The machine-readable receipt is [`evidence/testnet-task-0.json`](../evidence/testnet-task-0.json). The contract is a hackathon MVP and is not audited production software.
+
+## Failure-path evidence
+
+The same deployed contract also has live failure-path receipts:
+
+| State | Task | Evidence hash | Final transaction |
+| --- | ---: | --- | --- |
+| **BLOCKED** | 1 | `0x5fccc5795b8aecff12575ca6df1844b6e6ab81c8d602595976b291044387b167` | [block and refund](https://testnet.monadscan.com/tx/0x759fc86dfff8da3893c977a1c3e40a9db2191f857a842f3d914f4e3924c3c287) |
+| **FROZEN** | 2 | `0xc521267d0862ee3cf54fb982c2bcbc75492201d1dcb4440fce24743a8ccd868f` | [freeze after failed verification](https://testnet.monadscan.com/tx/0x517632f06d89652893ea51c484e56983dec912b3ace69c675d983d7c78b514c4) |
+
+Receipts: [`BLOCKED`](../evidence/testnet-task-1-blocked.json) · [`FROZEN`](../evidence/testnet-task-2-frozen.json)
