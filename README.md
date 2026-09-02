@@ -55,7 +55,22 @@ export DEPLOYER_PRIVATE_KEY=0x...
 npm run deploy:testnet
 ```
 
-The deploy command writes a local deployment record under `deployments/` (ignored by git). After deployment, the next milestone is to register two test identities and execute one real task through `createTask → submitResult → verifyTask`.
+The deploy command writes a local deployment record under `deployments/` (ignored by git). After deployment, configure a second seller wallet locally as `SELLER_PRIVATE_KEY` and run:
+
+```bash
+npm run task:testnet
+```
+
+The runner registers buyer and seller identities, creates a `0.01 MON` escrow task, submits a result, verifies it, reads the final task state back from Monad, and writes `evidence/testnet-task-<id>.json`. The evidence file includes the intent/policy/result hashes, receipt status, block number, Explorer links, and a deterministic evidence hash. It never prints or persists private keys.
+
+For a first live run, use two dedicated Monad Testnet wallets:
+
+| Role | Address | Minimum recommended balance |
+| --- | --- | ---: |
+| Buyer / deployer | `0xd64Fac11d711d7278a8Bb6D7be1E2De1fdBCC564` | `1 MON` |
+| Seller agent | `0x637a61f2644E43aDa1eEeEb6Ff827B2aD60e669b` | `0.1 MON` |
+
+Get testnet MON from the [Monad faucet](https://faucet.monad.xyz). Keep `.env` local and never commit it.
 
 ## Trust boundaries
 
