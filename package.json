@@ -1,0 +1,19 @@
+{
+  "name": "monad-agentguard",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Bounded authority, escrow, and independently verifiable execution for autonomous agents on Monad.",
+  "scripts": {
+    "build": "hardhat compile",
+    "test": "hardhat test",
+    "typecheck": "tsc --noEmit",
+    "deploy:testnet": "hardhat run scripts/deploy.ts --network monadTestnet",
+    "demo": "tsx scripts/demo.ts"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.19",
+    "tsx": "^4.19.4",
+    "typescript": "^5.4.5"
+  }
+}
