@@ -34,7 +34,7 @@ The AI planner is not trusted by the contract. The contract and verifier are the
 
 | Network | Chain ID | RPC | Explorer |
 | --- | ---: | --- | --- |
-| Monad Testnet | 10143 | `https://rpc.testnet.monad.xyz` | [MonadScan Testnet](https://testnet.monadscan.com) |
+| Monad Testnet | 10143 | `https://rpc-testnet.monadinfra.com` | [MonadScan Testnet](https://testnet.monadscan.com) |
 | Monad Mainnet | 143 | `https://rpc.monad.xyz` | [Monad Explorer](https://monadexplorer.com) |
 
 No private key is committed. Use a dedicated testnet wallet through `DEPLOYER_PRIVATE_KEY` only in your local environment.
@@ -83,7 +83,7 @@ Get testnet MON from the [Monad faucet](https://faucet.monad.xyz). Keep `.env` l
 
 ## Status
 
-This is an active Metropolis build. The first commit is the protocol skeleton; testnet deployment and live task evidence are the next milestones. See [`docs/metropolis-plan.md`](docs/metropolis-plan.md) for the dated build plan and submission checklist.
+This is an active Metropolis build. A live Monad Testnet contract and one end-to-end `VERIFIED` task are now available in [`docs/live-testnet-evidence.md`](docs/live-testnet-evidence.md). The dated build plan and submission checklist are in [`docs/metropolis-plan.md`](docs/metropolis-plan.md).
 
 ## Judge demo
 
