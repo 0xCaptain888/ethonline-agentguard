@@ -26,15 +26,34 @@
     <span class="pill"><span class="dot"></span> Monad Testnet · chain 10143</span>
     <a class="btn" href="https://github.com/0xCaptain888/monad-agentguard">View source</a>
     <a class="btn alt" href="https://faucet.monad.xyz">Get testnet MON</a>
+    <a class="btn alt" href="https://github.com/0xCaptain888/monad-agentguard/blob/main/docs/judge-guide.md">Judge guide</a>
   </div>
   <h2>One task, three safety outcomes</h2>
   <div class="flow"><div class="step"><b>01 · IDENTITY</b>Buyer and seller agents register metadata hashes.</div><div class="step"><b>02 · POLICY</b>Buyer sets a maximum value and confirmation rule.</div><div class="step"><b>03 · ESCROW</b>Native MON is locked against a task intent.</div><div class="step"><b>04 · VERIFY</b>Seller submits; a separate verifier checks the result.</div><div class="step"><b>05 · RECEIPT</b>State, hashes and events become auditable evidence.</div></div>
   <div class="grid">
-    <article class="card"><div class="state verified">VERIFIED</div><h3>Release after proof</h3><p>The result matches the declared intent and policy. Escrow releases to the seller.</p><code>independent verification → release</code></article>
+    <article class="card"><div class="state verified">VERIFIED</div><h3>Release after proof</h3><p>The result matches the declared intent and policy. Escrow releases to the seller.</p><code>independent verification → release</code><div><a href="https://testnet.monadscan.com/tx/0x881522f10258a1bb589b1abf2d0d29422226f872084c0fd9c06e67356f46ea42">View receipt ↗</a></div></article>
     <article class="card"><div class="state blocked">BLOCKED</div><h3>Stop before execution</h3><p>Live task 1 was blocked before execution and the 0.01 MON escrow was refunded to the buyer.</p><a href="https://testnet.monadscan.com/tx/0x9edf71e46139e44cf8447e0203d9fdc4f79464e481687255be0ee4528b473383">View receipt ↗</a></article>
     <article class="card"><div class="state frozen">FROZEN</div><h3>Contain bad output</h3><p>Live task 2 executed but failed verification; its 0.01 MON escrow remains isolated for review.</p><a href="https://testnet.monadscan.com/tx/0xb57dab7d9db6391bd64c9338b03c11f2e76bdaec80eb4080e9cdb811f6e9c51c">View receipt ↗</a></article>
   </div>
-  <section class="evidence"><h2>Evidence console</h2><div class="evidence-row"><span class="label">Contract deployment</span><a href="https://testnet.monadscan.com/address/0x7D9204Ce050cb917b2Db703ec2a63CC987C15235">0x7D9204…C15235 ↗</a></div><div class="evidence-row"><span class="label">Live task</span><span class="verified">VERIFIED · task 0 · 0.01 MON</span></div><div class="evidence-row"><span class="label">Independent verifier</span><code>0xE01337…5e8526</code></div><div class="evidence-row"><span class="label">Verification transaction</span><a href="https://testnet.monadscan.com/tx/0x881522f10258a1bb589b1abf2d0d29422226f872084c0fd9c06e67356f46ea42">0x881522…6ea42 ↗</a></div><div class="evidence-row"><span class="label">Evidence hash</span><code>0x42d1c397…14872fee</code></div><div class="evidence-row"><span class="label">Full receipt</span><a href="https://github.com/0xCaptain888/monad-agentguard/blob/main/docs/live-testnet-evidence.md">docs/live-testnet-evidence.md</a></div></section>
+  <section class="evidence"><h2>Evidence console</h2><div class="evidence-row"><span class="label">Contract deployment</span><a href="https://testnet.monadscan.com/address/0x7D9204Ce050cb917b2Db703ec2a63CC987C15235">0x7D9204…C15235 ↗</a></div><div class="evidence-row"><span class="label">Live task</span><span class="verified">VERIFIED · task 0 · 0.01 MON</span></div><div class="evidence-row"><span class="label">Independent verifier</span><code>0xE01337…5e8526</code></div><div class="evidence-row"><span class="label">Verification transaction</span><a href="https://testnet.monadscan.com/tx/0x881522f10258a1bb589b1abf2d0d29422226f872084c0fd9c06e67356f46ea42">0x881522…6ea42 ↗</a></div><div class="evidence-row"><span class="label">Evidence hash</span><code>0x42d1c397…14872fee</code></div><div class="evidence-row"><span class="label">Full receipt</span><a href="https://github.com/0xCaptain888/monad-agentguard/blob/main/docs/live-testnet-evidence.md">docs/live-testnet-evidence.md</a></div><div class="evidence-row"><span class="label">Browser RPC check</span><span><button id="check-live" style="background:var(--blue);border:0;border-radius:8px;padding:8px 12px;font-weight:700;cursor:pointer">Read live task states</button> <span id="rpc-status" class="pending">Not checked</span></span></div></section>
+  <section class="evidence"><h2>What the demo proves</h2><p><b>LIVE_TESTNET</b> is linked to MonadScan above. <b>SIMULATION</b> is the deterministic Agent-to-Agent preview in <a href="https://github.com/0xCaptain888/monad-agentguard/blob/main/docs/judge-guide.md">the judge guide</a>. No wallet connection or transaction is requested by this page.</p></section>
   <footer>Hackathon MVP · testnet only · not audited production software · <a href="https://github.com/0xCaptain888/monad-agentguard/blob/main/SECURITY.md">security notes</a></footer>
 </main>
+<script>
+  const rpc = 'https://rpc-testnet.monadinfra.com';
+  const contract = '0x7D9204Ce050cb917b2Db703ec2a63CC987C15235';
+  async function readState(taskId) {
+    const data = '0x' + (BigInt(taskId).toString(16)).padStart(64, '0');
+    const res = await fetch(rpc, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ jsonrpc:'2.0', id:1, method:'eth_call', params:[{to:contract, data:'0x' + '8d977672' + data}, 'latest'] }) });
+    const json = await res.json();
+    if (json.error) throw new Error(json.error.message || 'RPC error');
+    const words = (json.result || '').slice(2).match(/.{64}/g) || [];
+    return Number(BigInt('0x' + (words[6] || '0')));
+  }
+  document.getElementById('check-live').addEventListener('click', async () => {
+    const status = document.getElementById('rpc-status'); status.textContent = 'Reading Monad Testnet…'; status.className = 'pending';
+    try { const states = await Promise.all([0,1,2].map(readState)); const names = ['OPEN','SUBMITTED','VERIFIED','BLOCKED','FROZEN']; status.textContent = states.map((s,i) => `task ${i}: ${names[s] || 'UNKNOWN'}`).join(' · '); status.className = states[0] === 2 ? 'verified' : 'pending'; }
+    catch (e) { status.textContent = 'RPC unavailable — use MonadScan links'; status.className = 'pending'; }
+  });
+</script>
 </body></html>

@@ -13,7 +13,8 @@
     "task:testnet": "hardhat run scripts/run-testnet-task.ts --network monadTestnet",
     "tasks:failure-paths": "hardhat run scripts/run-failure-tasks.ts --network monadTestnet",
     "benchmark": "hardhat run scripts/benchmark.ts",
-    "demo": "tsx scripts/demo.ts"
+    "demo": "tsx scripts/demo.ts",
+    "agent:flow": "tsx scripts/agent-to-agent.ts"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",

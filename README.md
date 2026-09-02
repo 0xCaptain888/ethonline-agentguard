@@ -6,6 +6,16 @@
 
 Monad AgentGuard is a Monad-native control and settlement layer for AI agents. A planner can propose a task, but it cannot authorize itself or certify its own output. Agent identity, policy authority, escrow, execution and verification are deliberately separated.
 
+### The concrete Agent-to-Agent workflow
+
+`TreasuryPlanner` (buyer) hires `YieldScout` (seller) to return a structured
+Monad liquidity report. A deterministic policy engine checks the seller
+permission, per-task budget, daily budget, risk score and confirmation before
+any escrow transaction is sent. The seller submits a result hash; an
+independent verifier signs the decision; the contract settles only after that
+signature is recovered on-chain. Run the inspectable local flow with
+`npm run agent:flow`.
+
 ```text
 Agent goal → identity → policy gate → Monad escrow → execution
            → independent verifier → VERIFIED / BLOCKED / FROZEN → Receipt
@@ -27,6 +37,10 @@ This repository is a new Monad-native implementation built during Metropolis. It
 - pre-execution `BLOCKED` refund;
 - post-execution `FROZEN` isolation;
 - `VERIFIED` release and event trail.
+
+The policy engine is intentionally side-effect free and emits reason codes and
+decision hashes before the transaction boundary. See the [architecture](docs/architecture.md)
+and [judge quick review](docs/judge-guide.md) for the complete path.
 
 The AI planner is not trusted by the contract. The contract and verifier are the authority boundaries.
 
@@ -64,7 +78,7 @@ npm run task:testnet
 
 The runner registers buyer and seller identities, creates a `0.01 MON` escrow task, submits a result, verifies it, reads the final task state back from Monad, and writes `evidence/testnet-task-<id>.json`. The evidence file includes the intent/policy/result hashes, receipt status, block number, Explorer links, and a deterministic evidence hash. It never prints or persists private keys.
 
-The contract also supports a real independent verifier signature through `setVerifier` and `verifyTaskBySignature`. The seller (or another verifier wallet) signs the task decision off-chain; the contract recovers that signer before releasing or freezing escrow. `npm run benchmark` provides a reproducible local throughput baseline; it is deliberately labelled simulation until run against Monad Testnet.
+The contract also supports a real independent verifier signature through `setVerifier` and `verifyTaskBySignature`. The seller (or another verifier wallet) signs the task decision off-chain; the contract recovers that signer before releasing or freezing escrow. `npm run benchmark` provides a reproducible local throughput baseline; it is deliberately labelled simulation until run against Monad Testnet. There is no claim of production security or Monad throughput from this local benchmark.
 
 For a first live run, use two dedicated Monad Testnet wallets:
 
@@ -91,7 +105,16 @@ This is an active Metropolis build. A live Monad Testnet contract and end-to-end
 
 ## Judge demo
 
-The static demo is in [`site/index.html`](site/index.html) and is published by GitHub Pages. It displays the live contract, independent verifier, three task states, and receipt links.
+The demo is in [`site/index.html`](site/index.html) and is published by GitHub Pages. It displays the live contract, independent verifier, three task states, receipt links, and a browser-side RPC check for the live task states. The page never requests a wallet connection or sends a transaction.
+
+## Evidence labels and limitations
+
+- **LIVE_TESTNET**: the deployed contract and the three MonadScan-linked task receipts in [live evidence](docs/live-testnet-evidence.md).
+- **SIMULATION**: `npm run agent:flow` and `npm run benchmark`; these move no funds.
+- **DESIGN**: dispute/recovery, multi-verifier quorum and production monitoring are follow-on work.
+
+`FROZEN` deliberately isolates escrow after a failed result. This hackathon
+MVP does not claim an automatic dispute payout or recovery path.
 
 ## License
 
