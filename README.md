@@ -34,7 +34,7 @@ The AI planner is not trusted by the contract. The contract and verifier are the
 
 | Network | Chain ID | RPC | Explorer |
 | --- | ---: | --- | --- |
-| Monad Testnet | 10143 | `https://testnet-rpc.monad.xyz` | [Monad Explorer](https://testnet.monadexplorer.com) |
+| Monad Testnet | 10143 | `https://rpc.testnet.monad.xyz` | [MonadScan Testnet](https://testnet.monadscan.com) |
 | Monad Mainnet | 143 | `https://rpc.monad.xyz` | [Monad Explorer](https://monadexplorer.com) |
 
 No private key is committed. Use a dedicated testnet wallet through `DEPLOYER_PRIVATE_KEY` only in your local environment.
