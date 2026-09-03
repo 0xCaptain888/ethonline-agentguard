@@ -64,4 +64,23 @@ describe("MonadAgentGuard", function () {
     await expect(guard.connect(attacker).verifyTaskBySignature(0, true, signature)).to.emit(guard, "TaskVerified");
     expect((await guard.tasks(0)).state).to.equal(2);
   });
+
+  it("requires buyer and seller approval to recover a frozen task", async function () {
+    const [buyer, seller] = await ethers.getSigners();
+    const Guard = await ethers.getContractFactory("MonadAgentGuard");
+    const guard = await Guard.deploy();
+    await guard.waitForDeployment();
+    await guard.connect(buyer).registerAgent(ethers.id("buyer-recovery"));
+    await guard.connect(seller).registerAgent(ethers.id("seller-recovery"));
+    await guard.connect(buyer).setPolicy(ethers.parseEther("1"), false);
+    await guard.connect(buyer).setVerifier(seller.address);
+    await guard.connect(buyer).createTask(seller.address, ethers.id("intent"), ethers.id("policy"), { value: ethers.parseEther("0.1") });
+    await guard.connect(seller).submitResult(0, ethers.id("bad-result"));
+    const digest = ethers.keccak256(ethers.solidityPacked(["uint256", "address", "uint256", "bool", "bytes32"], [31337, await guard.getAddress(), 0, false, ethers.id("bad-result")]));
+    await guard.connect(buyer).verifyTaskBySignature(0, false, await seller.signMessage(ethers.getBytes(digest)));
+    await guard.connect(buyer).approveFrozenRecovery(0, 1);
+    expect((await guard.tasks(0)).state).to.equal(4);
+    await expect(guard.connect(seller).approveFrozenRecovery(0, 1)).to.emit(guard, "TaskRefunded");
+    expect((await guard.tasks(0)).state).to.equal(5);
+  });
 });

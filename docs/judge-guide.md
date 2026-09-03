@@ -21,9 +21,9 @@ labelled `LIVE_EXTERNAL_DATA` and is read-only.
 Open [`docs/live-testnet-evidence.md`](live-testnet-evidence.md) and follow the
 MonadScan links:
 
-- `VERIFIED` task 0: result accepted and 0.01 MON released;
-- `BLOCKED` task 1: policy stop and escrow refund;
-- `FROZEN` task 2: failed result isolated in escrow.
+- `VERIFIED` task 25: real DeFiLlama result accepted and 0.01 MON released;
+- `BLOCKED` task 26: policy stop and escrow refund;
+- `FROZEN` task 27: failed result isolated, then refunded after two-party recovery.
 
 Each receipt includes intent, policy, result and evidence hashes. The verifier
 address is independent of both buyer and seller.

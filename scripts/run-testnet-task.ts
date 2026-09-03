@@ -2,7 +2,7 @@ import { ethers } from "hardhat";
 import type { ContractTransactionResponse } from "ethers";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import type { MonadAgentGuard } from "../typechain-types/index.js";
-import { fetchYieldScoutReport, verifyYieldScoutReport, type YieldScoutReport } from "../src/yieldscout.js";
+import { fetchYieldScoutReport, verifyYieldScoutReport, type YieldScoutReport } from "../src/yieldscout";
 
 async function main() {
   const network = await ethers.provider.getNetwork();
@@ -26,7 +26,13 @@ async function main() {
   const policyHash = ethers.id("monad-agentguard:policy:1-mon");
   let externalReport: YieldScoutReport | undefined;
   if (process.env.YIELDSCOUT_LIVE_DATA === "1") {
-    externalReport = await fetchYieldScoutReport();
+    try {
+      externalReport = await fetchYieldScoutReport();
+    } catch (error) {
+      if (process.env.YIELDSCOUT_REPORT_FILE) {
+        externalReport = JSON.parse(await readFile(process.env.YIELDSCOUT_REPORT_FILE, "utf8")) as YieldScoutReport;
+      } else throw error;
+    }
     const verification = verifyYieldScoutReport(externalReport);
     if (!verification.passed) throw new Error(`YieldScout report failed independent checks: ${verification.reasons.join(", ")}`);
   }

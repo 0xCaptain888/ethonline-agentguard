@@ -11,7 +11,7 @@ public Marketplace and use the terminal only for the local policy preview.
 | 1:35–2:05 | BLOCKED card and MonadScan | “An over-budget or unauthorized request is stopped before execution and refunded.” |
 | 2:05–2:35 | FROZEN card and MonadScan | “A bad result is contained: escrow stays isolated instead of being released.” |
 | 2:35–2:55 | Contract, hashes, `npm run evidence:verify` | “These are real Monad Testnet transactions, and the receipt hashes are independently recomputed.” |
-| 2:55–3:00 | Boundary note | “FROZEN recovery is DESIGN in this hackathon MVP; we are not claiming unaudited production security.” |
+| 2:55–3:00 | Boundary note | “FROZEN recovery is live two-party Testnet refund; signed approvals, deadlines and neutral arbitration remain production extensions.” |
 
 Why Monad, in one sentence:
 

@@ -82,6 +82,7 @@ npm run build
 npm test
 npm run demo
 npm run benchmark
+npm run benchmark:testnet # opt-in: 25 live Testnet task creations
 npm run evidence:verify
 npm run judge:demo
 ```
@@ -112,7 +113,18 @@ its `resultHash` in `submitResult`, and records the source, pool IDs and
 verification checks in the receipt. Without the flag, no external request is
 made and the deterministic demo result is used.
 
+For a reproducible run when DeFiLlama is temporarily unreachable, first save a
+fresh report with `npm run yieldscout:report`, then use
+`YIELDSCOUT_LIVE_DATA=1 YIELDSCOUT_REPORT_FILE=evidence/yieldscout-latest.json npm run task:testnet`.
+The same independent checks run before submission; the file is only a cache of
+the real external response and is not accepted if its hash or schema is invalid.
+
 The contract also supports a real independent verifier signature through `setVerifier` and `verifyTaskBySignature`. The seller (or another verifier wallet) signs the task decision off-chain; the contract recovers that signer before releasing or freezing escrow. `npm run benchmark` provides a reproducible local throughput baseline; it is deliberately labelled simulation until run against Monad Testnet. There is no claim of production security or Monad throughput from this local benchmark.
+
+For a measured Testnet sample, run `BENCHMARK_TASKS=25 npm run benchmark:testnet`.
+This records live `createTask` latency and gas in
+[`docs/benchmark-testnet.json`](docs/benchmark-testnet.json); it is separate
+from settlement evidence and does not imply end-to-end agent throughput.
 
 For a first live run, use two dedicated Monad Testnet wallets:
 
@@ -143,9 +155,9 @@ The demo is in [`site/index.html`](site/index.html) and is published by GitHub P
 
 ## Evidence labels and limitations
 
-- **LIVE_TESTNET**: the deployed contract and the three MonadScan-linked task receipts in [live evidence](docs/live-testnet-evidence.md).
+- **LIVE_TESTNET**: the recovery-enabled deployment, the real YieldScout receipt, failure paths and recovery receipts in [live evidence](docs/live-testnet-evidence.md).
 - **SIMULATION**: `npm run agent:flow` and `npm run benchmark`; these move no funds.
-- **DESIGN**: dispute/recovery, multi-verifier quorum and production monitoring are follow-on work.
+- **DESIGN**: signed approvals, deadlines, neutral-arbiter quorum and production monitoring are follow-on work; the basic two-party frozen recovery is live on Testnet.
 
 `npm run evidence:verify` is a read-only integrity check for the committed
 receipts. It recomputes each evidence hash and validates the Monad Testnet
@@ -155,8 +167,9 @@ The recommended three-minute recording sequence is documented in
 [`docs/demo-script.md`](docs/demo-script.md); `npm run judge:demo` prints the
 policy-first Agent-to-Agent story and the three LIVE_TESTNET links.
 
-`FROZEN` deliberately isolates escrow after a failed result. This hackathon
-MVP does not claim an automatic dispute payout or recovery path.
+`FROZEN` initially isolates escrow after a failed result. The deployed MVP now
+supports a two-party buyer/seller recovery barrier; signed approvals, deadlines
+and neutral arbitration remain production extensions.
 
 ## License
 

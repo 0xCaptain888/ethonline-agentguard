@@ -1,0 +1,31 @@
+{
+  "evidenceVersion": "1",
+  "evidenceClass": "LIVE_TESTNET",
+  "network": "Monad Testnet",
+  "chainId": 10143,
+  "contract": "0xee84007f8618c2c38Be8C45E8050144EbF00CE4a",
+  "taskId": "27",
+  "state": "REFUNDED",
+  "onchainState": 5,
+  "recovery": "MUTUAL_REFUND",
+  "beforeState": "FROZEN",
+  "finalState": "REFUNDED",
+  "buyer": "0xd64Fac11d711d7278a8Bb6D7be1E2De1fdBCC564",
+  "seller": "0x637a61f2644E43aDa1eEeEb6Ff827B2aD60e669b",
+  "verifier": "0x637a61f2644E43aDa1eEeEb6Ff827B2aD60e669b",
+  "value": "10000000000000000",
+  "transactions": {
+    "buyerApproval": {
+      "hash": "0x319d2ea05905eec616b1083bd8cf2bde0b27412ea68812519fc5f640cb3532a5",
+      "blockNumber": 59211061,
+      "status": 1
+    },
+    "sellerApproval": {
+      "hash": "0x610bbf66a7c8bff9cbf951a8a0dd8d03299cfa38a819e67d21574ec7eb0b23d0",
+      "blockNumber": 59211069,
+      "status": 1
+    }
+  },
+  "recoveredAt": "2026-09-03T01:11:50.753Z",
+  "evidenceHash": "0xed8d6590ca630dfc87eeb6c330e24ce0cc8bed46e0cf7e38962ff4cb098b3a77"
+}

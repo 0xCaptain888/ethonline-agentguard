@@ -6,7 +6,7 @@ pragma solidity ^0.8.26;
 /// @dev The AI planner is intentionally off-chain; this contract is the authority,
 ///      escrow, and immutable event boundary on Monad.
 contract MonadAgentGuard {
-    enum TaskState { OPEN, SUBMITTED, VERIFIED, BLOCKED, FROZEN }
+    enum TaskState { OPEN, SUBMITTED, VERIFIED, BLOCKED, FROZEN, REFUNDED }
 
     struct AgentIdentity { address owner; bytes32 metadataHash; bool active; }
     struct Policy { uint256 maxValue; bool requireConfirmation; bool active; }
@@ -25,6 +25,9 @@ contract MonadAgentGuard {
     mapping(address => Policy) public policies;
     mapping(uint256 => Task) public tasks;
     mapping(address => address) public verifiers;
+    mapping(uint256 => uint8) public recoveryDecision;
+    mapping(uint256 => mapping(address => bool)) public recoveryApprovals;
+    mapping(uint256 => uint8) public recoveryApprovalCount;
 
     event AgentRegistered(address indexed agent, address indexed owner, bytes32 metadataHash);
     event PolicyUpdated(address indexed owner, uint256 maxValue, bool requireConfirmation, bool active);
@@ -34,6 +37,9 @@ contract MonadAgentGuard {
     event TaskBlocked(uint256 indexed taskId, bytes32 reasonHash);
     event TaskVerified(uint256 indexed taskId, bytes32 resultHash, uint256 releasedValue);
     event TaskFrozen(uint256 indexed taskId, bytes32 resultHash);
+    event FrozenRecoveryApproved(uint256 indexed taskId, address indexed approver, uint8 decision);
+    event TaskRefunded(uint256 indexed taskId, uint256 refundedValue);
+    event TaskRecoveredVerified(uint256 indexed taskId, uint256 releasedValue);
 
     modifier onlyIdentityOwner(address agent) { require(identities[agent].owner == msg.sender && identities[agent].active, "not identity owner"); _; }
 
@@ -114,6 +120,34 @@ contract MonadAgentGuard {
         } else {
             task.state = TaskState.FROZEN;
             emit TaskFrozen(taskId, task.resultHash);
+        }
+    }
+
+    /// @notice Mutual recovery for a frozen task. Decision 1 refunds the buyer;
+    /// decision 2 releases the seller. Both named parties must approve the
+    /// same decision, so neither party can unilaterally drain disputed escrow.
+    function approveFrozenRecovery(uint256 taskId, uint8 decision) external {
+        require(decision == 1 || decision == 2, "invalid recovery decision");
+        Task storage task = tasks[taskId];
+        require(task.state == TaskState.FROZEN, "task not frozen");
+        require(msg.sender == task.buyer || msg.sender == task.seller, "party required");
+        require(!recoveryApprovals[taskId][msg.sender], "already approved");
+        if (recoveryDecision[taskId] == 0) recoveryDecision[taskId] = decision;
+        require(recoveryDecision[taskId] == decision, "decision mismatch");
+        recoveryApprovals[taskId][msg.sender] = true;
+        recoveryApprovalCount[taskId] += 1;
+        emit FrozenRecoveryApproved(taskId, msg.sender, decision);
+        if (recoveryApprovalCount[taskId] < 2) return;
+        if (decision == 1) {
+            task.state = TaskState.REFUNDED;
+            (bool sent,) = payable(task.buyer).call{value: task.value}("");
+            require(sent, "refund failed");
+            emit TaskRefunded(taskId, task.value);
+        } else {
+            task.state = TaskState.VERIFIED;
+            (bool sent,) = payable(task.seller).call{value: task.value}("");
+            require(sent, "release failed");
+            emit TaskRecoveredVerified(taskId, task.value);
         }
     }
 

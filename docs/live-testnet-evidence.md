@@ -1,40 +1,53 @@
 # Live Monad Testnet Evidence
 
-This receipt was generated on **September 2, 2026** by `npm run task:testnet`.
+All evidence below is from the recovery-enabled deployment on Monad Testnet
+(chain `10143`). The contract is a hackathon MVP, not audited production
+software.
 
 | Field | Value |
 | --- | --- |
-| Network | Monad Testnet (`10143`) |
-| Contract | [`0x7D9204Ce050cb917b2Db703ec2a63CC987C15235`](https://testnet.monadscan.com/address/0x7D9204Ce050cb917b2Db703ec2a63CC987C15235) |
-| Buyer | `0xd64Fac11d711d7278a8Bb6D7be1E2De1fdBCC564` |
-| Seller | `0x637a61f2644E43aDa1eEeEb6Ff827B2aD60e669b` |
-| Task | `0` |
-| Escrow | `0.01 MON` |
-| Final state | **VERIFIED** (`2`) |
-| Evidence hash | `0x42d1c397c830a58ea7666104abb78a304a02bb9d99f6277bbbe1d59214872fee` |
+| Contract | [`0xee84007f8618c2c38Be8C45E8050144EbF00CE4a`](https://testnet.monadscan.com/address/0xee84007f8618c2c38Be8C45E8050144EbF00CE4a) |
+| Buyer Agent | `0xd64Fac11d711d7278a8Bb6D7be1E2De1fdBCC564` |
+| Seller Agent | `0x637a61f2644E43aDa1eEeEb6Ff827B2aD60e669b` |
 | Independent verifier | `0xE01337d3F0E061017d8Ce547e11d86C0705e8526` |
 
-## Transaction trail
+## Real external-data → VERIFIED path
 
-- [Buyer identity registration](https://testnet.monadscan.com/tx/0x6710465e9993f18bc35cb6c143c040691e5f16247d9870c11d7472770f2eb147)
-- [Seller identity registration](https://testnet.monadscan.com/tx/0xd91180633e671a07857e909a04701149ccfeb2b7398a2043c8a9fa1cef2df9ef)
-- [Policy update](https://testnet.monadscan.com/tx/0x510281e98d938f461efba214e96d1e551ed1fd63b1722010b122dab9f22e0b16)
-- [Independent verifier assignment](https://testnet.monadscan.com/tx/0xcfdab2b725f3355b5aaf474a163fe3aea6b62326f057dcd5c56f305fb591072d)
-- [Task creation and escrow](https://testnet.monadscan.com/tx/0xd6e3e77c5bbcf284eacf571da5a25c7866e6b97f2319445a7a28f907d48dab3d)
-- [Seller result submission](https://testnet.monadscan.com/tx/0xc802ab8391773f26f7f586afe667152d7a4103b2066c6b5ef137ebbb16032fa9)
-- [Independent signed verification and release](https://testnet.monadscan.com/tx/0x881522f10258a1bb589b1abf2d0d29422226f872084c0fd9c06e67356f46ea42)
+Task `25` was created by `TreasuryPlanner` for `YieldScout`. YieldScout read
+DeFiLlama's public pools endpoint, ranked the top five Monad pools by TVL,
+passed the independent structural verifier, and committed the report hash
+on-chain. The 0.01 MON escrow was released only after the verifier signature.
 
-The machine-readable receipt is [`evidence/testnet-task-0.json`](../evidence/testnet-task-0.json). The contract is a hackathon MVP and is not audited production software.
+| Field | Value |
+| --- | --- |
+| Result | **VERIFIED** (`2`) |
+| Evidence hash | `0x5091f7f54e01f0c5eb22b407d6b774d9e065b98407f8574b12a2a63f6f7648b1` |
+| YieldScout result hash | `0xe856a4c1688817020e1a072a3e97a146828f1daec7abfac92d686e877b0fda5a` |
+| Data source | [DeFiLlama pools API](https://yields.llama.fi/pools) |
+| Receipt | [`evidence/testnet-task-25.json`](../evidence/testnet-task-25.json) |
 
-## Failure-path evidence
+Transaction trail:
 
-The same deployed contract also has live failure-path receipts:
+- [Create task + escrow](https://testnet.monadexplorer.com/tx/0x92831a2f13296cb5f403b3b5fd9d5bf8c83506523f9081e02d2d56824a77b35e)
+- [YieldScout submits external result hash](https://testnet.monadexplorer.com/tx/0x4f5c4cb3b573398b57604ba6b49aeb14ee34881b88756ac5ce53de907dd0bd72)
+- [Independent verifier signs and releases](https://testnet.monadexplorer.com/tx/0x058b29c97b6774aac1f2018bf26508030faa0fcc9f5b5b524df5a3578dd890c7)
 
-| State | Task | Evidence hash | Final transaction |
+## Failure and recovery paths
+
+| State | Task | Evidence | Final transaction |
 | --- | ---: | --- | --- |
-| **BLOCKED** | 1 | `0x92f7c0deb84ba5efba535b8fabaae729ebccf21ad8b239d53ef5b7f4f043f600` | [block and refund](https://testnet.monadscan.com/tx/0x9edf71e46139e44cf8447e0203d9fdc4f79464e481687255be0ee4528b473383) |
-| **FROZEN** | 2 | `0x83495f54f0b4166491c49e87064f23a7999998e064ed3c4e52e205c8ef60dd2f` | [freeze after failed verification](https://testnet.monadscan.com/tx/0xb57dab7d9db6391bd64c9338b03c11f2e76bdaec80eb4080e9cdb811f6e9c51c) |
+| **BLOCKED** | 26 | [`testnet-task-26-blocked.json`](../evidence/testnet-task-26-blocked.json) | [block + refund](https://testnet.monadexplorer.com/tx/0x35a25bdd69c3de15adb676ac1a29aae37eb09abff518075616aa9f701ee9a34b) |
+| **FROZEN** | 27 | [`testnet-task-27-frozen.json`](../evidence/testnet-task-27-frozen.json) | [failed verification](https://testnet.monadexplorer.com/tx/0xa1193b2aaa7a5c9e25d10c1d81331e3180e2b9d83bdacf1f95f8acdbcf58ea8c) |
+| **REFUNDED** | 27 | [`testnet-task-27-recovered.json`](../evidence/testnet-task-27-recovered.json) | [buyer approval](https://testnet.monadexplorer.com/tx/0x319d2ea05905eec616b1083bd8cf2bde0b27412ea68812519fc5f640cb3532a5), [seller approval](https://testnet.monadexplorer.com/tx/0x610bbf66a7c8bff9cbf951a8a0dd8d03299cfa38a819e67d21574ec7eb0b23d0) |
 
-Receipts: [`BLOCKED`](../evidence/testnet-task-1-blocked.json) · [`FROZEN`](../evidence/testnet-task-2-frozen.json)
+`FROZEN` recovery is now a live two-party barrier: the recorded buyer and
+seller must approve the same decision. Decision `1` refunds the buyer;
+decision `2` releases the seller. Production extensions (deadlines, signed
+approvals and neutral arbiter quorum) remain outside this MVP.
 
-These failure-path receipts were produced on the upgraded verifier-signature contract at the same address. Their evidence hashes are computed from the machine-readable receipt payloads and are included in each file.
+## Performance sample
+
+[`docs/benchmark-testnet.json`](benchmark-testnet.json) contains 25 live
+`createTask` transactions on the same deployment: 100% mined successfully,
+approximately 2,000 ms average receipt latency and 170,670 average gas. This
+measures task creation only, not end-to-end agent latency.

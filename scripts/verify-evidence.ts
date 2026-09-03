@@ -1,11 +1,11 @@
 import { keccak256, toUtf8Bytes, getAddress } from "ethers";
 import { readdir, readFile } from "node:fs/promises";
 
-const expectedState: Record<string, number> = { VERIFIED: 2, BLOCKED: 3, FROZEN: 4 };
+const expectedState: Record<string, number> = { VERIFIED: 2, BLOCKED: 3, FROZEN: 4, REFUNDED: 5 };
 const hashPattern = /^0x[0-9a-fA-F]{64}$/;
 const addressPattern = /^0x[0-9a-fA-F]{40}$/;
 async function main() {
-const files = (await readdir("evidence")).filter((file) => file.endsWith(".json")).sort();
+const files = (await readdir("evidence")).filter((file) => file.startsWith("testnet-task-") && file.endsWith(".json")).sort();
 if (files.length === 0) throw new Error("No evidence JSON files found");
 
 const results: Array<{ file: string; state: string; taskId: string; evidenceHash: string; checks: string[] }> = [];
@@ -18,7 +18,8 @@ for (const file of files) {
   if (!(receipt.state in expectedState)) throw new Error(`${file}: unsupported state ${receipt.state}`);
   if (receipt.onchainState !== undefined && receipt.onchainState !== expectedState[receipt.state]) throw new Error(`${file}: state enum mismatch`);
   if (!hashPattern.test(receipt.evidenceHash)) throw new Error(`${file}: malformed evidenceHash`);
-  if (!receipt.transactions || Object.keys(receipt.transactions).length < 3) throw new Error(`${file}: incomplete transaction trail`);
+  const minimumTransactions = receipt.state === "REFUNDED" ? 2 : 3;
+  if (!receipt.transactions || Object.keys(receipt.transactions).length < minimumTransactions) throw new Error(`${file}: incomplete transaction trail`);
   for (const [name, tx] of Object.entries(receipt.transactions) as Array<[string, any]>) {
     if (!hashPattern.test(tx.hash) || tx.status !== 1 || typeof tx.blockNumber !== "number") throw new Error(`${file}: invalid transaction ${name}`);
   }
