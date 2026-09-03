@@ -1,0 +1,153 @@
+{
+  "evidenceVersion": "1",
+  "evidenceClass": "LIVE_METAMASK_AGENT_WALLET_MONAD_TASK",
+  "network": "Monad Testnet",
+  "chainId": 10143,
+  "contract": "0xee84007f8618c2c38Be8C45E8050144EbF00CE4a",
+  "taskId": "56",
+  "taskType": "YieldScout external liquidity report",
+  "state": "VERIFIED",
+  "onchainState": 2,
+  "buyer": "0xD71cf4282466b2197AC69ad027Fd64270a4C2D9E",
+  "buyerWallet": {
+    "product": "MetaMask Agent Wallet",
+    "mode": "BYOK guard",
+    "address": "0xD71cf4282466b2197AC69ad027Fd64270a4C2D9E",
+    "credentialBoundary": "Wallet authorization remained outside this repository"
+  },
+  "seller": "0x637a61f2644E43aDa1eEeEb6Ff827B2aD60e669b",
+  "verifier": "0xE01337d3F0E061017d8Ce547e11d86C0705e8526",
+  "relayer": "0xd64Fac11d711d7278a8Bb6D7be1E2De1fdBCC564",
+  "value": "1000000000000000",
+  "intentHash": "0x1a92efbe773eaa4abd00aab65102a8ba75fa8457092e8925cbb5e6893054744b",
+  "policyHash": "0x2bf9dd57f74af8458ad1352ee4000c44234ed5f2e192a483dd1f65691765ec49",
+  "resultHash": "0xb931f46edae22aaf7ebbff433507002764c7bfc538bab76b190c0f83cde2c16c",
+  "externalSource": {
+    "name": "DeFiLlama",
+    "endpoint": "https://yields.llama.fi/pools",
+    "fetchedAt": "2026-09-03T06:06:44.896Z"
+  },
+  "agentReport": {
+    "schema": "yieldscout.monad.liquidity.v1",
+    "agent": "YieldScout",
+    "requestedChain": "Monad",
+    "source": {
+      "name": "DeFiLlama",
+      "endpoint": "https://yields.llama.fi/pools",
+      "fetchedAt": "2026-09-03T06:06:44.896Z"
+    },
+    "pools": [
+      {
+        "pool": "9829fc1f-8f3a-5b29-a4b1-843b2996c95d",
+        "project": "aave-v3",
+        "chain": "Monad",
+        "symbol": "SYRUPUSDC",
+        "tvlUsd": 117961243,
+        "apy": 1.25,
+        "apyPct1D": 0
+      },
+      {
+        "pool": "4baffdfd-8015-4713-bad4-10a199b30157",
+        "project": "accountable",
+        "chain": "Monad",
+        "symbol": "AUSD",
+        "tvlUsd": 102645966,
+        "apy": 6.79916,
+        "apyPct1D": -0.01189
+      },
+      {
+        "pool": "34f65227-f3f9-5c3f-9182-f6eca85ae729",
+        "project": "aave-v3",
+        "chain": "Monad",
+        "symbol": "USDE",
+        "tvlUsd": 97394302,
+        "apy": 5.73033,
+        "apyPct1D": -0.01751
+      },
+      {
+        "pool": "1a9c61c7-4094-4ee7-8d46-6ea8fb5689f1",
+        "project": "accountable",
+        "chain": "Monad",
+        "symbol": "USDC",
+        "tvlUsd": 74984527,
+        "apy": 11.47438,
+        "apyPct1D": -0.01293
+      },
+      {
+        "pool": "4ea1913d-f1db-40e5-9010-30965511236f",
+        "project": "townsquare-lending",
+        "chain": "Monad",
+        "symbol": "ENZOBTC",
+        "tvlUsd": 73911512,
+        "apy": 0.00329,
+        "apyPct1D": 0
+      }
+    ],
+    "methodology": {
+      "ranking": "tvlUsd_desc",
+      "risk": "heuristic_only",
+      "note": "TVL is a discovery signal, not investment advice; an independent verifier must apply task-specific risk rules."
+    },
+    "resultHash": "0xb931f46edae22aaf7ebbff433507002764c7bfc538bab76b190c0f83cde2c16c"
+  },
+  "reportVerification": {
+    "passed": true,
+    "reasons": [],
+    "checks": {
+      "schema": true,
+      "agent": true,
+      "source": true,
+      "chain": true,
+      "ranked": true,
+      "boundedNumbers": true,
+      "resultHash": true
+    }
+  },
+  "verificationDigest": "0xda8fc752ecd9ca0f6d6b6b7fcc5c970bb3f2fc5f70a7d774d942b0b6b1fa4811",
+  "transactions": {
+    "metamaskRegisterAgent": {
+      "hash": "0xc596f2fe6be76e03b3f5b6874e9240cfa6a390b30b1db8198c169313a8242fb5",
+      "blockNumber": 59266807,
+      "status": 1,
+      "gasUsed": "130780",
+      "explorerUrl": "https://testnet.monadexplorer.com/tx/0xc596f2fe6be76e03b3f5b6874e9240cfa6a390b30b1db8198c169313a8242fb5"
+    },
+    "metamaskSetPolicy": {
+      "hash": "0x91d03eddf640e915942d66321cfa997a1d9e379bff69231c31a388473bcf568b",
+      "blockNumber": 59267200,
+      "status": 1,
+      "gasUsed": "104913",
+      "explorerUrl": "https://testnet.monadexplorer.com/tx/0x91d03eddf640e915942d66321cfa997a1d9e379bff69231c31a388473bcf568b"
+    },
+    "metamaskSetVerifier": {
+      "hash": "0xb6b333beb2dc1c9d90b779c617a3c74cf059c076d6c2130e27d6c148ca23f40f",
+      "blockNumber": 59268117,
+      "status": 1,
+      "gasUsed": "77784",
+      "explorerUrl": "https://testnet.monadexplorer.com/tx/0xb6b333beb2dc1c9d90b779c617a3c74cf059c076d6c2130e27d6c148ca23f40f"
+    },
+    "metamaskCreateTask": {
+      "hash": "0x6b0875f20eb4fe43b134a46f2740bce03193de1a58e962c6e0845f5a70b87927",
+      "blockNumber": 59268394,
+      "status": 1,
+      "gasUsed": "240370",
+      "explorerUrl": "https://testnet.monadexplorer.com/tx/0x6b0875f20eb4fe43b134a46f2740bce03193de1a58e962c6e0845f5a70b87927"
+    },
+    "sellerSubmitResult": {
+      "hash": "0x4db379e1eb3900f54cb27bd674c15d6170a748ab909ff36df4bbf1a96cebbf57",
+      "blockNumber": 59268963,
+      "status": 1,
+      "gasUsed": "78306",
+      "explorerUrl": "https://testnet.monadexplorer.com/tx/0x4db379e1eb3900f54cb27bd674c15d6170a748ab909ff36df4bbf1a96cebbf57"
+    },
+    "independentVerifyAndRelease": {
+      "hash": "0x113d9c10506617dd2b408542bc7da242a0ab105faff345a911164dc82386a15a",
+      "blockNumber": 59268970,
+      "status": 1,
+      "gasUsed": "70024",
+      "explorerUrl": "https://testnet.monadexplorer.com/tx/0x113d9c10506617dd2b408542bc7da242a0ab105faff345a911164dc82386a15a"
+    }
+  },
+  "evidenceHash": "0xc4c49b6e98bc5e4c200b1153cf0fdc299f0f73c02d0e01ef9d446d63a484815e",
+  "generatedAt": "2026-09-03T06:06:51.879Z"
+}

@@ -17,8 +17,8 @@ and one real escrow transaction. The new task remains `OPEN`; no seller or
 verifier credential is shipped to the browser.
 
 If no wallet is available, the console says so without affecting the evidence
-review below. Existing tasks 29 and 30 show the complete seller and independent
-verifier path.
+review below. MetaMask Agent Wallet Task 56, YieldScout Task 30 and
+ChainSentinel Task 29 show complete seller and independent-verifier paths.
 
 ## 3. Follow two completed Agent-to-Agent requests (60 seconds)
 
@@ -45,6 +45,8 @@ Open [`docs/live-testnet-evidence.md`](live-testnet-evidence.md) and follow the
 Monad Testnet Explorer links:
 
 - `VERIFIED` task 30: full DeFiLlama report accepted and 0.01 MON released;
+- `VERIFIED` task 56: authenticated MetaMask Agent Wallet created the policy-
+  gated escrow; YieldScout and the independent verifier completed settlement;
 - `VERIFIED` task 29: full Monad RPC report accepted and 0.01 MON released;
 - `BLOCKED` task 26: policy stop and escrow refund;
 - `FROZEN` task 27: failed result isolated, then refunded after two-party recovery.
@@ -60,8 +62,9 @@ pipelines, 75 unique Testnet transactions and phase-by-phase latency/gas. Run
 `npm run benchmark:e2e:verify` to validate the aggregate fields and uniqueness.
 
 Run `npm run sponsor:metamask` to inspect the explicit MetaMask Agent Wallet
-requests for identity, policy and escrow. They are credential-free templates;
-an authenticated Agent Wallet session is required to broadcast them.
+requests for identity, policy, verifier binding and escrow. Then open
+[`evidence/metamask-agent-wallet-live.json`](../evidence/metamask-agent-wallet-live.json)
+to verify the authenticated BYOK guard broadcast and Task 56 settlement.
 
 Use [`docs/demo-script.md`](demo-script.md) for the exact three-minute recording
 order, or run `npm run judge:demo` to print the same judge path as structured
@@ -100,5 +103,5 @@ The contract is a hackathon MVP, not audited production software. The complete
 benchmark measures sequential contract-workflow receipt latency, not Monad
 protocol TPS or concurrent Agent throughput. Two-party FROZEN recovery is live;
 signed deadlines and neutral arbitration remain documented production
-extensions. The MetaMask adapter is implemented and tested, but the repository
-does not include or inherit an authenticated MetaMask Agent Wallet session.
+extensions. The MetaMask Agent Wallet broadcast is live evidence, but the
+repository intentionally does not include or inherit its authenticated session.

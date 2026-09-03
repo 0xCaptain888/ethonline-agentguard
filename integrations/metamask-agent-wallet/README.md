@@ -10,13 +10,36 @@ for:
 
 1. `registerAgent`;
 2. `setPolicy`;
-3. `createTask` with native MON escrow.
+3. `setVerifier` to bind an independent result verifier;
+4. `createTask` with native MON escrow.
 
 Run:
 
 ```bash
 npm run sponsor:metamask
 ```
+
+## Live Monad Testnet proof
+
+Task `56` was created by an authenticated MetaMask Agent Wallet `6.2.0` BYOK
+guard wallet and completed through the full YieldScout seller and independent
+verifier path. The public receipt is
+[`evidence/metamask-agent-wallet-live.json`](../../evidence/metamask-agent-wallet-live.json).
+
+- identity: `0xc596f2fe…a8242fb5`;
+- policy: `0x91d03edf…3bcf568b`;
+- verifier binding: `0xb6b333be…ca23f40f`;
+- task escrow: `0x6b0875f2…70b87927`;
+- seller result: `0x4db379e1…6cebbf57`;
+- independent release: `0x113d9c10…386a15a`.
+
+CLI `6.2.0` lists Monad Testnet chain `10143`, but its default Infura gateway
+does not currently route that chain. `npm run sponsor:metamask:rpc-bridge`
+starts a localhost-only JSON-RPC bridge to the Monad Testnet RPC; set
+`MM_INFURA_RPC_BASE_URL` to its printed base URL while executing the generated
+commands. MetaMask still performs wallet signing and authorization. The bridge
+receives standard public JSON-RPC payloads only and never receives the
+mnemonic, private key or authenticated session token.
 
 The command shape was checked against the official CLI `6.2.0`. To execute it
 outside this repository, install the wallet separately:

@@ -61,7 +61,7 @@
           chainId: CHAIN_ID,
           chainName: 'Monad Testnet',
           nativeCurrency: { name: 'MON', symbol: 'MON', decimals: 18 },
-          rpcUrls: ['https://rpc-testnet.monadinfra.com'],
+          rpcUrls: ['https://testnet-rpc.monad.xyz'],
           blockExplorerUrls: [EXPLORER],
         }],
       });

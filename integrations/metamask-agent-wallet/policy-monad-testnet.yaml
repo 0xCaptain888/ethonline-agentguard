@@ -1,0 +1,15 @@
+# MetaMask Agent Wallet guard policy used for the live Monad Testnet proof.
+schema_version: 1
+wallet_address: "0xD71cf4282466b2197AC69ad027Fd64270a4C2D9E"
+
+addresses:
+  allowlist:
+    - address: "0xee84007f8618c2c38Be8C45E8050144EbF00CE4a"
+      chain_id: 10143
+  blocklist: []
+
+evm:
+  allowed_chains:
+    - 10143
+  outflow_limits_usd:
+    rolling_24h: 1

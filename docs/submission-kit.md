@@ -42,9 +42,12 @@ machine-verifiable. This is a workflow measurement, not a protocol TPS claim.
 
 MetaMask Agent Wallet is the buyer-side self-custodial execution boundary;
 AgentGuard is the Monad task-policy and settlement boundary. The adapter emits
-inspectable identity, policy and escrow transaction intents through the Agent
-Wallet CLI. It never stores wallet credentials and does not claim a broadcast
-without an authenticated user session.
+inspectable identity, policy, independent-verifier and escrow transaction
+intents through the Agent Wallet CLI. An authenticated BYOK guard wallet
+broadcast all four buyer transactions for Task 56 on Monad Testnet. YieldScout
+then submitted a fresh DeFiLlama report and an independent verifier released
+the `0.001 MON` escrow. The complete six-transaction receipt is public and no
+wallet credential is stored in the repository.
 
 ## Submission links
 
@@ -56,6 +59,9 @@ without an authenticated user session.
 - One-command verification: `npm run judge:check`
 - Complete benchmark: `docs/benchmark-e2e-testnet.json`
 - Sponsor adapter: `integrations/metamask-agent-wallet/`
+- Live sponsor receipt: `evidence/metamask-agent-wallet-live.json`
+- MetaMask-created task: https://testnet.monadexplorer.com/tx/0x6b0875f20eb4fe43b134a46f2740bce03193de1a58e962c6e0845f5a70b87927
+- Verified settlement: https://testnet.monadexplorer.com/tx/0x113d9c10506617dd2b408542bc7da242a0ab105faff345a911164dc82386a15a
 
 ## Honest boundary
 

@@ -22,17 +22,22 @@ ChainSentinel through Monad AgentGuard.
 
 ## Workflow
 
-1. Run `npm run sponsor:metamask` to print the exact identity, policy and task
-   transaction requests.
+1. Run `npm run sponsor:metamask` to print the exact identity, policy,
+   independent-verifier and task transaction requests.
 2. Confirm the Agent Wallet reports support for chain ID `10143`.
    If `mm chains list` does not list it, stop and report the unsupported-chain
    boundary instead of silently switching networks.
 3. Execute the identity transaction if the wallet is not yet registered.
 4. Execute the policy transaction with a maximum value greater than or equal
    to the task value.
-5. Execute the task transaction only after the local policy result is `ALLOW`.
-6. Wait for the receipt and return its transaction hash and block number.
-7. Open the transaction in the Monad Testnet Explorer and record the task ID.
+5. Bind the intended independent verifier before task settlement.
+6. Execute the task transaction only after the local policy result is `ALLOW`.
+7. Wait for the receipt and return its transaction hash and block number.
+8. Open the transaction in the Monad Testnet Explorer and record the task ID.
+
+If CLI `6.2.0` returns `Invalid chainId` for `10143`, start
+`npm run sponsor:metamask:rpc-bridge` and set `MM_INFURA_RPC_BASE_URL` to its
+localhost base URL. Do not replace Monad Testnet with another chain.
 
 The seller and independent verifier complete execution through the existing
 AgentGuard runner. MetaMask Agent Wallet controls the buyer-side authority and

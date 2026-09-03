@@ -29,6 +29,16 @@
       "resultHash": "0x7f8f72630f40a2312c7b46eba528c5e7900c63d4db26e4d727de49a4fa466717",
       "evidenceHash": "0x88cd54badae759492e3a983ab8cebc41572af763b9f3f4063cce5c81e5cb139a",
       "verificationTx": "0xa97ed7f0863171680fe0dcd4c20130696471d6832db08f57fad65fe42fb6f1fe"
+    },
+    {
+      "name": "MetaMask Agent Wallet → YieldScout",
+      "role": "buyer-wallet + seller",
+      "taskId": "56",
+      "dataSource": "DeFiLlama",
+      "state": "VERIFIED",
+      "resultHash": "0xb931f46edae22aaf7ebbff433507002764c7bfc538bab76b190c0f83cde2c16c",
+      "evidenceHash": "0xc4c49b6e98bc5e4c200b1153cf0fdc299f0f73c02d0e01ef9d446d63a484815e",
+      "verificationTx": "0x113d9c10506617dd2b408542bc7da242a0ab105faff345a911164dc82386a15a"
     }
   ],
   "safetyOutcomes": {
@@ -59,8 +69,14 @@
     "officialPackage": "@metamask/agent-wallet@6.2.0",
     "path": "integrations/metamask-agent-wallet",
     "verifyCommand": "npm run sponsor:metamask",
-    "status": "IMPLEMENTED_AND_TESTED",
-    "broadcastClaimed": false
+    "status": "LIVE_TESTNET_VERIFIED",
+    "broadcastClaimed": true,
+    "walletMode": "BYOK guard",
+    "buyerAddress": "0xD71cf4282466b2197AC69ad027Fd64270a4C2D9E",
+    "liveTaskId": "56",
+    "evidenceFile": "evidence/metamask-agent-wallet-live.json",
+    "createTaskTx": "0x6b0875f20eb4fe43b134a46f2740bce03193de1a58e962c6e0845f5a70b87927",
+    "verificationTx": "0x113d9c10506617dd2b408542bc7da242a0ab105faff345a911164dc82386a15a"
   },
   "verifyCommand": "npm run judge:check"
 }

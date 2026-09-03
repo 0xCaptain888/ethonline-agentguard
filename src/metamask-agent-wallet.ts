@@ -6,6 +6,7 @@ export const AGENT_GUARD_ADDRESS = "0xee84007f8618c2c38Be8C45E8050144EbF00CE4a";
 const guardInterface = new Interface([
   "function registerAgent(bytes32 metadataHash)",
   "function setPolicy(uint256 maxValue, bool requireConfirmation)",
+  "function setVerifier(address verifier)",
   "function createTask(address seller, bytes32 intentHash, bytes32 policyHash) payable returns (uint256 taskId)",
 ]);
 
@@ -40,6 +41,20 @@ export function buildSetPolicyTransaction(maxValueMon: string, requireConfirmati
       protocol: "Monad AgentGuard",
       maxValueMon,
       requireConfirmation,
+    },
+  };
+}
+
+export function buildSetVerifierTransaction(verifier: string): AgentWalletTransaction {
+  return {
+    chainId: MONAD_TESTNET_CHAIN_ID,
+    to: AGENT_GUARD_ADDRESS,
+    value: "0",
+    calldata: guardInterface.encodeFunctionData("setVerifier", [verifier]),
+    intent: {
+      action: "set_independent_verifier",
+      protocol: "Monad AgentGuard",
+      verifier,
     },
   };
 }

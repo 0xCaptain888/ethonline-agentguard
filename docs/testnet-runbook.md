@@ -9,7 +9,7 @@ Create dedicated testnet-only buyer and seller wallets. Put their private keys i
 ```bash
 DEPLOYER_PRIVATE_KEY=0x...
 SELLER_PRIVATE_KEY=0x...
-MONAD_TESTNET_RPC_URL=https://rpc-testnet.monadinfra.com
+MONAD_TESTNET_RPC_URL=https://testnet-rpc.monad.xyz
 ```
 
 Fund the buyer, seller, and verifier addresses from the [Monad faucet](https://faucet.monad.xyz). The buyer needs gas for deployment and task transactions; the seller needs gas for registration and result submission. The verifier signs the decision off-chain and does not need to submit a transaction.

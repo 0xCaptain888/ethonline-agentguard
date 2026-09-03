@@ -23,7 +23,7 @@ console.log(JSON.stringify({
     { at: "00:00", screen: "Agent-to-Agent", narration: "TreasuryPlanner hires YieldScout for liquidity research and ChainSentinel for Monad network telemetry through one execution layer." },
     { at: "00:20", screen: "Live Judge Console — BLOCK", narration: "Set the task above budget: policy blocks before any wallet write is requested.", decision: blocked },
     { at: "00:55", screen: "Live Judge Console — CREATE", narration: "Restore the allowed values, connect a judge wallet and create a real Monad Testnet escrow task without exposing seller or verifier credentials.", decision: allowed },
-    { at: "01:25", screen: "Settlement", narration: "Both full seller reports are committed and re-hashed; only task-specific verifier signatures release MON.", liveEvidence: "YieldScout task 30 + ChainSentinel task 29" },
+    { at: "01:25", screen: "Settlement", narration: "MetaMask Agent Wallet Task 56 and both seller workloads commit full reports; only task-specific verifier signatures release MON.", liveEvidence: "MetaMask → YieldScout task 56 + ChainSentinel task 29" },
     { at: "01:55", screen: "Safety outcomes", narration: "Real receipts show VERIFIED, BLOCKED, FROZEN and the two-party REFUNDED recovery path.", liveEvidence: "Tasks 30, 26 and 27" },
     { at: "02:20", screen: "Why Monad", narration: "Twenty-five complete pipelines separated escrow, result commitment and independent verification across 75 unique Testnet transactions.", benchmark: { pipelines: 25, verified: 25, transactions: 75, averageEndToEndMs: 6566, p95EndToEndMs: 7543 } },
     { at: "02:40", screen: "MetaMask Agent Wallet", narration: "MetaMask isolates the self-custodial buyer wallet; AgentGuard adds application policy and settlement proof on Monad.", integration: "npm run sponsor:metamask" },
@@ -41,7 +41,8 @@ console.log(JSON.stringify({
   sponsorIntegration: {
     name: "MetaMask Agent Wallet",
     command: "npm run sponsor:metamask",
-    boundary: "Adapter tested; authenticated wallet broadcast is not claimed.",
+    liveTask: "evidence/metamask-agent-wallet-live.json",
+    boundary: "Authenticated BYOK guard broadcast is proven by Task 56; wallet credentials and session remain outside the repository.",
   },
   evidenceVerifier: "npm run judge:check",
   scriptHash: keccak256(toUtf8Bytes("monad-agentguard:judge-demo:v3")),

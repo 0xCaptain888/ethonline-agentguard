@@ -43,4 +43,5 @@ its wallet-level transaction checks. AgentGuard adds application-level task
 policy, escrow, seller/result binding, independent verification and settlement
 receipts on Monad. The integration reinforces the same trust model instead of
 attaching an unrelated sponsor SDK. See
-[`integrations/metamask-agent-wallet`](../integrations/metamask-agent-wallet/).
+[`integrations/metamask-agent-wallet`](../integrations/metamask-agent-wallet/)
+and the authenticated [Task 56 receipt](../evidence/metamask-agent-wallet-live.json).

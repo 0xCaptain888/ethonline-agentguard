@@ -13,6 +13,34 @@ software.
 | Seller Agent | `0x637a61f2644E43aDa1eEeEb6Ff827B2aD60e669b` |
 | Independent verifier | `0xE01337d3F0E061017d8Ce547e11d86C0705e8526` |
 
+## Authenticated MetaMask Agent Wallet → VERIFIED path
+
+Task `56` is the sponsor-complete path. A MetaMask Agent Wallet BYOK guard
+wallet registered its identity, committed a `0.01 MON` maximum policy, bound
+the independent verifier and created a `0.001 MON` YieldScout escrow. The
+seller fetched a fresh DeFiLlama report, committed its result hash, and the
+independent verifier signature released the escrow.
+
+| Field | Value |
+| --- | --- |
+| Buyer wallet | [`0xD71cf4282466b2197AC69ad027Fd64270a4C2D9E`](https://testnet.monadexplorer.com/address/0xD71cf4282466b2197AC69ad027Fd64270a4C2D9E) |
+| Wallet product | MetaMask Agent Wallet `6.2.0` · BYOK guard mode |
+| Task | `56` |
+| Result | **VERIFIED** (`2`) |
+| Escrow | `0.001 MON` |
+| Result hash | `0xb931f46edae22aaf7ebbff433507002764c7bfc538bab76b190c0f83cde2c16c` |
+| Evidence hash | `0xc4c49b6e98bc5e4c200b1153cf0fdc299f0f73c02d0e01ef9d446d63a484815e` |
+| Full receipt | [`evidence/metamask-agent-wallet-live.json`](../evidence/metamask-agent-wallet-live.json) |
+
+Transaction trail:
+
+- [Agent identity](https://testnet.monadexplorer.com/tx/0xc596f2fe6be76e03b3f5b6874e9240cfa6a390b30b1db8198c169313a8242fb5)
+- [Bounded policy](https://testnet.monadexplorer.com/tx/0x91d03eddf640e915942d66321cfa997a1d9e379bff69231c31a388473bcf568b)
+- [Independent verifier binding](https://testnet.monadexplorer.com/tx/0xb6b333beb2dc1c9d90b779c617a3c74cf059c076d6c2130e27d6c148ca23f40f)
+- [Create task + escrow](https://testnet.monadexplorer.com/tx/0x6b0875f20eb4fe43b134a46f2740bce03193de1a58e962c6e0845f5a70b87927)
+- [YieldScout submits report hash](https://testnet.monadexplorer.com/tx/0x4db379e1eb3900f54cb27bd674c15d6170a748ab909ff36df4bbf1a96cebbf57)
+- [Independent verification + release](https://testnet.monadexplorer.com/tx/0x113d9c10506617dd2b408542bc7da242a0ab105faff345a911164dc82386a15a)
+
 ## Real external-data → VERIFIED path
 
 Task `25` was created by `TreasuryPlanner` for `YieldScout`. YieldScout read

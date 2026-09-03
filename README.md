@@ -5,6 +5,7 @@
 [![Network](https://img.shields.io/badge/Monad-Testnet-7dd3fc)](https://testnet.monadexplorer.com/address/0xee84007f8618c2c38Be8C45E8050144EbF00CE4a)
 [![Source](https://img.shields.io/badge/source-Sourcify%20exact%20match-8b5cf6)](https://testnet.monadvision.com/contracts/full_match/10143/0xee84007f8618c2c38Be8C45E8050144EbF00CE4a/)
 [![E2E](https://img.shields.io/badge/e2e-25%2F25%20VERIFIED-36d399)](docs/monad-performance.md)
+[![Agent Wallet](https://img.shields.io/badge/MetaMask%20Agent%20Wallet-LIVE%20Task%2056-8b5cf6)](evidence/metamask-agent-wallet-live.json)
 
 **Autonomous agents can act on Monad — but authority stays bounded and every result is independently verifiable.**
 
@@ -17,6 +18,14 @@ Monad AgentGuard is a Monad-native control and settlement layer for AI agents. A
 report, while [`ChainSentinel`](evidence/testnet-task-29.json) commits a fresh
 Monad RPC network report. Both full reports are independently re-hashed by
 `npm run evidence:verify` and match their on-chain result commitments.
+
+**Live sponsor proof:** MetaMask Agent Wallet BYOK guard wallet
+[`0xD71c…D9E`](https://testnet.monadexplorer.com/address/0xD71cf4282466b2197AC69ad027Fd64270a4C2D9E)
+registered its identity, committed a `0.01 MON` policy, bound an independent
+verifier and created YieldScout Task `56` with `0.001 MON` escrow. The seller
+submitted a fresh DeFiLlama result and the independent verifier released it to
+`VERIFIED`. Open the [complete receipt](evidence/metamask-agent-wallet-live.json)
+or the [final settlement transaction](https://testnet.monadexplorer.com/tx/0x113d9c10506617dd2b408542bc7da242a0ab105faff345a911164dc82386a15a).
 
 ### The concrete Agent-to-Agent workflow
 
@@ -83,11 +92,15 @@ sequential contract-workflow measurement, not a Monad protocol TPS claim.
 ### MetaMask Agent Wallet sponsor integration
 
 The [`integrations/metamask-agent-wallet`](integrations/metamask-agent-wallet)
-package maps AgentGuard identity, policy and task escrow into explicit
-MetaMask Agent Wallet transaction requests. Run `npm run sponsor:metamask` to
-inspect the credential-free `mm wallet send-transaction` commands and their
-human-readable intents. The included Agent skill blocks writes when policy
-fails and forbids silent Mainnet fallback.
+package maps AgentGuard identity, policy, independent-verifier binding and task
+escrow into explicit MetaMask Agent Wallet transaction requests. Task `56`
+proves the authenticated BYOK guard path was actually broadcast on Monad
+Testnet and settled after independent verification. Run
+`npm run sponsor:metamask` to inspect the credential-free transaction commands
+and human-readable intents; open
+[`evidence/metamask-agent-wallet-live.json`](evidence/metamask-agent-wallet-live.json)
+for the six-transaction receipt. The included Agent skill blocks writes when
+policy fails and forbids silent Mainnet fallback.
 
 ### Verified deployment
 
@@ -124,7 +137,7 @@ input, output and failure semantics.
 
 | Network | Chain ID | RPC | Explorer |
 | --- | ---: | --- | --- |
-| Monad Testnet | 10143 | `https://rpc-testnet.monadinfra.com` | [Monad Testnet Explorer](https://testnet.monadexplorer.com) |
+| Monad Testnet | 10143 | `https://testnet-rpc.monad.xyz` | [Monad Testnet Explorer](https://testnet.monadexplorer.com) |
 | Monad Mainnet | 143 | `https://rpc.monad.xyz` | [Monad Explorer](https://monadexplorer.com) |
 
 No private key is committed. Use a dedicated testnet wallet through `DEPLOYER_PRIVATE_KEY` only in your local environment.
@@ -141,6 +154,7 @@ npm run benchmark:testnet # opt-in: 25 live Testnet task creations
 npm run benchmark:e2e:testnet # opt-in: 25 complete, 75-transaction pipelines
 npm run benchmark:e2e:verify
 npm run sponsor:metamask
+npm run sponsor:metamask:rpc-bridge # local bridge for CLI 6.2.0 on chain 10143
 npm run evidence:verify
 npm run judge:demo
 npm run judge:check
@@ -218,7 +232,7 @@ failure produces `BLOCKED` before any write request.
 
 ## Evidence labels and limitations
 
-- **LIVE_TESTNET**: the recovery-enabled deployment, the real YieldScout receipt, failure paths and recovery receipts in [live evidence](docs/live-testnet-evidence.md).
+- **LIVE_TESTNET**: the recovery-enabled deployment, real YieldScout and ChainSentinel receipts, the authenticated MetaMask Agent Wallet Task 56, failure paths and recovery receipts in [live evidence](docs/live-testnet-evidence.md).
 - **SIMULATION**: `npm run agent:flow` and `npm run benchmark`; these move no funds.
 - **DESIGN**: signed approvals, deadlines, neutral-arbiter quorum and production monitoring are follow-on work; the basic two-party frozen recovery is live on Testnet.
 

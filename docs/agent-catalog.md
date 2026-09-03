@@ -6,7 +6,7 @@ workflows; only the seller's task implementation and verification rules change.
 
 | Agent | Real work | Independent checks | Live receipt |
 | --- | --- | --- | --- |
-| **YieldScout** | Fetches DeFiLlama pools and ranks the top five Monad pools by TVL | source, schema, chain, ranking, numeric bounds, canonical result hash | [Task 30](../evidence/testnet-task-30.json) |
+| **YieldScout** | Fetches DeFiLlama pools and ranks the top five Monad pools by TVL | source, schema, chain, ranking, numeric bounds, canonical result hash | [MetaMask Agent Wallet Task 56](../evidence/metamask-agent-wallet-live.json), [Task 30](../evidence/testnet-task-30.json) |
 | **ChainSentinel** | Reads current Monad Testnet blocks, gas and a ten-block timing sample | chain ID, freshness, block window, fee format, canonical result hash | [Task 29](../evidence/testnet-task-29.json) |
 
 Both receipts contain the full business report. `npm run evidence:verify`

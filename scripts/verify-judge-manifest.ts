@@ -8,13 +8,14 @@ async function main() {
     interactiveJudgeConsole: { url: string; blockedBeforeWrite: boolean; writes: string[] };
     endToEndBenchmark: { evidenceFile: string; pipelines: number; verified: number; transactions: number; averageEndToEndMs: number; p50EndToEndMs: number; p95EndToEndMs: number; averageTotalGas: string };
     taskCreationBaseline: { tasks: number; successRate: number; averageLatencyMs: number; averageGas: number };
-    sponsorIntegration: { name: string; path: string; verifyCommand: string; status: string; broadcastClaimed: boolean };
+    sponsorIntegration: { name: string; path: string; verifyCommand: string; status: string; broadcastClaimed: boolean; liveTaskId: string; evidenceFile: string; buyerAddress: string; createTaskTx: string; verificationTx: string };
   };
   if (manifest.manifestVersion !== "1" || manifest.chainId !== 10143) throw new Error("unsupported judge manifest");
   const checks: Array<{ agent: string; taskId: string; passed: boolean }> = [];
   for (const agent of manifest.agents.filter((entry) => entry.taskId)) {
     const receipt = JSON.parse(await readFile(`evidence/testnet-task-${agent.taskId}.json`, "utf8")) as any;
-    const verificationTx = receipt.transactions?.verifyTask?.hash;
+    const verificationTx = receipt.transactions?.verifyTask?.hash
+      ?? receipt.transactions?.independentVerifyAndRelease?.hash;
     const passed = receipt.contract.toLowerCase() === manifest.contract.toLowerCase()
       && String(receipt.taskId) === agent.taskId
       && receipt.state === agent.state
@@ -37,9 +38,14 @@ async function main() {
     || benchmark.p95EndToEndMs !== manifest.endToEndBenchmark.p95EndToEndMs
     || benchmark.averageTotalGas !== manifest.endToEndBenchmark.averageTotalGas) throw new Error("end-to-end benchmark manifest mismatch");
   await readFile(`${manifest.sponsorIntegration.path}/SKILL.md`, "utf8");
+  const sponsorReceipt = JSON.parse(await readFile(manifest.sponsorIntegration.evidenceFile, "utf8")) as any;
   if (manifest.sponsorIntegration.name !== "MetaMask Agent Wallet"
-    || manifest.sponsorIntegration.status !== "IMPLEMENTED_AND_TESTED"
-    || manifest.sponsorIntegration.broadcastClaimed) throw new Error("sponsor integration manifest mismatch");
+    || manifest.sponsorIntegration.status !== "LIVE_TESTNET_VERIFIED"
+    || !manifest.sponsorIntegration.broadcastClaimed
+    || sponsorReceipt.taskId !== manifest.sponsorIntegration.liveTaskId
+    || sponsorReceipt.buyer.toLowerCase() !== manifest.sponsorIntegration.buyerAddress.toLowerCase()
+    || sponsorReceipt.transactions.metamaskCreateTask.hash.toLowerCase() !== manifest.sponsorIntegration.createTaskTx.toLowerCase()
+    || sponsorReceipt.transactions.independentVerifyAndRelease.hash.toLowerCase() !== manifest.sponsorIntegration.verificationTx.toLowerCase()) throw new Error("sponsor integration manifest mismatch");
   console.log(JSON.stringify({ evidenceClass: "REPOSITORY_INTEGRITY", manifestVersion: manifest.manifestVersion, contract: manifest.contract, agentReceipts: checks, judgeConsole: true, endToEndPipelines: benchmark.samples.length, endToEndTransactions: transactionCount, sponsorIntegration: manifest.sponsorIntegration.name, passed: true }, null, 2));
 }
 main().catch((error) => { console.error(error); process.exitCode = 1; });
