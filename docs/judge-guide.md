@@ -28,6 +28,10 @@ address is independent of both buyer and seller.
 Run `npm run evidence:verify` to recompute every committed receipt's evidence
 hash and validate its state, network and transaction trail. This is read-only.
 
+Use [`docs/demo-script.md`](demo-script.md) for the exact three-minute recording
+order, or run `npm run judge:demo` to print the same judge path as structured
+JSON.
+
 For the Monad-specific rationale, see [why Monad](why-monad.md). For a direct
 mapping from judge questions to artifacts, see the [scorecard](scorecard.md).
 The FROZEN recovery boundary is documented separately in [frozen-recovery.md](frozen-recovery.md).

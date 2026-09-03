@@ -15,6 +15,7 @@
     "benchmark": "hardhat run scripts/benchmark.ts",
     "demo": "tsx scripts/demo.ts",
     "agent:flow": "node --import tsx scripts/agent-to-agent.ts",
+    "judge:demo": "node --import tsx scripts/judge-demo.ts",
     "evidence:verify": "node --import tsx scripts/verify-evidence.ts"
   },
   "devDependencies": {

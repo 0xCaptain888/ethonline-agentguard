@@ -64,6 +64,7 @@ npm test
 npm run demo
 npm run benchmark
 npm run evidence:verify
+npm run judge:demo
 ```
 
 Deploy to Monad Testnet after funding a dedicated test wallet:
@@ -119,6 +120,10 @@ The demo is in [`site/index.html`](site/index.html) and is published by GitHub P
 `npm run evidence:verify` is a read-only integrity check for the committed
 receipts. It recomputes each evidence hash and validates the Monad Testnet
 transaction trail.
+
+The recommended three-minute recording sequence is documented in
+[`docs/demo-script.md`](docs/demo-script.md); `npm run judge:demo` prints the
+policy-first Agent-to-Agent story and the three LIVE_TESTNET links.
 
 `FROZEN` deliberately isolates escrow after a failed result. This hackathon
 MVP does not claim an automatic dispute payout or recovery path.
