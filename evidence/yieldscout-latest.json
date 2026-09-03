@@ -1,0 +1,63 @@
+{
+  "schema": "yieldscout.monad.liquidity.v1",
+  "agent": "YieldScout",
+  "requestedChain": "Monad",
+  "source": {
+    "name": "DeFiLlama",
+    "endpoint": "https://yields.llama.fi/pools",
+    "fetchedAt": "2026-09-03T01:08:50.399Z"
+  },
+  "pools": [
+    {
+      "pool": "9829fc1f-8f3a-5b29-a4b1-843b2996c95d",
+      "project": "aave-v3",
+      "chain": "Monad",
+      "symbol": "SYRUPUSDC",
+      "tvlUsd": 117972035,
+      "apy": 1.25,
+      "apyPct1D": 0
+    },
+    {
+      "pool": "4baffdfd-8015-4713-bad4-10a199b30157",
+      "project": "accountable",
+      "chain": "Monad",
+      "symbol": "AUSD",
+      "tvlUsd": 102664507,
+      "apy": 6.8005,
+      "apyPct1D": -0.01253
+    },
+    {
+      "pool": "34f65227-f3f9-5c3f-9182-f6eca85ae729",
+      "project": "aave-v3",
+      "chain": "Monad",
+      "symbol": "USDE",
+      "tvlUsd": 95404594,
+      "apy": 5.74781,
+      "apyPct1D": 0.00001
+    },
+    {
+      "pool": "1a9c61c7-4094-4ee7-8d46-6ea8fb5689f1",
+      "project": "accountable",
+      "chain": "Monad",
+      "symbol": "USDC",
+      "tvlUsd": 74983474,
+      "apy": 11.47579,
+      "apyPct1D": -0.01367
+    },
+    {
+      "pool": "4ea1913d-f1db-40e5-9010-30965511236f",
+      "project": "townsquare-lending",
+      "chain": "Monad",
+      "symbol": "ENZOBTC",
+      "tvlUsd": 73497433,
+      "apy": 0.00329,
+      "apyPct1D": 0
+    }
+  ],
+  "methodology": {
+    "ranking": "tvlUsd_desc",
+    "risk": "heuristic_only",
+    "note": "TVL is a discovery signal, not investment advice; an independent verifier must apply task-specific risk rules."
+  },
+  "resultHash": "0x5ae905e0486f772c3d0826a66e7e6778aebfe93e4146fe3f73446e4cd130904a"
+}
