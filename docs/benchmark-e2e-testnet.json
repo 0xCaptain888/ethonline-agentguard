@@ -1,0 +1,619 @@
+{
+  "evidenceClass": "LIVE_TESTNET_END_TO_END_BENCHMARK",
+  "measuredAt": "2026-09-03T04:08:50.910Z",
+  "network": "Monad Testnet",
+  "chainId": 10143,
+  "contract": "0xee84007f8618c2c38Be8C45E8050144EbF00CE4a",
+  "definition": "createTask → submitResult → independent EIP-191 verification → VERIFIED",
+  "tasks": 25,
+  "verified": 25,
+  "elapsedMs": 170495,
+  "pipelinesPerSecond": 0.147,
+  "averageEndToEndMs": 6566,
+  "p50EndToEndMs": 6479,
+  "p95EndToEndMs": 7543,
+  "averageTotalGas": "320048",
+  "samples": [
+    {
+      "taskId": "31",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0xa1201be786c9fbc6a0c22f8afe41d46040fe51843120de62e368f3db8755e0d1",
+        "blockNumber": 59245236,
+        "gasUsed": "169550",
+        "latencyMs": 1996
+      },
+      "submit": {
+        "txHash": "0x7e63795e5368e14451fbbb6651da6e349287ee11d7d1d502113c7042e76b3807",
+        "blockNumber": 59245244,
+        "gasUsed": "78318",
+        "latencyMs": 2561
+      },
+      "verify": {
+        "txHash": "0x23420ec19450ea0ebccc2c1bf013777cd5fc3c51887fc0e32eebf499ea8b25e3",
+        "blockNumber": 59245252,
+        "gasUsed": "70029",
+        "latencyMs": 2231
+      },
+      "endToEndMs": 7027,
+      "totalGas": "317897"
+    },
+    {
+      "taskId": "32",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0x770c1a1e02545382f75c0608b7cb46af5d3dce23642175f5b61ecbe64c15924d",
+        "blockNumber": 59245260,
+        "gasUsed": "169550",
+        "latencyMs": 2043
+      },
+      "submit": {
+        "txHash": "0xd0ec7d5984fa463d48a00d9c10ec651791e280c689aaefde2baa06a4657290e0",
+        "blockNumber": 59245268,
+        "gasUsed": "78318",
+        "latencyMs": 2417
+      },
+      "verify": {
+        "txHash": "0x5c910cd763884cd5e698d223e25b29dfe0c631ab5dfa2b8b74905680ba4f89da",
+        "blockNumber": 59245275,
+        "gasUsed": "70024",
+        "latencyMs": 2104
+      },
+      "endToEndMs": 6805,
+      "totalGas": "317892"
+    },
+    {
+      "taskId": "33",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0x570e112030abde6be127b3527e2156309994b34a850c69fc331bba8930ef8e65",
+        "blockNumber": 59245284,
+        "gasUsed": "180436",
+        "latencyMs": 2107
+      },
+      "submit": {
+        "txHash": "0x12a1ee9167fe3d40335e5f0ff0656ee181acb6b7e2ffb8df84efc456d5f32c9c",
+        "blockNumber": 59245292,
+        "gasUsed": "86350",
+        "latencyMs": 2395
+      },
+      "verify": {
+        "txHash": "0x62020ce5b7e5abfe9eee779fe44e4f2bbf00ff4ce559a592ba3bd12986de88d7",
+        "blockNumber": 59245299,
+        "gasUsed": "78073",
+        "latencyMs": 1998
+      },
+      "endToEndMs": 6739,
+      "totalGas": "344859"
+    },
+    {
+      "taskId": "34",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0x26637f9c340d4d8c96df73d821027dc3166807aebb82628e3070b09f4712211c",
+        "blockNumber": 59245307,
+        "gasUsed": "169550",
+        "latencyMs": 2015
+      },
+      "submit": {
+        "txHash": "0x8cd0e0374b6323afe08b0759ebbaa5e39cb703cbf7762af77008187ae941b7a1",
+        "blockNumber": 59245315,
+        "gasUsed": "78318",
+        "latencyMs": 2324
+      },
+      "verify": {
+        "txHash": "0x6c0a87ab669085c2df38710c65c9a37785b0a18e3e8d6bd74f05b7cb6daf4f91",
+        "blockNumber": 59245321,
+        "gasUsed": "70012",
+        "latencyMs": 1685
+      },
+      "endToEndMs": 6264,
+      "totalGas": "317880"
+    },
+    {
+      "taskId": "35",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0x09da42ab2f5e6168e4a519b9061f34ee72aa76f1734c7308de72d9fa402772b1",
+        "blockNumber": 59245328,
+        "gasUsed": "169550",
+        "latencyMs": 1670
+      },
+      "submit": {
+        "txHash": "0xfa0363b0b9bb050b77d5a0de1985393f83938cd913f3774fa0a44553651af5df",
+        "blockNumber": 59245335,
+        "gasUsed": "78318",
+        "latencyMs": 2206
+      },
+      "verify": {
+        "txHash": "0x225b64163fbe35bb9f7c31cd9f8296019f80ba4d8af6028f9606e42122d93f37",
+        "blockNumber": 59245341,
+        "gasUsed": "70024",
+        "latencyMs": 1674
+      },
+      "endToEndMs": 5793,
+      "totalGas": "317892"
+    },
+    {
+      "taskId": "36",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0xa16b300ada4c2933d13e5782ed5ed7e9d9b150998c5dfd3939a37faece87ecbe",
+        "blockNumber": 59245348,
+        "gasUsed": "169550",
+        "latencyMs": 1650
+      },
+      "submit": {
+        "txHash": "0x2a5456b1179d82e7703b9cb360355dd635188a4adad871ad746138dcc0d0581f",
+        "blockNumber": 59245355,
+        "gasUsed": "78318",
+        "latencyMs": 2199
+      },
+      "verify": {
+        "txHash": "0x63d8e60aff91cea23e5fedbcf330e58f072287a7d6f3dc9d885ed1318bb098cd",
+        "blockNumber": 59245361,
+        "gasUsed": "70041",
+        "latencyMs": 1678
+      },
+      "endToEndMs": 5765,
+      "totalGas": "317909"
+    },
+    {
+      "taskId": "37",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0xc561eebec3bb6c1b902116117a6600d080eb498c823b3deaddf882faeae5a977",
+        "blockNumber": 59245368,
+        "gasUsed": "169550",
+        "latencyMs": 1667
+      },
+      "submit": {
+        "txHash": "0x881d633d617829217e6c1326c879ca30bc8c5916b9379c78a56c2b3e61eab0f7",
+        "blockNumber": 59245376,
+        "gasUsed": "78318",
+        "latencyMs": 2239
+      },
+      "verify": {
+        "txHash": "0x5ed200b9c0d890942585a1855d045373d57a15071140dd607ff77319b5e7c746",
+        "blockNumber": 59245382,
+        "gasUsed": "70024",
+        "latencyMs": 1889
+      },
+      "endToEndMs": 6040,
+      "totalGas": "317892"
+    },
+    {
+      "taskId": "38",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0x31acd4c11d5a8be53fcc71d6ab9d81bea14ff68da831c99e6c94b6714930958d",
+        "blockNumber": 59245389,
+        "gasUsed": "169550",
+        "latencyMs": 1707
+      },
+      "submit": {
+        "txHash": "0x81165beff836bda8b6054cc55a308099f0b954e0cb34a2d0ca07704b277fb004",
+        "blockNumber": 59245397,
+        "gasUsed": "78318",
+        "latencyMs": 2205
+      },
+      "verify": {
+        "txHash": "0xb3702384dc5a6b2e794afc9164c496c5e48dfa565504f948586bb6908b12b7b5",
+        "blockNumber": 59245402,
+        "gasUsed": "70024",
+        "latencyMs": 1749
+      },
+      "endToEndMs": 5903,
+      "totalGas": "317892"
+    },
+    {
+      "taskId": "39",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0xb40f9398943307559692fbdeb8340c74849c59a97047996dcceee61e792209d9",
+        "blockNumber": 59245410,
+        "gasUsed": "169550",
+        "latencyMs": 2017
+      },
+      "submit": {
+        "txHash": "0x8eba59d6db3ed2b680eb5f04650b2d6a7771b1e5dd6c9bf80e472a1c2d1f2820",
+        "blockNumber": 59245419,
+        "gasUsed": "78318",
+        "latencyMs": 2406
+      },
+      "verify": {
+        "txHash": "0x83f9b672677cc3d0664b10fdb33f48e05543f85e861f6a6cf8be891cb72114bc",
+        "blockNumber": 59245424,
+        "gasUsed": "70012",
+        "latencyMs": 1699
+      },
+      "endToEndMs": 6363,
+      "totalGas": "317880"
+    },
+    {
+      "taskId": "40",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0x17e92720889d6bc556949df75feb851760d6ef22453861ac137e06d1e22f1f62",
+        "blockNumber": 59245432,
+        "gasUsed": "169550",
+        "latencyMs": 2023
+      },
+      "submit": {
+        "txHash": "0x6dc291438a679bcf7df779560f2a35537c2e1f7103d207d3610663d943b0241c",
+        "blockNumber": 59245441,
+        "gasUsed": "78318",
+        "latencyMs": 3799
+      },
+      "verify": {
+        "txHash": "0x439f4db84db9e1a9b5e756788832b5041669dbfb37c7a58cbc2848f50a99ee7e",
+        "blockNumber": 59245450,
+        "gasUsed": "70024",
+        "latencyMs": 2118
+      },
+      "endToEndMs": 8205,
+      "totalGas": "317892"
+    },
+    {
+      "taskId": "41",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0x82ddc9ffc4521a9b2ee7e5ab72b3024c35f6b2551ab46e4bd6e2f862d5b1b43d",
+        "blockNumber": 59245459,
+        "gasUsed": "169550",
+        "latencyMs": 2356
+      },
+      "submit": {
+        "txHash": "0x3e1d1e55334ce28be5653197f764e348fd134cd9e031ed90fc1323d2c9af08cd",
+        "blockNumber": 59245467,
+        "gasUsed": "78306",
+        "latencyMs": 2418
+      },
+      "verify": {
+        "txHash": "0x8d62dac95c3f3b2d25ea56c166a8a2f10bf6bbd3fdb8970473da65506f52761e",
+        "blockNumber": 59245474,
+        "gasUsed": "70012",
+        "latencyMs": 2025
+      },
+      "endToEndMs": 7044,
+      "totalGas": "317868"
+    },
+    {
+      "taskId": "42",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0xb2ca3bd6ce9edcc6640375189bccda8d6d52be23ec2e5bdf62ea9f792c3626da",
+        "blockNumber": 59245483,
+        "gasUsed": "169550",
+        "latencyMs": 2264
+      },
+      "submit": {
+        "txHash": "0x24809d5a22ba400c8eca946db7559280ae9f36b582a4c28adc236703af450627",
+        "blockNumber": 59245491,
+        "gasUsed": "78318",
+        "latencyMs": 2264
+      },
+      "verify": {
+        "txHash": "0x63898718c3af2b08c1651be5e0116910d10b9ddb5396827dcd1898d11d3001e4",
+        "blockNumber": 59245497,
+        "gasUsed": "70041",
+        "latencyMs": 1673
+      },
+      "endToEndMs": 6439,
+      "totalGas": "317909"
+    },
+    {
+      "taskId": "43",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0x25302eb4dfc2036e9cfb29868020493c61d703da49cc3ab11514a7e7cf38b072",
+        "blockNumber": 59245504,
+        "gasUsed": "169550",
+        "latencyMs": 1713
+      },
+      "submit": {
+        "txHash": "0xe7dc6dcbfbff3bc08c752ed0d85fc83b541234ee1a59baace1e7322a24bcbe54",
+        "blockNumber": 59245511,
+        "gasUsed": "78318",
+        "latencyMs": 2216
+      },
+      "verify": {
+        "txHash": "0x9068232bc677ad103cdf2c8a45936eb92276ba54fa06f19fa9ba78116cbef043",
+        "blockNumber": 59245517,
+        "gasUsed": "70024",
+        "latencyMs": 1691
+      },
+      "endToEndMs": 5856,
+      "totalGas": "317892"
+    },
+    {
+      "taskId": "44",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0xd5957e7ef562fb32a63e064fc2dd71f5ba3501d4f0d5be5fd7ed3714265cb59c",
+        "blockNumber": 59245524,
+        "gasUsed": "169550",
+        "latencyMs": 1679
+      },
+      "submit": {
+        "txHash": "0x1e77ca29089213e5588ef9c9422b8fa35abed2cf2a43409125b5e7e26e7403cf",
+        "blockNumber": 59245531,
+        "gasUsed": "78318",
+        "latencyMs": 2223
+      },
+      "verify": {
+        "txHash": "0xad9128c70404a23c008e10f3ab46d5e601acb56be449c158d99c3f1445ac93a7",
+        "blockNumber": 59245538,
+        "gasUsed": "70024",
+        "latencyMs": 2227
+      },
+      "endToEndMs": 6363,
+      "totalGas": "317892"
+    },
+    {
+      "taskId": "45",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0x83fa78bb2de08df8966becd0f68f4928da2767f5b20eb27d9bd3b0c84cc79ce0",
+        "blockNumber": 59245546,
+        "gasUsed": "169550",
+        "latencyMs": 1718
+      },
+      "submit": {
+        "txHash": "0x1e84409a574cbe9f33845d4f0440e96420a7a9e6d4396bd8bf527d894e638f57",
+        "blockNumber": 59245555,
+        "gasUsed": "78318",
+        "latencyMs": 2838
+      },
+      "verify": {
+        "txHash": "0x3afd4dc7b602bed33832f7f75931c17df73cb3f9e48a18027f4046df06f71ed1",
+        "blockNumber": 59245562,
+        "gasUsed": "70012",
+        "latencyMs": 2015
+      },
+      "endToEndMs": 6837,
+      "totalGas": "317880"
+    },
+    {
+      "taskId": "46",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0x97dffdca3654a77064d2fa79767cf86785856929bb3d1c074136e24f3ccbd856",
+        "blockNumber": 59245570,
+        "gasUsed": "169550",
+        "latencyMs": 2055
+      },
+      "submit": {
+        "txHash": "0x6b83b4a45ee66d6cf20a7cb52b0015b8a99103790d7b5aa6d15c0df8f8573167",
+        "blockNumber": 59245578,
+        "gasUsed": "78318",
+        "latencyMs": 2347
+      },
+      "verify": {
+        "txHash": "0xdbfa64ed6135919d5bd8bb451c0f0d34056c6cd5dbde6f5e99e4efab7c73c1cd",
+        "blockNumber": 59245585,
+        "gasUsed": "70024",
+        "latencyMs": 2079
+      },
+      "endToEndMs": 6723,
+      "totalGas": "317892"
+    },
+    {
+      "taskId": "47",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0xfe3151112f050c1a411682d71ecd71c9a3fb01271a93ce6ac5fb00c00c2a7e46",
+        "blockNumber": 59245593,
+        "gasUsed": "169550",
+        "latencyMs": 2038
+      },
+      "submit": {
+        "txHash": "0xd1939b402410ca1c5b8928b6b1faaedea2d09df0b07d23f16c23c33e7150f434",
+        "blockNumber": 59245601,
+        "gasUsed": "78318",
+        "latencyMs": 2251
+      },
+      "verify": {
+        "txHash": "0x1557d3163f7aed469940c6650c64ad7261f898f8826ccf99dcdbcf65ebf23b12",
+        "blockNumber": 59245607,
+        "gasUsed": "70029",
+        "latencyMs": 1675
+      },
+      "endToEndMs": 6206,
+      "totalGas": "317897"
+    },
+    {
+      "taskId": "48",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0x5536da15fe949ea28a272c2c1e168e3dd831bacf3467b77eb4879b0f86b173d8",
+        "blockNumber": 59245615,
+        "gasUsed": "169550",
+        "latencyMs": 2124
+      },
+      "submit": {
+        "txHash": "0x1bdb9b48ffc5fcaefa85274fa58ea6a96d943d66606342a9af8af3368a9ee996",
+        "blockNumber": 59245623,
+        "gasUsed": "78318",
+        "latencyMs": 2388
+      },
+      "verify": {
+        "txHash": "0x4d6bd5ad80cb7f406e13fe264f88f79bec3b6595a33144bce1838cc7797b2fbe",
+        "blockNumber": 59245629,
+        "gasUsed": "70041",
+        "latencyMs": 1675
+      },
+      "endToEndMs": 6479,
+      "totalGas": "317909"
+    },
+    {
+      "taskId": "49",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0xf743f3ec75f12f1d411b978f908116a99b49c5b2b594dd6e6854c1d3d329d22e",
+        "blockNumber": 59245637,
+        "gasUsed": "169550",
+        "latencyMs": 2123
+      },
+      "submit": {
+        "txHash": "0x3c3a3708c45233abdb6d7dd10dcf099f87a242080f12233d1b62803b314019ec",
+        "blockNumber": 59245646,
+        "gasUsed": "78318",
+        "latencyMs": 2683
+      },
+      "verify": {
+        "txHash": "0x36a7ee365dd854a6b2dfd0041866cbd4be3743d6f688547f295fa4fee523f5bc",
+        "blockNumber": 59245654,
+        "gasUsed": "70024",
+        "latencyMs": 2294
+      },
+      "endToEndMs": 7336,
+      "totalGas": "317892"
+    },
+    {
+      "taskId": "50",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0x83165bb66ad2435bba2c06bcfb006037b7d17f4dff756b835e296c3a6f3e4c80",
+        "blockNumber": 59245662,
+        "gasUsed": "169550",
+        "latencyMs": 1748
+      },
+      "submit": {
+        "txHash": "0xdd4bc01da110deca569e9a64a8a6d6fd1898da1ed1b58be7b7338c4712f81111",
+        "blockNumber": 59245670,
+        "gasUsed": "78318",
+        "latencyMs": 2246
+      },
+      "verify": {
+        "txHash": "0x80f7741c4f99802c29a5aed03cf63f264c4aa8d9aa10cdf4f28ea77f8faf4242",
+        "blockNumber": 59245675,
+        "gasUsed": "70024",
+        "latencyMs": 3307
+      },
+      "endToEndMs": 7543,
+      "totalGas": "317892"
+    },
+    {
+      "taskId": "51",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0xebba4a27fa9011efc047b184c5cac656f56583e1979e843d936d28d29291c606",
+        "blockNumber": 59245686,
+        "gasUsed": "169550",
+        "latencyMs": 2054
+      },
+      "submit": {
+        "txHash": "0xb65d21b3f25df7375ad9100cb1bb02104f4b70f9a09091fa45f7dbb775b7e7a6",
+        "blockNumber": 59245694,
+        "gasUsed": "78318",
+        "latencyMs": 2250
+      },
+      "verify": {
+        "txHash": "0x0174e13e71b9509086547eabe58d5b86654dc859b8b54525726eac22fb6dd761",
+        "blockNumber": 59245697,
+        "gasUsed": "70017",
+        "latencyMs": 1732
+      },
+      "endToEndMs": 6271,
+      "totalGas": "317885"
+    },
+    {
+      "taskId": "52",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0xfea9eb9d67827772c32838e41ea770ca26510953b9e247233223fa0c1590f40e",
+        "blockNumber": 59245705,
+        "gasUsed": "169550",
+        "latencyMs": 2011
+      },
+      "submit": {
+        "txHash": "0xf8e92b27d2894fd3d74aabdf039930a1d047cc1dccd42e865d81a50287fb6ddc",
+        "blockNumber": 59245713,
+        "gasUsed": "78318",
+        "latencyMs": 2213
+      },
+      "verify": {
+        "txHash": "0xb38cac3526badad5b62e272b93e9431c14c979a1ff49bc8cc2d3601cd26eb59a",
+        "blockNumber": 59245719,
+        "gasUsed": "70041",
+        "latencyMs": 1734
+      },
+      "endToEndMs": 6198,
+      "totalGas": "317909"
+    },
+    {
+      "taskId": "53",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0xd5c8dfcf76f6f9e58cd7616dcc700746b9e3405bac72acc0ddfa6536552e5fa8",
+        "blockNumber": 59245727,
+        "gasUsed": "169550",
+        "latencyMs": 2252
+      },
+      "submit": {
+        "txHash": "0xcd84ecd9fb5e98b1cb83944803e61809a175c87b447d32e65442142380384f75",
+        "blockNumber": 59245736,
+        "gasUsed": "78306",
+        "latencyMs": 2246
+      },
+      "verify": {
+        "txHash": "0xde6308012ba49075dc2aa6e73612864ea0104b42df39f22eec6a0b5dcd10a33e",
+        "blockNumber": 59245741,
+        "gasUsed": "70024",
+        "latencyMs": 1751
+      },
+      "endToEndMs": 6489,
+      "totalGas": "317880"
+    },
+    {
+      "taskId": "54",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0x8f26dc8c1b6fcf37644739b7a5b30784f7746f65305d17543596b06917cd460e",
+        "blockNumber": 59245749,
+        "gasUsed": "169550",
+        "latencyMs": 2107
+      },
+      "submit": {
+        "txHash": "0xf6dca7d39247d5f209cf0199b012411d55dfc86a0023dbc140b454a78694bb5a",
+        "blockNumber": 59245757,
+        "gasUsed": "78318",
+        "latencyMs": 2203
+      },
+      "verify": {
+        "txHash": "0x5527b30b91c2dc0459e6d098aed44bc32a05a383fed282ca47dd40ec93f85b16",
+        "blockNumber": 59245764,
+        "gasUsed": "70029",
+        "latencyMs": 2252
+      },
+      "endToEndMs": 6802,
+      "totalGas": "317897"
+    },
+    {
+      "taskId": "55",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0xad0c3c8528c1c910fab3c686f6e02672af2ba33cbc1943ca4a53ca128d9d2fc3",
+        "blockNumber": 59245772,
+        "gasUsed": "177614",
+        "latencyMs": 2063
+      },
+      "submit": {
+        "txHash": "0xf66edbd15ee212a46bc23a647a24f2a9035ac6256853119b47de0f51f9e7f95f",
+        "blockNumber": 59245779,
+        "gasUsed": "89161",
+        "latencyMs": 2315
+      },
+      "verify": {
+        "txHash": "0x826786a7cfb1d0b2079b0caebd1e2b07774f6f74fc5e0539d4ae1c4b9679714c",
+        "blockNumber": 59245785,
+        "gasUsed": "78056",
+        "latencyMs": 2039
+      },
+      "endToEndMs": 6656,
+      "totalGas": "344831"
+    }
+  ],
+  "limitation": "Sequential Testnet receipt latency for the AgentGuard contract workflow; not a claim about Monad protocol TPS."
+}

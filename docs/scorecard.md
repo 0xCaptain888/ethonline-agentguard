@@ -9,9 +9,14 @@
 | What happens on a policy violation? | Task 26 `BLOCKED` receipt and policy reason codes in [live evidence](live-testnet-evidence.md) | Complete |
 | What happens on bad output? | Task 27 `FROZEN` + mutual recovery receipts | Complete (testnet primitive; production quorum DESIGN) |
 | Can a judge reproduce it quickly? | `npm run judge:check`, [judge manifest](../evidence/judge-manifest.json), [judge guide](judge-guide.md) | Complete |
+| Can a judge operate it without repository keys? | Public Demo → Live Judge Console | Complete (real buyer-side Testnet task creation) |
+| Is Monad materially used rather than renamed? | [25-pipeline benchmark](monad-performance.md), 75 transaction hashes, [why Monad](why-monad.md) | Complete (measured contract workflow) |
+| Is there a sponsor-aligned integration? | [`integrations/metamask-agent-wallet`](../integrations/metamask-agent-wallet/), `npm run sponsor:metamask` | Complete adapter; authenticated broadcast not claimed |
 | Is the evidence honest? | LIVE_TESTNET/SIMULATION/DESIGN labels | Complete |
 
-The remaining head-prize lift is live-task recording and presentation: show the
-external report, policy decision and result hash before each transaction, then
-explain the FROZEN recovery boundary without claiming an unaudited production
-system.
+The remaining head-prize lift is presentation and external validation: record
+the judge-operated wallet path, show the external report and result hash before
+settlement, and explain the FROZEN recovery boundary without claiming an
+unaudited production system. A real authenticated MetaMask Agent Wallet
+broadcast would strengthen the sponsor submission but is not represented as
+complete.

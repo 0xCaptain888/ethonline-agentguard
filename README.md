@@ -4,6 +4,7 @@
 [![Demo](https://img.shields.io/badge/demo-live-36d399)](https://0xcaptain888.github.io/monad-agentguard/)
 [![Network](https://img.shields.io/badge/Monad-Testnet-7dd3fc)](https://testnet.monadexplorer.com/address/0xee84007f8618c2c38Be8C45E8050144EbF00CE4a)
 [![Source](https://img.shields.io/badge/source-Sourcify%20exact%20match-8b5cf6)](https://testnet.monadvision.com/contracts/full_match/10143/0xee84007f8618c2c38Be8C45E8050144EbF00CE4a/)
+[![E2E](https://img.shields.io/badge/e2e-25%2F25%20VERIFIED-36d399)](docs/monad-performance.md)
 
 **Autonomous agents can act on Monad — but authority stays bounded and every result is independently verifiable.**
 
@@ -59,6 +60,35 @@ artifact, while [Why Monad](docs/why-monad.md) explains the execution choice.
 
 The AI planner is not trusted by the contract. The contract and verifier are the authority boundaries.
 
+### Judge-operated Testnet task
+
+The public Demo includes an opt-in **Live Judge Console**. A judge can connect
+an injected wallet, switch to Monad Testnet and create a real YieldScout or
+ChainSentinel escrow task. The browser first evaluates the visible budget,
+permission, risk and confirmation checks. If any check fails, it returns
+`BLOCKED` without requesting a wallet write. If the checks pass, it registers
+the buyer only when needed, commits the displayed on-chain policy and creates
+the task. Seller and verifier keys are never shipped to the browser.
+
+### Measured complete settlement loop
+
+A live benchmark covers 25 complete pipelines and 75 Testnet transactions:
+`createTask → submitResult → independent signature → VERIFIED`. All 25
+completed successfully, with 6,566 ms average end-to-end receipt latency,
+6,479 ms P50, 7,543 ms P95 and 320,048 average total gas. See the
+[measurement methodology](docs/monad-performance.md) and the
+[machine-readable sample](docs/benchmark-e2e-testnet.json). This is a
+sequential contract-workflow measurement, not a Monad protocol TPS claim.
+
+### MetaMask Agent Wallet sponsor integration
+
+The [`integrations/metamask-agent-wallet`](integrations/metamask-agent-wallet)
+package maps AgentGuard identity, policy and task escrow into explicit
+MetaMask Agent Wallet transaction requests. Run `npm run sponsor:metamask` to
+inspect the credential-free `mm wallet send-transaction` commands and their
+human-readable intents. The included Agent skill blocks writes when policy
+fails and forbids silent Mainnet fallback.
+
 ### Verified deployment
 
 - Contract: [`0xee84007f8618c2c38Be8C45E8050144EbF00CE4a`](https://testnet.monadexplorer.com/address/0xee84007f8618c2c38Be8C45E8050144EbF00CE4a)
@@ -108,6 +138,9 @@ npm test
 npm run demo
 npm run benchmark
 npm run benchmark:testnet # opt-in: 25 live Testnet task creations
+npm run benchmark:e2e:testnet # opt-in: 25 complete, 75-transaction pipelines
+npm run benchmark:e2e:verify
+npm run sponsor:metamask
 npm run evidence:verify
 npm run judge:demo
 npm run judge:check
@@ -177,7 +210,11 @@ This is an active Metropolis build. A live Monad Testnet contract and end-to-end
 
 ## Judge demo
 
-The demo is in [`site/index.html`](site/index.html) and is published by GitHub Pages. It displays the live contract, independent verifier, three task states, receipt links, and a browser-side RPC check for the live task states. The page never requests a wallet connection or sends a transaction.
+The demo is in [`site/index.html`](site/index.html) and is published by GitHub
+Pages. It displays the live contract, independent verifier, three task states,
+receipt links, browser-side RPC/evidence checks and an opt-in Live Judge Console.
+The page is read-only until the judge explicitly clicks Connect Wallet; policy
+failure produces `BLOCKED` before any write request.
 
 ## Evidence labels and limitations
 

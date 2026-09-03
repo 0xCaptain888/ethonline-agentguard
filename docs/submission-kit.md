@@ -31,10 +31,20 @@ not another payment protocol.
 
 ## Why Monad
 
-Agent commerce creates frequent, small settlements. Monad gives this workflow
-a fast, low-friction execution boundary while preserving an auditable record
-for every policy, result, settlement and recovery decision. A 25-task Testnet
-sample is published with gas and receipt latency.
+Agent commerce creates frequent, small settlements, but AgentGuard deliberately
+splits one action into escrow, result commitment and independent verification.
+On Monad Testnet, 25 complete sequential pipelines reached `VERIFIED` through
+75 unique transactions with 6,566 ms average and 7,543 ms P95 end-to-end
+receipt latency. The hashes, phase timings and gas values are public and
+machine-verifiable. This is a workflow measurement, not a protocol TPS claim.
+
+## Sponsor integration
+
+MetaMask Agent Wallet is the buyer-side self-custodial execution boundary;
+AgentGuard is the Monad task-policy and settlement boundary. The adapter emits
+inspectable identity, policy and escrow transaction intents through the Agent
+Wallet CLI. It never stores wallet credentials and does not claim a broadcast
+without an authenticated user session.
 
 ## Submission links
 
@@ -44,6 +54,8 @@ sample is published with gas and receipt latency.
 - Verified source: https://testnet.monadvision.com/contracts/full_match/10143/0xee84007f8618c2c38Be8C45E8050144EbF00CE4a/
 - Judge manifest: `evidence/judge-manifest.json`
 - One-command verification: `npm run judge:check`
+- Complete benchmark: `docs/benchmark-e2e-testnet.json`
+- Sponsor adapter: `integrations/metamask-agent-wallet/`
 
 ## Honest boundary
 

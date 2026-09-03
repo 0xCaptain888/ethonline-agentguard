@@ -1,6 +1,6 @@
 {
   "name": "monad-agentguard",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "private": false,
   "description": "Bounded authority, escrow, and independently verifiable execution for autonomous agents on Monad.",
   "scripts": {
@@ -15,15 +15,18 @@
     "task:recover-frozen": "hardhat run scripts/recover-frozen-task.ts --network monadTestnet",
     "benchmark": "hardhat run scripts/benchmark.ts",
     "benchmark:testnet": "hardhat run scripts/benchmark-testnet.ts --network monadTestnet",
+    "benchmark:e2e:testnet": "hardhat run scripts/benchmark-e2e-testnet.ts --network monadTestnet",
+    "benchmark:e2e:verify": "node --import tsx scripts/verify-e2e-benchmark.ts",
     "benchmark:refund": "hardhat run scripts/refund-benchmark.ts --network monadTestnet",
     "demo": "tsx scripts/demo.ts",
     "agent:flow": "node --import tsx scripts/agent-to-agent.ts",
     "yieldscout:report": "node --import tsx scripts/yieldscout-report.ts",
     "chainsentinel:report": "hardhat run scripts/chainsentinel-report.ts --network monadTestnet",
+    "sponsor:metamask": "node --import tsx scripts/metamask-agent-wallet-demo.ts",
     "judge:demo": "node --import tsx scripts/judge-demo.ts",
     "evidence:verify": "node --import tsx scripts/verify-evidence.ts",
     "judge:manifest": "node --import tsx scripts/verify-judge-manifest.ts",
-    "judge:check": "npm run build && npm run typecheck && npm test && npm run evidence:verify && npm run judge:manifest && npm run judge:demo"
+    "judge:check": "npm run build && npm run typecheck && npm test && npm run evidence:verify && npm run judge:manifest && npm run benchmark:e2e:verify && npm run judge:demo"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",

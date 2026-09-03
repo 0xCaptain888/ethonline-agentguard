@@ -36,6 +36,31 @@
     "FROZEN": { "taskId": "27", "tx": "0xa1193b2aaa7a5c9e25d10c1d81331e3180e2b9d83bdacf1f95f8acdbcf58ea8c" },
     "REFUNDED": { "taskId": "27", "tx": "0x610bbf66a7c8bff9cbf951a8a0dd8d03299cfa38a819e67d21574ec7eb0b23d0" }
   },
-  "benchmark": { "tasks": 25, "successRate": 1, "averageLatencyMs": 2000, "averageGas": 170670 },
+  "interactiveJudgeConsole": {
+    "url": "https://0xcaptain888.github.io/monad-agentguard/#judge-console",
+    "network": "Monad Testnet",
+    "writes": ["registerAgent-if-needed", "setPolicy-if-needed", "createTask"],
+    "blockedBeforeWrite": true,
+    "settlementBoundary": "Judge-created task remains OPEN; seller and verifier credentials are not exposed"
+  },
+  "endToEndBenchmark": {
+    "evidenceFile": "docs/benchmark-e2e-testnet.json",
+    "pipelines": 25,
+    "verified": 25,
+    "transactions": 75,
+    "averageEndToEndMs": 6566,
+    "p50EndToEndMs": 6479,
+    "p95EndToEndMs": 7543,
+    "averageTotalGas": "320048"
+  },
+  "taskCreationBaseline": { "tasks": 25, "successRate": 1, "averageLatencyMs": 2000, "averageGas": 170670 },
+  "sponsorIntegration": {
+    "name": "MetaMask Agent Wallet",
+    "officialPackage": "@metamask/agent-wallet@6.2.0",
+    "path": "integrations/metamask-agent-wallet",
+    "verifyCommand": "npm run sponsor:metamask",
+    "status": "IMPLEMENTED_AND_TESTED",
+    "broadcastClaimed": false
+  },
   "verifyCommand": "npm run judge:check"
 }

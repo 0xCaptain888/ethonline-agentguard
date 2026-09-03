@@ -5,7 +5,10 @@ type AgentEntry = { name: string; taskId: string; state: string; resultHash: str
 async function main() {
   const manifest = JSON.parse(await readFile("evidence/judge-manifest.json", "utf8")) as {
     manifestVersion: string; chainId: number; contract: string; agents: AgentEntry[];
-    benchmark: { tasks: number; successRate: number; averageLatencyMs: number; averageGas: number };
+    interactiveJudgeConsole: { url: string; blockedBeforeWrite: boolean; writes: string[] };
+    endToEndBenchmark: { evidenceFile: string; pipelines: number; verified: number; transactions: number; averageEndToEndMs: number; p50EndToEndMs: number; p95EndToEndMs: number; averageTotalGas: string };
+    taskCreationBaseline: { tasks: number; successRate: number; averageLatencyMs: number; averageGas: number };
+    sponsorIntegration: { name: string; path: string; verifyCommand: string; status: string; broadcastClaimed: boolean };
   };
   if (manifest.manifestVersion !== "1" || manifest.chainId !== 10143) throw new Error("unsupported judge manifest");
   const checks: Array<{ agent: string; taskId: string; passed: boolean }> = [];
@@ -21,8 +24,22 @@ async function main() {
     if (!passed) throw new Error(`${agent.name}: manifest does not match task ${agent.taskId}`);
     checks.push({ agent: agent.name, taskId: agent.taskId, passed });
   }
-  const benchmark = JSON.parse(await readFile("docs/benchmark-testnet.json", "utf8")) as any;
-  if (benchmark.tasks !== manifest.benchmark.tasks || benchmark.samples?.length !== manifest.benchmark.tasks) throw new Error("benchmark manifest mismatch");
-  console.log(JSON.stringify({ evidenceClass: "REPOSITORY_INTEGRITY", manifestVersion: manifest.manifestVersion, contract: manifest.contract, agentReceipts: checks, benchmarkSamples: benchmark.samples.length, passed: true }, null, 2));
+  if (!manifest.interactiveJudgeConsole.blockedBeforeWrite || manifest.interactiveJudgeConsole.writes.length !== 3) throw new Error("judge console manifest mismatch");
+  const baseline = JSON.parse(await readFile("docs/benchmark-testnet.json", "utf8")) as any;
+  if (baseline.tasks !== manifest.taskCreationBaseline.tasks || baseline.samples?.length !== manifest.taskCreationBaseline.tasks) throw new Error("task-creation baseline mismatch");
+  const benchmark = JSON.parse(await readFile(manifest.endToEndBenchmark.evidenceFile, "utf8")) as any;
+  const transactionCount = (benchmark.samples ?? []).flatMap((sample: any) => [sample.create?.txHash, sample.submit?.txHash, sample.verify?.txHash]).filter(Boolean).length;
+  if (benchmark.tasks !== manifest.endToEndBenchmark.pipelines
+    || benchmark.verified !== manifest.endToEndBenchmark.verified
+    || transactionCount !== manifest.endToEndBenchmark.transactions
+    || benchmark.averageEndToEndMs !== manifest.endToEndBenchmark.averageEndToEndMs
+    || benchmark.p50EndToEndMs !== manifest.endToEndBenchmark.p50EndToEndMs
+    || benchmark.p95EndToEndMs !== manifest.endToEndBenchmark.p95EndToEndMs
+    || benchmark.averageTotalGas !== manifest.endToEndBenchmark.averageTotalGas) throw new Error("end-to-end benchmark manifest mismatch");
+  await readFile(`${manifest.sponsorIntegration.path}/SKILL.md`, "utf8");
+  if (manifest.sponsorIntegration.name !== "MetaMask Agent Wallet"
+    || manifest.sponsorIntegration.status !== "IMPLEMENTED_AND_TESTED"
+    || manifest.sponsorIntegration.broadcastClaimed) throw new Error("sponsor integration manifest mismatch");
+  console.log(JSON.stringify({ evidenceClass: "REPOSITORY_INTEGRITY", manifestVersion: manifest.manifestVersion, contract: manifest.contract, agentReceipts: checks, judgeConsole: true, endToEndPipelines: benchmark.samples.length, endToEndTransactions: transactionCount, sponsorIntegration: manifest.sponsorIntegration.name, passed: true }, null, 2));
 }
 main().catch((error) => { console.error(error); process.exitCode = 1; });
