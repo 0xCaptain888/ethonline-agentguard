@@ -33,4 +33,9 @@ reproduce compiler settings, bytecode verification and the complete test suite
 before replacement. Do not treat this note as a substitute for dependency
 maintenance or a production audit.
 
+See [`docs/dependency-security.md`](docs/dependency-security.md) for the
+runtime-vs-development audit commands and the isolated Hardhat 3 migration
+procedure. Dependabot tracks future npm fixes without silently changing the
+verified submission branch.
+
 Report suspected vulnerabilities privately to the repository owner before opening a public issue.

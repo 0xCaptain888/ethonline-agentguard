@@ -10,6 +10,8 @@
     "build": "hardhat compile",
     "test": "hardhat test",
     "typecheck": "tsc --noEmit",
+    "security:audit": "npm audit --omit=dev",
+    "security:audit:full": "npm audit --audit-level=high",
     "deploy:testnet": "hardhat run scripts/deploy.ts --network monadTestnet",
     "deploy:parallel:testnet": "hardhat run scripts/deploy-parallel.ts --network monadTestnet",
     "fund:seller": "hardhat run scripts/fund-seller.ts --network monadTestnet",
