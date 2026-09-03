@@ -15,6 +15,7 @@
     "task:recover-frozen": "hardhat run scripts/recover-frozen-task.ts --network monadTestnet",
     "benchmark": "hardhat run scripts/benchmark.ts",
     "benchmark:testnet": "hardhat run scripts/benchmark-testnet.ts --network monadTestnet",
+    "benchmark:refund": "hardhat run scripts/refund-benchmark.ts --network monadTestnet",
     "demo": "tsx scripts/demo.ts",
     "agent:flow": "node --import tsx scripts/agent-to-agent.ts",
     "yieldscout:report": "node --import tsx scripts/yieldscout-report.ts",
