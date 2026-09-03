@@ -1,0 +1,771 @@
+{
+  "evidenceClass": "LIVE_TESTNET_CONCURRENT_AGENT_BENCHMARK",
+  "measuredAt": "2026-09-03T07:09:33.505Z",
+  "network": "Monad Testnet",
+  "chainId": 10143,
+  "contract": "0xee84007f8618c2c38Be8C45E8050144EbF00CE4a",
+  "definition": "sequential escrow preparation followed by five independent buyer/seller lanes concurrently submitting results and settling through independent EIP-191 verification",
+  "tasks": 25,
+  "lanes": 5,
+  "verified": 25,
+  "transactions": 75,
+  "elapsedMs": 97578,
+  "concurrentSettlementMs": 15931,
+  "completedSettlementsPerSecond": 1.569,
+  "phaseWaveMs": {
+    "createPreparation": 81646,
+    "concurrentSubmit": 8009,
+    "concurrentVerify": 7923
+  },
+  "averageTotalGas": "650000",
+  "blocksUsed": 37,
+  "maxTransactionsInSingleBlock": 17,
+  "actorAddresses": [
+    {
+      "lane": 0,
+      "buyer": "0x201A58700F28CC1203BF9C5483b93B7F9d7b87A9",
+      "seller": "0xF21eF2dC0F34c58F5518914037427Cb9053e9865"
+    },
+    {
+      "lane": 1,
+      "buyer": "0x36905923EC3cD22c743fc75616A76aaC74EDa1D2",
+      "seller": "0x2381579377C59f7C91813CA2bE4dcdb3Af41FdDa"
+    },
+    {
+      "lane": 2,
+      "buyer": "0x9A93e1076DbC12045a34514A7eC1dC7DcBFe8864",
+      "seller": "0x6514d1F992b0Afa06339a0910aF6D19e0b051bdd"
+    },
+    {
+      "lane": 3,
+      "buyer": "0x85812a720D08725F94D9658224caC45Bc858c4D0",
+      "seller": "0x00D9fA376CF265876Cf6F5174C3Df0FaDaED9dCE"
+    },
+    {
+      "lane": 4,
+      "buyer": "0xd54AAF6525152346Ce64C269B5fCA3917067d4d4",
+      "seller": "0x9CBAD924e45e4d06be63796a3b34860D4A752879"
+    }
+  ],
+  "setupCleanup": {
+    "refundedTaskIds": [
+      "58",
+      "59",
+      "60",
+      "61",
+      "62",
+      "63",
+      "64",
+      "65",
+      "66",
+      "67"
+    ],
+    "note": "OPEN tasks from interrupted benchmark attempts were refunded before measurement and are excluded from all metrics."
+  },
+  "samples": [
+    {
+      "taskId": "68",
+      "lane": 0,
+      "buyer": "0x201A58700F28CC1203BF9C5483b93B7F9d7b87A9",
+      "seller": "0xF21eF2dC0F34c58F5518914037427Cb9053e9865",
+      "state": "VERIFIED",
+      "resultHash": "0x07758e2089d0fef47a63f4112e0008bd6cb350b58377ee2744dd59a027de1b37",
+      "create": {
+        "txHash": "0x47e1eb792c4d52b50db85f2be3bdc8d97465674f4e98d9f48946101641b2a46a",
+        "blockNumber": 59280975,
+        "gasUsed": "350000",
+        "latencyMs": 3635
+      },
+      "submit": {
+        "txHash": "0x5ec0cc3f4910ae7743750099b6286c97fe111fdf67cd550e9add6f4704c87e6d",
+        "blockNumber": 59281253,
+        "gasUsed": "150000",
+        "latencyMs": 6365
+      },
+      "verify": {
+        "txHash": "0x1c7a64b2bccd6ed4f6f6465013099f7012ac907444e9a6e28977bd35e0c8dd14",
+        "blockNumber": 59281269,
+        "gasUsed": "150000",
+        "latencyMs": 2192
+      },
+      "totalGas": "650000",
+      "settlementLatencyMs": 10201
+    },
+    {
+      "taskId": "69",
+      "lane": 1,
+      "buyer": "0x36905923EC3cD22c743fc75616A76aaC74EDa1D2",
+      "seller": "0x2381579377C59f7C91813CA2bE4dcdb3Af41FdDa",
+      "state": "VERIFIED",
+      "resultHash": "0x8b2eb61b4ad981073d1626e49dc3e2aa35386214930b9b4c189f1280d9a9e8c6",
+      "create": {
+        "txHash": "0x2eb8d0d60ebe234c437e96926ba9cdce5bd0ad09752c597f4ad6c77d8a9b1c7a",
+        "blockNumber": 59280986,
+        "gasUsed": "350000",
+        "latencyMs": 3469
+      },
+      "submit": {
+        "txHash": "0x7bed6a93a182bc8a614231f0e244b7736fbdd2f8fb07b72a22fb99cef5e56105",
+        "blockNumber": 59281253,
+        "gasUsed": "150000",
+        "latencyMs": 6675
+      },
+      "verify": {
+        "txHash": "0x7dbbfc44a698edeaf0fa507c309f6afe57e4384c1b443daded0c776482cc9dd2",
+        "blockNumber": 59281277,
+        "gasUsed": "150000",
+        "latencyMs": 6075
+      },
+      "totalGas": "650000",
+      "settlementLatencyMs": 14084
+    },
+    {
+      "taskId": "70",
+      "lane": 2,
+      "buyer": "0x9A93e1076DbC12045a34514A7eC1dC7DcBFe8864",
+      "seller": "0x6514d1F992b0Afa06339a0910aF6D19e0b051bdd",
+      "state": "VERIFIED",
+      "resultHash": "0x3b36b29a885fa0919b793979225e3344cad04a191d7912769ac57999a48caf21",
+      "create": {
+        "txHash": "0x1413a5983f319af2c7605ecbcc45352539fe44b5c11db85cf138d20ec9d10415",
+        "blockNumber": 59280998,
+        "gasUsed": "350000",
+        "latencyMs": 3529
+      },
+      "submit": {
+        "txHash": "0x6625c532cd35f0a34a707de5a64bf500f1e36f4c30b30aaf25b844a64653739e",
+        "blockNumber": 59281250,
+        "gasUsed": "150000",
+        "latencyMs": 5912
+      },
+      "verify": {
+        "txHash": "0x0321f8f19b7e33cfcd04a09aa16cb57bc15b87903e3b8eebb7d3964a32df675a",
+        "blockNumber": 59281279,
+        "gasUsed": "150000",
+        "latencyMs": 5237
+      },
+      "totalGas": "650000",
+      "settlementLatencyMs": 13246
+    },
+    {
+      "taskId": "71",
+      "lane": 3,
+      "buyer": "0x85812a720D08725F94D9658224caC45Bc858c4D0",
+      "seller": "0x00D9fA376CF265876Cf6F5174C3Df0FaDaED9dCE",
+      "state": "VERIFIED",
+      "resultHash": "0xb0263aa99e8c6b7561294f9de33e09a225aca2d00214cbbe9a5e69d81c51dcff",
+      "create": {
+        "txHash": "0x313026c8423989c2d8da5c635fb3ed3d0aa0f99ae7d293df0a16f2eb1c198a83",
+        "blockNumber": 59281010,
+        "gasUsed": "350000",
+        "latencyMs": 3632
+      },
+      "submit": {
+        "txHash": "0x6581e871b661bd73ae3173058fa7184ff0320aa4a518ce5d56d1866f0a2f4637",
+        "blockNumber": 59281257,
+        "gasUsed": "150000",
+        "latencyMs": 7885
+      },
+      "verify": {
+        "txHash": "0xe67a9955d14d7592a35d84dda6e99cbe30dbb03e5494976a81799259ed84d9e5",
+        "blockNumber": 59281275,
+        "gasUsed": "150000",
+        "latencyMs": 5383
+      },
+      "totalGas": "650000",
+      "settlementLatencyMs": 13392
+    },
+    {
+      "taskId": "72",
+      "lane": 4,
+      "buyer": "0xd54AAF6525152346Ce64C269B5fCA3917067d4d4",
+      "seller": "0x9CBAD924e45e4d06be63796a3b34860D4A752879",
+      "state": "VERIFIED",
+      "resultHash": "0x2d85a927dbbda3e0139081558e2cf3310a8a69e636f1287593e45ae8089abc74",
+      "create": {
+        "txHash": "0x96934a1f50bc8493dd7f6143ada446915e76c93745f87543a191b52f38bc11be",
+        "blockNumber": 59281021,
+        "gasUsed": "350000",
+        "latencyMs": 2092
+      },
+      "submit": {
+        "txHash": "0xdfee44b3b4c3ba0e434069e39fdcc3feb8c53d244266dd911d678616de6e56e7",
+        "blockNumber": 59281253,
+        "gasUsed": "150000",
+        "latencyMs": 6345
+      },
+      "verify": {
+        "txHash": "0xd89329323159fa4903a0f3dffcfcf49de1c021995861a993275f15b346ae7fe7",
+        "blockNumber": 59281273,
+        "gasUsed": "150000",
+        "latencyMs": 3479
+      },
+      "totalGas": "650000",
+      "settlementLatencyMs": 11488
+    },
+    {
+      "taskId": "73",
+      "lane": 0,
+      "buyer": "0x201A58700F28CC1203BF9C5483b93B7F9d7b87A9",
+      "seller": "0xF21eF2dC0F34c58F5518914037427Cb9053e9865",
+      "state": "VERIFIED",
+      "resultHash": "0x5fe02db7a346eeefb4a0af566fef56c5aa4c6bc10d05341c5ae15155f650a068",
+      "create": {
+        "txHash": "0x013c1745331769d37eddfdfb35824137f88d0d4f45ec57a46a534602784b0256",
+        "blockNumber": 59281029,
+        "gasUsed": "350000",
+        "latencyMs": 3550
+      },
+      "submit": {
+        "txHash": "0xe52ed9e384bd5dd973cc3adc51b4b388af22036321be54c3a0425abd863cb7bf",
+        "blockNumber": 59281258,
+        "gasUsed": "150000",
+        "latencyMs": 6879
+      },
+      "verify": {
+        "txHash": "0x728db71bcde3d427eeb2139d8d0ea26d962bf1f0b1730dbbce4388377cf49508",
+        "blockNumber": 59281275,
+        "gasUsed": "150000",
+        "latencyMs": 5372
+      },
+      "totalGas": "650000",
+      "settlementLatencyMs": 13381
+    },
+    {
+      "taskId": "74",
+      "lane": 1,
+      "buyer": "0x36905923EC3cD22c743fc75616A76aaC74EDa1D2",
+      "seller": "0x2381579377C59f7C91813CA2bE4dcdb3Af41FdDa",
+      "state": "VERIFIED",
+      "resultHash": "0xc06425c81fdb3032a758f3d6dfdaa3617fe91bfe9760f5a22ae4f689afdcffa3",
+      "create": {
+        "txHash": "0x427d0fee944a6eb9a06633a0b7996878172082f3ebe411f982a21931e9830219",
+        "blockNumber": 59281040,
+        "gasUsed": "350000",
+        "latencyMs": 3463
+      },
+      "submit": {
+        "txHash": "0x03abfaecf0f40e975d55bfa9254754beafd1ceec5990ad4231327818fd3646fe",
+        "blockNumber": 59281258,
+        "gasUsed": "150000",
+        "latencyMs": 6864
+      },
+      "verify": {
+        "txHash": "0xef27744564fada7dcfc7df1f675b37d4b9685a07211c3099f4a886b258ada999",
+        "blockNumber": 59281283,
+        "gasUsed": "150000",
+        "latencyMs": 7621
+      },
+      "totalGas": "650000",
+      "settlementLatencyMs": 15630
+    },
+    {
+      "taskId": "75",
+      "lane": 2,
+      "buyer": "0x9A93e1076DbC12045a34514A7eC1dC7DcBFe8864",
+      "seller": "0x6514d1F992b0Afa06339a0910aF6D19e0b051bdd",
+      "state": "VERIFIED",
+      "resultHash": "0x20ed5bbf3508445e76d04f389148e5aa64778ada9eaa75a487649b303e129539",
+      "create": {
+        "txHash": "0x26dad944e30f57dad9116ec15197aad35ff99b00a48ea9e341aa7b34dc7470ac",
+        "blockNumber": 59281052,
+        "gasUsed": "350000",
+        "latencyMs": 3522
+      },
+      "submit": {
+        "txHash": "0x5890d149d85abe50ad4f2be3a6d39e2cd6c2e954f8887d5485c513f122c1c422",
+        "blockNumber": 59281253,
+        "gasUsed": "150000",
+        "latencyMs": 6513
+      },
+      "verify": {
+        "txHash": "0xba5b4b80e8786fd1a81a6cea500a9bf1cd94559a95760eeb207ba83aca47af3e",
+        "blockNumber": 59281279,
+        "gasUsed": "150000",
+        "latencyMs": 5245
+      },
+      "totalGas": "650000",
+      "settlementLatencyMs": 13254
+    },
+    {
+      "taskId": "76",
+      "lane": 3,
+      "buyer": "0x85812a720D08725F94D9658224caC45Bc858c4D0",
+      "seller": "0x00D9fA376CF265876Cf6F5174C3Df0FaDaED9dCE",
+      "state": "VERIFIED",
+      "resultHash": "0x146212b46e5d44a3c2b7d278049cc2f59dbcd04f54c9efdf7214785d7bac6948",
+      "create": {
+        "txHash": "0x38746ce8e56fc9c79f41ae1b34d6d5d38817708631661c55dc23767f9cf0da2f",
+        "blockNumber": 59281063,
+        "gasUsed": "350000",
+        "latencyMs": 3536
+      },
+      "submit": {
+        "txHash": "0x2a7ab4e89e4dd847200bddac4397b2c7b45714870eca6ea1fe5805caf2527463",
+        "blockNumber": 59281258,
+        "gasUsed": "150000",
+        "latencyMs": 7167
+      },
+      "verify": {
+        "txHash": "0x5c5b5cce1428a04a579d75a5f7a078ff10cea790f8cf656252f97bc53a60f31c",
+        "blockNumber": 59281276,
+        "gasUsed": "150000",
+        "latencyMs": 5737
+      },
+      "totalGas": "650000",
+      "settlementLatencyMs": 13746
+    },
+    {
+      "taskId": "77",
+      "lane": 4,
+      "buyer": "0xd54AAF6525152346Ce64C269B5fCA3917067d4d4",
+      "seller": "0x9CBAD924e45e4d06be63796a3b34860D4A752879",
+      "state": "VERIFIED",
+      "resultHash": "0x017a55c6363ea597e9f40c024055625ebdc3b2aa4a595648be678efad594b0fd",
+      "create": {
+        "txHash": "0x0021ae2aa2b0405ed08f2332bad1b85a7a544376c3098d3f8d864e75414ac131",
+        "blockNumber": 59281075,
+        "gasUsed": "350000",
+        "latencyMs": 3648
+      },
+      "submit": {
+        "txHash": "0xb7d4485ab28fef901475d60766ffd93f2a0dbb97d448809caf96dab5a5df3b0d",
+        "blockNumber": 59281253,
+        "gasUsed": "150000",
+        "latencyMs": 6364
+      },
+      "verify": {
+        "txHash": "0xe44d33267c19c4e387b25b1855e8e38c1372c0c15dd9753e304f5defeae1dad0",
+        "blockNumber": 59281277,
+        "gasUsed": "150000",
+        "latencyMs": 6115
+      },
+      "totalGas": "650000",
+      "settlementLatencyMs": 14124
+    },
+    {
+      "taskId": "78",
+      "lane": 0,
+      "buyer": "0x201A58700F28CC1203BF9C5483b93B7F9d7b87A9",
+      "seller": "0xF21eF2dC0F34c58F5518914037427Cb9053e9865",
+      "state": "VERIFIED",
+      "resultHash": "0xfadab62fa746d66dbee313639b71b2e16afe13f601952ab5a3401fc877ed496a",
+      "create": {
+        "txHash": "0x5c1e0cd74c5792986f8f177d1a3ab0be59642d5872d427fb41b3b6812f137cbf",
+        "blockNumber": 59281087,
+        "gasUsed": "350000",
+        "latencyMs": 3556
+      },
+      "submit": {
+        "txHash": "0xec084c3672a6cfa56c9e3d50c2be98210c961ac9610bb47c23b776745e898230",
+        "blockNumber": 59281258,
+        "gasUsed": "150000",
+        "latencyMs": 6877
+      },
+      "verify": {
+        "txHash": "0xfc0d9a37b88d2cc1ae9e07d4cb45e48093e9f84a48f2d6554fd3961887401196",
+        "blockNumber": 59281275,
+        "gasUsed": "150000",
+        "latencyMs": 5426
+      },
+      "totalGas": "650000",
+      "settlementLatencyMs": 13435
+    },
+    {
+      "taskId": "79",
+      "lane": 1,
+      "buyer": "0x36905923EC3cD22c743fc75616A76aaC74EDa1D2",
+      "seller": "0x2381579377C59f7C91813CA2bE4dcdb3Af41FdDa",
+      "state": "VERIFIED",
+      "resultHash": "0x3cd0edb76a3b52ce47615b3798df47557c4de70bad4b46c80dbf0615416353c4",
+      "create": {
+        "txHash": "0xf322f1ecf5554816124eeaeac46a8b3605bdca1bf1ee40b80db4febcfe2eeaf0",
+        "blockNumber": 59281098,
+        "gasUsed": "350000",
+        "latencyMs": 2078
+      },
+      "submit": {
+        "txHash": "0x32c8f779efc43bc034830df88116060490da297ff1db66e67a9c18a91d862535",
+        "blockNumber": 59281258,
+        "gasUsed": "150000",
+        "latencyMs": 6897
+      },
+      "verify": {
+        "txHash": "0xf910d502b1982fba55bf87698556b161e63f2d020ef99833426d4176542dc9d5",
+        "blockNumber": 59281283,
+        "gasUsed": "150000",
+        "latencyMs": 7492
+      },
+      "totalGas": "650000",
+      "settlementLatencyMs": 15501
+    },
+    {
+      "taskId": "80",
+      "lane": 2,
+      "buyer": "0x9A93e1076DbC12045a34514A7eC1dC7DcBFe8864",
+      "seller": "0x6514d1F992b0Afa06339a0910aF6D19e0b051bdd",
+      "state": "VERIFIED",
+      "resultHash": "0x66413b90046073cac3f128a2de6bf140d0d1a2d4e914e83bf5771524d31b2f4c",
+      "create": {
+        "txHash": "0x405ef93d0b64fa0d7de79b6b3697849c45b6fb0f074ec36813784e9b243a7212",
+        "blockNumber": 59281106,
+        "gasUsed": "350000",
+        "latencyMs": 3509
+      },
+      "submit": {
+        "txHash": "0x3b635cb718a0dc9f3f0e459a0d894a1d94ee2455230e041bcbe71a00af4e2aae",
+        "blockNumber": 59281253,
+        "gasUsed": "150000",
+        "latencyMs": 6359
+      },
+      "verify": {
+        "txHash": "0xedc1d9a9801d6f460fad2e528882f4fd8570bcbda5a1b34a36428b4974956b40",
+        "blockNumber": 59281279,
+        "gasUsed": "150000",
+        "latencyMs": 6346
+      },
+      "totalGas": "650000",
+      "settlementLatencyMs": 14355
+    },
+    {
+      "taskId": "81",
+      "lane": 3,
+      "buyer": "0x85812a720D08725F94D9658224caC45Bc858c4D0",
+      "seller": "0x00D9fA376CF265876Cf6F5174C3Df0FaDaED9dCE",
+      "state": "VERIFIED",
+      "resultHash": "0xefb3720123036da31f986f751615accfa3092a579eb3364d15150a6d0cbc2676",
+      "create": {
+        "txHash": "0x28e025df3c52d9bf2f71e87ea86884cd0545b679fec2ff6bb57056fef74a5bc6",
+        "blockNumber": 59281117,
+        "gasUsed": "350000",
+        "latencyMs": 2174
+      },
+      "submit": {
+        "txHash": "0x42aa1f36c5d31d08645bada4c512e112a4c2191f2710c1f9b4bdace990e1b00d",
+        "blockNumber": 59281258,
+        "gasUsed": "150000",
+        "latencyMs": 7908
+      },
+      "verify": {
+        "txHash": "0x31941eeb2dfde418e377f70c54fc1e5f9c1eb744790a14875bf7a351c09fa253",
+        "blockNumber": 59281276,
+        "gasUsed": "150000",
+        "latencyMs": 5121
+      },
+      "totalGas": "650000",
+      "settlementLatencyMs": 13130
+    },
+    {
+      "taskId": "82",
+      "lane": 4,
+      "buyer": "0xd54AAF6525152346Ce64C269B5fCA3917067d4d4",
+      "seller": "0x9CBAD924e45e4d06be63796a3b34860D4A752879",
+      "state": "VERIFIED",
+      "resultHash": "0x59c6b6fe666f2c185d72ed0855380a0fe579c70e179923e65bdd3b649ec73608",
+      "create": {
+        "txHash": "0x156e5308f51b48ffea990a48672734042199df5a080838a3c7ddb1ea7b15da2b",
+        "blockNumber": 59281124,
+        "gasUsed": "350000",
+        "latencyMs": 2065
+      },
+      "submit": {
+        "txHash": "0x97a362eeeac3ade5385c174879be8dfeac52f8c006f84ee463eb4d827612c385",
+        "blockNumber": 59281258,
+        "gasUsed": "150000",
+        "latencyMs": 6882
+      },
+      "verify": {
+        "txHash": "0xa75f86df9e22623877eb90337c0fde06914b2339108924808e6a85455426b7d5",
+        "blockNumber": 59281277,
+        "gasUsed": "150000",
+        "latencyMs": 6142
+      },
+      "totalGas": "650000",
+      "settlementLatencyMs": 14151
+    },
+    {
+      "taskId": "83",
+      "lane": 0,
+      "buyer": "0x201A58700F28CC1203BF9C5483b93B7F9d7b87A9",
+      "seller": "0xF21eF2dC0F34c58F5518914037427Cb9053e9865",
+      "state": "VERIFIED",
+      "resultHash": "0xc1e84cb3837f71f44ce9ccd96cc923fc8b825d75d1076c862c9f7e112b0624c5",
+      "create": {
+        "txHash": "0x3a6623aeb7e9e2c431a4b852674e28858aff1685821561299f53a8f2151a244f",
+        "blockNumber": 59281132,
+        "gasUsed": "350000",
+        "latencyMs": 3768
+      },
+      "submit": {
+        "txHash": "0xc142cc4186df45e4ccd852f1c39ff3f401b35355cd121045a9e0d8f3993d62a4",
+        "blockNumber": 59281258,
+        "gasUsed": "150000",
+        "latencyMs": 7915
+      },
+      "verify": {
+        "txHash": "0x28658324a7a2503dc28abc2703ce0324eefd32e876e423baac82c26ab773fe48",
+        "blockNumber": 59281277,
+        "gasUsed": "150000",
+        "latencyMs": 6171
+      },
+      "totalGas": "650000",
+      "settlementLatencyMs": 14180
+    },
+    {
+      "taskId": "84",
+      "lane": 1,
+      "buyer": "0x36905923EC3cD22c743fc75616A76aaC74EDa1D2",
+      "seller": "0x2381579377C59f7C91813CA2bE4dcdb3Af41FdDa",
+      "state": "VERIFIED",
+      "resultHash": "0x7480fe2cbbb4e7ecbc267da59c2cca1d6e3c57b51548033b16d3ff7227a0580a",
+      "create": {
+        "txHash": "0x877b63772528d1b5ab9f28bae7df21386c21079224737dadb0a760b1e373c465",
+        "blockNumber": 59281144,
+        "gasUsed": "350000",
+        "latencyMs": 3488
+      },
+      "submit": {
+        "txHash": "0x830823d800c62d6d443db338d6f2f736d12e05a0139060c5d73beaae0d5c4c1c",
+        "blockNumber": 59281258,
+        "gasUsed": "150000",
+        "latencyMs": 6893
+      },
+      "verify": {
+        "txHash": "0x53f2ddc69089e361176d47e48198da1c0fa0315cf9f1abf5949a5ba42b3097cd",
+        "blockNumber": 59281283,
+        "gasUsed": "150000",
+        "latencyMs": 7477
+      },
+      "totalGas": "650000",
+      "settlementLatencyMs": 15486
+    },
+    {
+      "taskId": "85",
+      "lane": 2,
+      "buyer": "0x9A93e1076DbC12045a34514A7eC1dC7DcBFe8864",
+      "seller": "0x6514d1F992b0Afa06339a0910aF6D19e0b051bdd",
+      "state": "VERIFIED",
+      "resultHash": "0x9d3fe818b83a827052e99906a671080635f06ff09e70c1bb97cce1a479f9846b",
+      "create": {
+        "txHash": "0xe22b81fad412068fc7550577ee5fffadea2295ec11119810e36b28815d29a891",
+        "blockNumber": 59281155,
+        "gasUsed": "350000",
+        "latencyMs": 3560
+      },
+      "submit": {
+        "txHash": "0x651b3c70057b3ae02a6dc45af5dc369462f5d9927de59d553502687386432575",
+        "blockNumber": 59281258,
+        "gasUsed": "150000",
+        "latencyMs": 6895
+      },
+      "verify": {
+        "txHash": "0xe6e5a81e40040662e3f1eb0f4952f14fdfcae16559e3c550d1bb38c465711a6b",
+        "blockNumber": 59281279,
+        "gasUsed": "150000",
+        "latencyMs": 6619
+      },
+      "totalGas": "650000",
+      "settlementLatencyMs": 14628
+    },
+    {
+      "taskId": "86",
+      "lane": 3,
+      "buyer": "0x85812a720D08725F94D9658224caC45Bc858c4D0",
+      "seller": "0x00D9fA376CF265876Cf6F5174C3Df0FaDaED9dCE",
+      "state": "VERIFIED",
+      "resultHash": "0xa1569ce7f2fdee971fafa14f2baef0c9ac6e42ec14a162b9bce4551c843d6721",
+      "create": {
+        "txHash": "0xbbc72a29b373399412753d21cc13b6b8e222525c27cb8cbd0cbcda29e62573cf",
+        "blockNumber": 59281167,
+        "gasUsed": "350000",
+        "latencyMs": 2130
+      },
+      "submit": {
+        "txHash": "0x3309a6357ffb4dfd8d013c7361f36277f6a9977e024bfedb3fed75c7aaa19fa8",
+        "blockNumber": 59281258,
+        "gasUsed": "150000",
+        "latencyMs": 6912
+      },
+      "verify": {
+        "txHash": "0xd10bb24416dcaaebe723e9ba11f3932df7cf6c13efabc3943104745c31dc8589",
+        "blockNumber": 59281276,
+        "gasUsed": "150000",
+        "latencyMs": 5114
+      },
+      "totalGas": "650000",
+      "settlementLatencyMs": 13123
+    },
+    {
+      "taskId": "87",
+      "lane": 4,
+      "buyer": "0xd54AAF6525152346Ce64C269B5fCA3917067d4d4",
+      "seller": "0x9CBAD924e45e4d06be63796a3b34860D4A752879",
+      "state": "VERIFIED",
+      "resultHash": "0x81afaff55b60a1f25fc687cf73e998d141be47057230bebfa28c8e2a341cd562",
+      "create": {
+        "txHash": "0xa7a6cedf9cd2d7277b757009c035939b19a5b2655b9352fb22dd6215e7025e38",
+        "blockNumber": 59281174,
+        "gasUsed": "350000",
+        "latencyMs": 3532
+      },
+      "submit": {
+        "txHash": "0xe2dded896ab074d1eac069a7a1a84bc1117fb7c4e80c51fbf44b24cc698178a8",
+        "blockNumber": 59281258,
+        "gasUsed": "150000",
+        "latencyMs": 7870
+      },
+      "verify": {
+        "txHash": "0xc9924e7f380281ca760d61cffc65015c28131ec6b3052b83956c6993244d887b",
+        "blockNumber": 59281278,
+        "gasUsed": "150000",
+        "latencyMs": 6306
+      },
+      "totalGas": "650000",
+      "settlementLatencyMs": 14315
+    },
+    {
+      "taskId": "88",
+      "lane": 0,
+      "buyer": "0x201A58700F28CC1203BF9C5483b93B7F9d7b87A9",
+      "seller": "0xF21eF2dC0F34c58F5518914037427Cb9053e9865",
+      "state": "VERIFIED",
+      "resultHash": "0xdf4bdbef8f2a9d5dc25e50596e142d811a89e00740a9ca8f14a49b8f87138b52",
+      "create": {
+        "txHash": "0x6e4d7f604dc3783726c5aca8734c1104ba89bf4341eb40d27a4e56ba88900d01",
+        "blockNumber": 59281185,
+        "gasUsed": "350000",
+        "latencyMs": 3541
+      },
+      "submit": {
+        "txHash": "0xbc61112df6f6dafacede7ab28070adb4ad1dc9c1f608b279f330ce9e82cad248",
+        "blockNumber": 59281258,
+        "gasUsed": "150000",
+        "latencyMs": 6899
+      },
+      "verify": {
+        "txHash": "0xf282e7581fb3599e3cd477cf9bd353f7920e1b67bae2d2e5f5e91617c2294560",
+        "blockNumber": 59281278,
+        "gasUsed": "150000",
+        "latencyMs": 5124
+      },
+      "totalGas": "650000",
+      "settlementLatencyMs": 13133
+    },
+    {
+      "taskId": "89",
+      "lane": 1,
+      "buyer": "0x36905923EC3cD22c743fc75616A76aaC74EDa1D2",
+      "seller": "0x2381579377C59f7C91813CA2bE4dcdb3Af41FdDa",
+      "state": "VERIFIED",
+      "resultHash": "0x9f62a35ddd149c4ceb8e43b77a7f032b09c1ef8c009c3ec08e22c2b687cb12f8",
+      "create": {
+        "txHash": "0xd7f373f0dd0f66b8f4ba69aff7c69beccbf4369cf5a87ef3202d6cb1ae4620f6",
+        "blockNumber": 59281196,
+        "gasUsed": "350000",
+        "latencyMs": 3533
+      },
+      "submit": {
+        "txHash": "0xa89faac7d62c869fb018899e4c9d3ee29d8129b78cc5b73c8069d98f24183c49",
+        "blockNumber": 59281258,
+        "gasUsed": "150000",
+        "latencyMs": 7926
+      },
+      "verify": {
+        "txHash": "0x222a6c5c60d5c474d92d9d555132bdf6b195a4cb25e86e65e4b039d9c04e660a",
+        "blockNumber": 59281283,
+        "gasUsed": "150000",
+        "latencyMs": 7546
+      },
+      "totalGas": "650000",
+      "settlementLatencyMs": 15555
+    },
+    {
+      "taskId": "90",
+      "lane": 2,
+      "buyer": "0x9A93e1076DbC12045a34514A7eC1dC7DcBFe8864",
+      "seller": "0x6514d1F992b0Afa06339a0910aF6D19e0b051bdd",
+      "state": "VERIFIED",
+      "resultHash": "0x4998ac03d1df0f974d51e06a341d006aa7f41e4f289dc6379a0dbb3e8d3b350c",
+      "create": {
+        "txHash": "0xaa749b31e578c9676c53e7135df9a24f6c4f8290a047671a3708f55ff19ba5cd",
+        "blockNumber": 59281207,
+        "gasUsed": "350000",
+        "latencyMs": 3536
+      },
+      "submit": {
+        "txHash": "0xff149b7885d0f2fa67f319c64e085aaf923105acb517dca860f1441b5acda266",
+        "blockNumber": 59281258,
+        "gasUsed": "150000",
+        "latencyMs": 8005
+      },
+      "verify": {
+        "txHash": "0x222c90e3bf17992349f645af15b72de1c73b7902436921c7b3c9f75c3862b945",
+        "blockNumber": 59281279,
+        "gasUsed": "150000",
+        "latencyMs": 6126
+      },
+      "totalGas": "650000",
+      "settlementLatencyMs": 14135
+    },
+    {
+      "taskId": "91",
+      "lane": 3,
+      "buyer": "0x85812a720D08725F94D9658224caC45Bc858c4D0",
+      "seller": "0x00D9fA376CF265876Cf6F5174C3Df0FaDaED9dCE",
+      "state": "VERIFIED",
+      "resultHash": "0x839358d50c5347e31488790e5e7547954be4934ff8ec3b39b68a739558fc8bf1",
+      "create": {
+        "txHash": "0x1cd4476481776511b715b55eddc9412a73a5ee5e6bdc893c848ef4a3c6eb7ccf",
+        "blockNumber": 59281219,
+        "gasUsed": "350000",
+        "latencyMs": 3536
+      },
+      "submit": {
+        "txHash": "0x11cd6c08680be20c7d42683f88eca6c39a2e4f4e7f508613a68073a662cce167",
+        "blockNumber": 59281258,
+        "gasUsed": "150000",
+        "latencyMs": 7903
+      },
+      "verify": {
+        "txHash": "0xf5f6748f483e9e12cf67259f55d0ffc7d8bb1c149732a66c0ceaba7e42229bc8",
+        "blockNumber": 59281278,
+        "gasUsed": "150000",
+        "latencyMs": 5089
+      },
+      "totalGas": "650000",
+      "settlementLatencyMs": 13098
+    },
+    {
+      "taskId": "92",
+      "lane": 4,
+      "buyer": "0xd54AAF6525152346Ce64C269B5fCA3917067d4d4",
+      "seller": "0x9CBAD924e45e4d06be63796a3b34860D4A752879",
+      "state": "VERIFIED",
+      "resultHash": "0x0342c63a3ba01f7e077c261b2a0da47d93c0524838d024f2caf423785b2454f0",
+      "create": {
+        "txHash": "0xd11a62c2f232c8e80d91d7d71faf01fae86d0486e54ff4842752a49d5df75646",
+        "blockNumber": 59281231,
+        "gasUsed": "350000",
+        "latencyMs": 3563
+      },
+      "submit": {
+        "txHash": "0xbf90f2e5451136f388bf38c2f72e337f8777415d8896a75004b554ad6729752f",
+        "blockNumber": 59281258,
+        "gasUsed": "150000",
+        "latencyMs": 6887
+      },
+      "verify": {
+        "txHash": "0xd4cb13ff3ae53f1f8d5f8fde69cbc24f1280ca8e739083055bbda8902b5125fe",
+        "blockNumber": 59281279,
+        "gasUsed": "150000",
+        "latencyMs": 6526
+      },
+      "totalGas": "650000",
+      "settlementLatencyMs": 14535
+    }
+  ],
+  "limitation": "Controlled five-lane Monad Testnet settlement measurement. V1 escrow creation is prepared sequentially because its global nextTaskId counter is a shared write hotspot. The result demonstrates concurrent seller submission and independent settlement, not Monad protocol TPS or production load capacity.",
+  "averageSettlementMs": 13812,
+  "p50SettlementMs": 14084,
+  "p95SettlementMs": 15555
+}

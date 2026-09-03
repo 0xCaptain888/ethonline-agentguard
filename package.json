@@ -1,6 +1,6 @@
 {
   "name": "monad-agentguard",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": false,
   "description": "Bounded authority, escrow, and independently verifiable execution for autonomous agents on Monad.",
   "engines": {
@@ -11,6 +11,7 @@
     "test": "hardhat test",
     "typecheck": "tsc --noEmit",
     "deploy:testnet": "hardhat run scripts/deploy.ts --network monadTestnet",
+    "deploy:parallel:testnet": "hardhat run scripts/deploy-parallel.ts --network monadTestnet",
     "fund:seller": "hardhat run scripts/fund-seller.ts --network monadTestnet",
     "fund:verifier": "hardhat run scripts/fund-verifier.ts --network monadTestnet",
     "fund:metamask-agent-wallet": "hardhat run scripts/fund-metamask-agent-wallet.ts --network monadTestnet",
@@ -21,6 +22,12 @@
     "benchmark:testnet": "hardhat run scripts/benchmark-testnet.ts --network monadTestnet",
     "benchmark:e2e:testnet": "hardhat run scripts/benchmark-e2e-testnet.ts --network monadTestnet",
     "benchmark:e2e:verify": "node --import tsx scripts/verify-e2e-benchmark.ts",
+    "benchmark:concurrent:testnet": "hardhat run scripts/benchmark-concurrent-testnet.ts --network monadTestnet",
+    "benchmark:concurrent:verify": "node --import tsx scripts/verify-concurrent-benchmark.ts",
+    "benchmark:parallel:testnet": "hardhat run scripts/benchmark-parallel-testnet.ts --network monadTestnet",
+    "benchmark:parallel:verify": "node --import tsx scripts/verify-parallel-benchmark.ts",
+    "benchmark:parallel:rebalance": "hardhat run scripts/rebalance-parallel-actors.ts --network monadTestnet",
+    "benchmark:parallel:complete": "hardhat run scripts/complete-parallel-benchmark.ts --network monadTestnet",
     "benchmark:refund": "hardhat run scripts/refund-benchmark.ts --network monadTestnet",
     "demo": "tsx scripts/demo.ts",
     "agent:flow": "node --import tsx scripts/agent-to-agent.ts",
@@ -29,10 +36,11 @@
     "sponsor:metamask": "node --import tsx scripts/metamask-agent-wallet-demo.ts",
     "sponsor:metamask:rpc-bridge": "node --import tsx scripts/metamask-rpc-bridge.ts",
     "sponsor:metamask:complete": "hardhat run scripts/complete-metamask-agent-wallet-task.ts --network monadTestnet",
+    "pilot:complete": "hardhat run scripts/complete-pilot-task.ts --network monadTestnet",
     "judge:demo": "node --import tsx scripts/judge-demo.ts",
     "evidence:verify": "node --import tsx scripts/verify-evidence.ts",
     "judge:manifest": "node --import tsx scripts/verify-judge-manifest.ts",
-    "judge:check": "npm run build && npm run typecheck && npm test && npm run evidence:verify && npm run judge:manifest && npm run benchmark:e2e:verify && npm run judge:demo"
+    "judge:check": "npm run build && npm run typecheck && npm test && npm run evidence:verify && npm run judge:manifest && npm run benchmark:e2e:verify && npm run benchmark:concurrent:verify && npm run benchmark:parallel:verify && npm run judge:demo"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",

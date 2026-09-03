@@ -77,6 +77,29 @@ approvals and neutral arbiter quorum) remain outside this MVP.
 
 ## Performance sample
 
+### Parallel V2 deployment and complete lanes
+
+The concurrent V1 run revealed that a global `nextTaskId` storage write made
+task creation a shared hotspot. The deployed Parallel V2 replaces it with
+deterministic per-buyer nonces.
+
+| Field | Value |
+| --- | --- |
+| Contract | [`0x91A62595C8eF8c5E5cddcd782cAd7FDdd38D5169`](https://testnet.monadexplorer.com/address/0x91A62595C8eF8c5E5cddcd782cAd7FDdd38D5169) |
+| Deployment tx | [`0x262c…3044e`](https://testnet.monadexplorer.com/tx/0x262c2b8f451b5d8ef5452f1181c7d2de5b2ab186729af113259da3a5a9f3044e) |
+| Verified source | [Sourcify exact match](https://testnet.monadvision.com/contracts/full_match/10143/0x91A62595C8eF8c5E5cddcd782cAd7FDdd38D5169/) |
+| Complete pipelines | 10 / 10 VERIFIED |
+| Independent lanes | 5 Buyer / Seller pairs |
+| Core transactions | 30 unique hashes |
+| Same-block evidence | 4 creates · 5 submits · 5 verifies |
+| Files | [`deployment`](../evidence/parallel-v2-deployment.json) · [`benchmark`](benchmark-parallel-testnet.json) |
+
+The benchmark was resumed after several buyer lanes needed additional Testnet
+gas. No escrow was lost. The repository therefore uses block inclusion to
+prove create/submit concurrency and claims `2,606 ms` only for the recovered
+four-transaction verification wave. Run `npm run benchmark:parallel:verify` to
+check task, actor, transaction and aggregate uniqueness.
+
 [`docs/benchmark-testnet.json`](benchmark-testnet.json) contains 25 live
 `createTask` transactions on the same deployment: 100% mined successfully,
 approximately 2,000 ms average receipt latency and 170,670 average gas. This

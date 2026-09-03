@@ -1,47 +1,52 @@
 # Why Monad for AgentGuard
 
-Agent-to-agent commerce produces many small, policy-gated actions. The chain
-must make each decision affordable and quick enough for an autonomous workflow,
-while still leaving a permanent settlement trail.
+Agent-to-Agent commerce creates many small actions that should not collapse
+into one trusted backend call. AgentGuard keeps buyer escrow, seller result
+commitment and independent verification as separate authority transitions.
 
-| Requirement | Monad AgentGuard implementation | Evidence |
+| Requirement | AgentGuard on Monad | Public evidence |
 | --- | --- | --- |
-| Low-friction settlement for small tasks | Native MON escrow and compact task state machine | LIVE_TESTNET |
-| Verifiable authority boundary | Independent signature binds chain, contract, task, result and decision | LIVE_TESTNET |
-| Failure containment | `BLOCKED` refunds before execution; `FROZEN` isolates failed output; mutual recovery refunds both parties | LIVE_TESTNET |
-| Repeatable policy decisions | Deterministic budget, permission, risk and confirmation checks | SIMULATION |
+| Small task settlement | Native MON escrow with explicit state transitions | LIVE_TESTNET |
+| Bounded authority | Deterministic policy before a wallet write | LIVE_TESTNET + SIMULATION |
+| Independent result checks | Task/result-bound EIP-191 verifier signature | LIVE_TESTNET |
+| Failure containment | BLOCKED refund, FROZEN isolation, mutual recovery | LIVE_TESTNET |
+| Multiple autonomous users | Per-buyer deterministic task-ID lanes in V2 | LIVE_TESTNET_BENCHMARK |
 
-## Measured reason, not a generic chain claim
+## The chain changed the architecture
 
-The complete Testnet benchmark executed 25 sequential Agent-to-Agent pipelines
-and 75 unique transactions:
+The first complete benchmark proved the workflow: 25/25 sequential pipelines,
+75 unique transactions and 7,543 ms P95 from escrow creation through verified
+release.
+
+The next concurrent experiment exposed a V1 shared-write hotspot. Every buyer
+updated the same global `nextTaskId` slot, so creation had to be prepared
+sequentially even though seller submission and verification could overlap.
+
+The response was a deployed contract redesign, not a slide-deck claim.
+`MonadAgentGuardParallel` derives task IDs from:
 
 ```text
-createTask → submitResult → independent signature → VERIFIED
+chainId + contract + buyer + per-buyer nonce
 ```
 
-All 25 pipelines reached `VERIFIED`. Average end-to-end receipt latency was
-6,566 ms, P50 was 6,479 ms, P95 was 7,543 ms and average total gas was 320,048.
-Every transaction hash and phase timing is published in
-[`benchmark-e2e-testnet.json`](benchmark-e2e-testnet.json) and checked by
-`npm run benchmark:e2e:verify`.
+Its public evidence contains 10/10 complete pipelines across five independent
+Buyer/Seller lanes and 30 unique transactions. Up to four creates, five
+submissions and five verifications landed in the same respective block. That
+is a concrete benchmark → diagnosis → redesign → redeploy loop shaped by
+parallel execution concerns.
 
-That matters for AgentGuard because one business action needs three separate
-authority transitions: buyer escrow, seller result commitment and independent
-verification. Monad makes this fine-grained separation practical without
-collapsing the roles into one trusted backend.
-
-The earlier 25-transaction create-only sample remains in
-[`benchmark-testnet.json`](benchmark-testnet.json) as a clearly labelled
-baseline. Neither sample is a protocol TPS claim; both measure this deployed
-contract workflow sequentially on Monad Testnet.
+Full methodology and limitations are in
+[`monad-performance.md`](monad-performance.md). These are application-level
+Testnet traces, not claims about Monad protocol TPS or Mainnet capacity.
 
 ## Sponsor fit: MetaMask Agent Wallet
 
-MetaMask Agent Wallet supplies the isolated, self-custodial buyer wallet and
-its wallet-level transaction checks. AgentGuard adds application-level task
-policy, escrow, seller/result binding, independent verification and settlement
-receipts on Monad. The integration reinforces the same trust model instead of
-attaching an unrelated sponsor SDK. See
-[`integrations/metamask-agent-wallet`](../integrations/metamask-agent-wallet/)
-and the authenticated [Task 56 receipt](../evidence/metamask-agent-wallet-live.json).
+MetaMask Agent Wallet supplies an isolated, self-custodial buyer execution
+boundary. AgentGuard adds task policy, escrow, seller/result binding,
+independent verification and settlement receipts. Authenticated BYOK Task 56
+proves the wallet registered identity, committed policy, bound a verifier and
+created escrow before YieldScout work was released.
+
+The integration is therefore compositional rather than decorative: wallet
+authority is isolated at the signing layer, while task authority is bounded at
+the Monad application and contract layers.

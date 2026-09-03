@@ -5,9 +5,14 @@
 [![Network](https://img.shields.io/badge/Monad-Testnet-7dd3fc)](https://testnet.monadexplorer.com/address/0xee84007f8618c2c38Be8C45E8050144EbF00CE4a)
 [![Source](https://img.shields.io/badge/source-Sourcify%20exact%20match-8b5cf6)](https://testnet.monadvision.com/contracts/full_match/10143/0xee84007f8618c2c38Be8C45E8050144EbF00CE4a/)
 [![E2E](https://img.shields.io/badge/e2e-25%2F25%20VERIFIED-36d399)](docs/monad-performance.md)
+[![Parallel V2](https://img.shields.io/badge/parallel%20V2-10%2F10%20VERIFIED-7dd3fc)](docs/benchmark-parallel-testnet.json)
 [![Agent Wallet](https://img.shields.io/badge/MetaMask%20Agent%20Wallet-LIVE%20Task%2056-8b5cf6)](evidence/metamask-agent-wallet-live.json)
 
 **Autonomous agents can act on Monad — but authority stays bounded and every result is independently verifiable.**
+
+**Product thesis:** AgentGuard is the authorization and settlement firewall for
+autonomous agent commerce. It lets Agents hire Agents without letting a planner
+approve its own spending or grade its own work.
 
 > Hackathon deployment: Monad Testnet chain ID `10143`. No Mainnet or production-security claim is made.
 
@@ -50,7 +55,11 @@ This repository is a new Monad-native implementation built during Metropolis. It
 
 ## Contract MVP
 
-[`MonadAgentGuard.sol`](contracts/MonadAgentGuard.sol) currently provides:
+[`MonadAgentGuard.sol`](contracts/MonadAgentGuard.sol) is the verified reference
+deployment used by the public judge console and the named Task 56 evidence.
+[`MonadAgentGuardParallel.sol`](contracts/MonadAgentGuardParallel.sol) is the
+deployed V2 execution architecture used to test independent buyer lanes.
+Together they provide:
 
 - Agent identity registration with metadata hash;
 - per-buyer policy limits and confirmation flag;
@@ -89,6 +98,22 @@ completed successfully, with 6,566 ms average end-to-end receipt latency,
 [machine-readable sample](docs/benchmark-e2e-testnet.json). This is a
 sequential contract-workflow measurement, not a Monad protocol TPS claim.
 
+### Measured parallel-safe V2
+
+The first concurrent workload exposed a real V1 bottleneck: every buyer wrote
+the same global `nextTaskId` slot during `createTask`. We preserved that result
+instead of hiding it, then deployed Parallel V2 with deterministic task IDs
+derived from `chainId + contract + buyer + per-buyer nonce`.
+
+The V2 evidence contains 10/10 complete `VERIFIED` pipelines across five
+independent Buyer/Seller lanes and 30 unique Testnet transactions. Public block
+evidence shows up to four creates, five submissions and five verifications in
+the same respective block. The interrupted run was safely resumed; only the
+four recovered verification writes have a retained wall-clock measurement
+(`2,606 ms`). See [the V1 → V2 analysis](docs/monad-performance.md), the
+[machine-readable V2 evidence](docs/benchmark-parallel-testnet.json), and the
+[deployment receipt](evidence/parallel-v2-deployment.json).
+
 ### MetaMask Agent Wallet sponsor integration
 
 The [`integrations/metamask-agent-wallet`](integrations/metamask-agent-wallet)
@@ -109,6 +134,15 @@ policy fails and forbids silent Mainnet fallback.
 - Compiler: Solidity `0.8.26`
 - Optimizer: enabled, `200` runs
 - Constructor arguments: none
+
+Parallel V2 performance deployment:
+
+- Contract: [`0x91A62595C8eF8c5E5cddcd782cAd7FDdd38D5169`](https://testnet.monadexplorer.com/address/0x91A62595C8eF8c5E5cddcd782cAd7FDdd38D5169)
+- Deployment transaction: [`0x262c…3044e`](https://testnet.monadexplorer.com/tx/0x262c2b8f451b5d8ef5452f1181c7d2de5b2ab186729af113259da3a5a9f3044e)
+- Source: [Sourcify exact match on MonadVision](https://testnet.monadvision.com/contracts/full_match/10143/0x91A62595C8eF8c5E5cddcd782cAd7FDdd38D5169/)
+- Compiler: Solidity `0.8.26`, optimizer `200`
+- Purpose: remove cross-buyer contention on the V1 global task counter
+- Verification status: `EXACT_MATCH`
 
 The committed `hardhat.config.ts` contains the same compiler and optimizer
 settings used for deployment and the official Monad Sourcify endpoint used for
@@ -153,6 +187,8 @@ npm run benchmark
 npm run benchmark:testnet # opt-in: 25 live Testnet task creations
 npm run benchmark:e2e:testnet # opt-in: 25 complete, 75-transaction pipelines
 npm run benchmark:e2e:verify
+npm run benchmark:concurrent:verify
+npm run benchmark:parallel:verify
 npm run sponsor:metamask
 npm run sponsor:metamask:rpc-bridge # local bridge for CLI 6.2.0 on chain 10143
 npm run evidence:verify
@@ -222,6 +258,11 @@ Get testnet MON from the [Monad faucet](https://faucet.monad.xyz). Keep `.env` l
 
 This is an active Metropolis build. A live Monad Testnet contract and end-to-end `VERIFIED`, `BLOCKED`, and `FROZEN` tasks are now available in [`docs/live-testnet-evidence.md`](docs/live-testnet-evidence.md). The dated build plan and submission checklist are in [`docs/metropolis-plan.md`](docs/metropolis-plan.md).
 
+For adoption testing, the [external pilot](docs/external-pilot.md) lets a real
+third-party wallet create a bounded Testnet task without receiving seller or
+verifier credentials. Pilot counts remain zero until independently submitted
+wallet evidence exists; no synthetic user claim is made.
+
 ## Judge demo
 
 The demo is in [`site/index.html`](site/index.html) and is published by GitHub
@@ -233,6 +274,9 @@ failure produces `BLOCKED` before any write request.
 ## Evidence labels and limitations
 
 - **LIVE_TESTNET**: the recovery-enabled deployment, real YieldScout and ChainSentinel receipts, the authenticated MetaMask Agent Wallet Task 56, failure paths and recovery receipts in [live evidence](docs/live-testnet-evidence.md).
+- **LIVE_TESTNET_BENCHMARK**: V1 sequential/concurrent measurements and the
+  Parallel V2 five-lane workload. These are application-level contract traces,
+  never Monad protocol TPS claims.
 - **SIMULATION**: `npm run agent:flow` and `npm run benchmark`; these move no funds.
 - **DESIGN**: signed approvals, deadlines, neutral-arbiter quorum and production monitoring are follow-on work; the basic two-party frozen recovery is live on Testnet.
 

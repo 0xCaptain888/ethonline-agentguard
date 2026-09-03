@@ -1,0 +1,302 @@
+{
+  "evidenceClass": "LIVE_TESTNET_PARALLEL_END_TO_END_BENCHMARK",
+  "measuredAt": "2026-09-03T07:38:43.505Z",
+  "network": "Monad Testnet",
+  "chainId": 10143,
+  "contract": "0x91A62595C8eF8c5E5cddcd782cAd7FDdd38D5169",
+  "deploymentTx": "0x262c2b8f451b5d8ef5452f1181c7d2de5b2ab186729af113259da3a5a9f3044e",
+  "architecture": "per-buyer deterministic task id; no global task counter write",
+  "tasks": 10,
+  "lanes": 5,
+  "verified": 10,
+  "transactions": 30,
+  "verificationWaveMs": 2606,
+  "firstActivityBlock": 59284565,
+  "lastActivityBlock": 59286663,
+  "blocksUsed": 11,
+  "maxTransactionsInSingleBlock": 5,
+  "maxCreatesInSingleBlock": 4,
+  "maxSubmitsInSingleBlock": 5,
+  "maxVerifiesInSingleBlock": 5,
+  "averageTotalGas": "638000",
+  "actorAddresses": [
+    {
+      "lane": 0,
+      "buyer": "0x201A58700F28CC1203BF9C5483b93B7F9d7b87A9",
+      "seller": "0xF21eF2dC0F34c58F5518914037427Cb9053e9865"
+    },
+    {
+      "lane": 1,
+      "buyer": "0x36905923EC3cD22c743fc75616A76aaC74EDa1D2",
+      "seller": "0x2381579377C59f7C91813CA2bE4dcdb3Af41FdDa"
+    },
+    {
+      "lane": 2,
+      "buyer": "0x9A93e1076DbC12045a34514A7eC1dC7DcBFe8864",
+      "seller": "0x6514d1F992b0Afa06339a0910aF6D19e0b051bdd"
+    },
+    {
+      "lane": 3,
+      "buyer": "0x85812a720D08725F94D9658224caC45Bc858c4D0",
+      "seller": "0x00D9fA376CF265876Cf6F5174C3Df0FaDaED9dCE"
+    },
+    {
+      "lane": 4,
+      "buyer": "0xd54AAF6525152346Ce64C269B5fCA3917067d4d4",
+      "seller": "0x9CBAD924e45e4d06be63796a3b34860D4A752879"
+    }
+  ],
+  "samples": [
+    {
+      "taskId": "63243347787929983325067393777723892876809195448002133331614436007789726802013",
+      "lane": 0,
+      "buyer": "0x201A58700F28CC1203BF9C5483b93B7F9d7b87A9",
+      "seller": "0xF21eF2dC0F34c58F5518914037427Cb9053e9865",
+      "resultHash": "0x94a525611d2f3b457952f0745bf89edd1e8be18a260490e763f5fc1524ba6acc",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0x363bfe532ac51b042326c139d8695816b856340b82e8d1ec56542d1ec6eb6b04",
+        "blockNumber": 59284566,
+        "gasUsed": "350000"
+      },
+      "submit": {
+        "txHash": "0x43ee7d10e05600922434e18ef8134c1e93bf2e1a690731f16784e8b34f26ac2c",
+        "blockNumber": 59284594,
+        "gasUsed": "150000"
+      },
+      "verify": {
+        "txHash": "0x31a54ccdf13a159b0c3c1c44e9756d6f166c2b4b20589da93cce49769338f013",
+        "blockNumber": 59284613,
+        "gasUsed": "150000"
+      },
+      "pipelineBlocks": 48,
+      "totalGas": "650000"
+    },
+    {
+      "taskId": "11465312780328230036764201138656341595271388623887713857346578794753285378373",
+      "lane": 0,
+      "buyer": "0x201A58700F28CC1203BF9C5483b93B7F9d7b87A9",
+      "seller": "0xF21eF2dC0F34c58F5518914037427Cb9053e9865",
+      "resultHash": "0x23ec83ca7fd7cec97d30869efdd7f5181a2ad59c053c1f460d4cee4ca0902624",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0xe22f2b992785c4f7457d39e26db01631a83ffca09af3350c2c72ef3056dce737",
+        "blockNumber": 59284583,
+        "gasUsed": "350000"
+      },
+      "submit": {
+        "txHash": "0x096a9b251c164d801de28c7fee86193e43d82eca50b21933b4e56e7a1f4cfdee",
+        "blockNumber": 59284602,
+        "gasUsed": "150000"
+      },
+      "verify": {
+        "txHash": "0x74183a29fda96c647e2fcbcaea42d8feffb0c7369e9e5eb787b95cf60d07ccab",
+        "blockNumber": 59286663,
+        "gasUsed": "120000"
+      },
+      "pipelineBlocks": 2081,
+      "totalGas": "620000"
+    },
+    {
+      "taskId": "1719565396950897308409408467455966352848701863435517276980851186706109779853",
+      "lane": 1,
+      "buyer": "0x36905923EC3cD22c743fc75616A76aaC74EDa1D2",
+      "seller": "0x2381579377C59f7C91813CA2bE4dcdb3Af41FdDa",
+      "resultHash": "0xe266aa61512445cd5873956ff0ba16b0d91049730c9793138cdd3a38134c3b28",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0x595c563f7de6c523951c9347d956d3028c92366f0cf1a135bd33901cd07915b4",
+        "blockNumber": 59284565,
+        "gasUsed": "350000"
+      },
+      "submit": {
+        "txHash": "0x130a53ae76c6d999df86fee2898db88f24e54d425a048397223f3e2d832a30ae",
+        "blockNumber": 59284594,
+        "gasUsed": "150000"
+      },
+      "verify": {
+        "txHash": "0x0b4ef2821161f55c935af73bb03137b5f664581d31bfa15a9c8c7aa2b3499924",
+        "blockNumber": 59284613,
+        "gasUsed": "150000"
+      },
+      "pipelineBlocks": 49,
+      "totalGas": "650000"
+    },
+    {
+      "taskId": "60529929381119351145127063628036486535329127478015020794879054830818658387266",
+      "lane": 1,
+      "buyer": "0x36905923EC3cD22c743fc75616A76aaC74EDa1D2",
+      "seller": "0x2381579377C59f7C91813CA2bE4dcdb3Af41FdDa",
+      "resultHash": "0x15078976188eb5832d14fa6a8dce3399335095f1e9de6adace0f45a0387087aa",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0x180899e68168cb419f0ffb6822dd3f51f1868489faae206f8b862c070b9fe15a",
+        "blockNumber": 59284581,
+        "gasUsed": "350000"
+      },
+      "submit": {
+        "txHash": "0xacdcfba8d1b5e14bf6de8f53138a2fe14ca90fc3ba1dfb819fdde0eb6d6bbb5f",
+        "blockNumber": 59284602,
+        "gasUsed": "150000"
+      },
+      "verify": {
+        "txHash": "0xc2263bc4d1e432210ba711a82b01282baf38ba6d7bc70cd7e789fd96c617cad9",
+        "blockNumber": 59286662,
+        "gasUsed": "120000"
+      },
+      "pipelineBlocks": 2082,
+      "totalGas": "620000"
+    },
+    {
+      "taskId": "59818221080235207131980392859598479953116740315838363480569046112518760687083",
+      "lane": 2,
+      "buyer": "0x9A93e1076DbC12045a34514A7eC1dC7DcBFe8864",
+      "seller": "0x6514d1F992b0Afa06339a0910aF6D19e0b051bdd",
+      "resultHash": "0xd8f8a73d2b18cc8745cd644dff9bc7828a4f8d0be170db7d5e75ee9ccfa6eac6",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0x59518e2728c5086269d2864936db351e29449251bb5aef9b06af8cacb0d38492",
+        "blockNumber": 59284568,
+        "gasUsed": "350000"
+      },
+      "submit": {
+        "txHash": "0x4b5e2c4c78be4aba11c22ce36dcb34baadd0b5e1d965f880912eafcd88d6fd61",
+        "blockNumber": 59284594,
+        "gasUsed": "150000"
+      },
+      "verify": {
+        "txHash": "0xb22de75f758b31496ecc49b54bc4f18ae4ae309a8b01e0d4b3c8229c483a214a",
+        "blockNumber": 59284613,
+        "gasUsed": "150000"
+      },
+      "pipelineBlocks": 46,
+      "totalGas": "650000"
+    },
+    {
+      "taskId": "63305078046965373815102072913107015228970887751110358289028375448782689220391",
+      "lane": 2,
+      "buyer": "0x9A93e1076DbC12045a34514A7eC1dC7DcBFe8864",
+      "seller": "0x6514d1F992b0Afa06339a0910aF6D19e0b051bdd",
+      "resultHash": "0x0f5efbbcaae2d1ee0313ffab5e77f4ebaecf4bb1fd90ad46c8450daed8847c69",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0x1d3cee92072f904d01d4880c1bbb6496a19dc5c7c945f9f4cc01a4eee232a39a",
+        "blockNumber": 59284581,
+        "gasUsed": "350000"
+      },
+      "submit": {
+        "txHash": "0xc98292574d2e1a784d21ed1812d0715017627722718c9b97c3f766eff46ef9b0",
+        "blockNumber": 59284602,
+        "gasUsed": "150000"
+      },
+      "verify": {
+        "txHash": "0x0b3a6670221fd389005e84d65174e98a59ee1c081e9375cf2ab8635656a0f9df",
+        "blockNumber": 59284626,
+        "gasUsed": "150000"
+      },
+      "pipelineBlocks": 46,
+      "totalGas": "650000"
+    },
+    {
+      "taskId": "159305954697427047649358151320180742635492030088110340466008276395832919212",
+      "lane": 3,
+      "buyer": "0x85812a720D08725F94D9658224caC45Bc858c4D0",
+      "seller": "0x00D9fA376CF265876Cf6F5174C3Df0FaDaED9dCE",
+      "resultHash": "0x9b827124e2c9b48c75f1a38723b3a0db97ba55d68e4ec37106617d5d9d5319d6",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0xbe059e5ff59b161392d37b16cb3170c42b625af4dbf30a39bebf9ed2ddbaf46c",
+        "blockNumber": 59284566,
+        "gasUsed": "350000"
+      },
+      "submit": {
+        "txHash": "0x8d23f9fecb6a461c76a45e707acd8d8d9646e141e201cbdafb2f4251e8c41b39",
+        "blockNumber": 59284594,
+        "gasUsed": "150000"
+      },
+      "verify": {
+        "txHash": "0x96164d16add9b1bd7c58cbe8be9690461590990a2a738bd53d82fe95d3cd4f3b",
+        "blockNumber": 59284613,
+        "gasUsed": "150000"
+      },
+      "pipelineBlocks": 48,
+      "totalGas": "650000"
+    },
+    {
+      "taskId": "94621197567208912443685440159058396588326758157964267254000688900360651707998",
+      "lane": 3,
+      "buyer": "0x85812a720D08725F94D9658224caC45Bc858c4D0",
+      "seller": "0x00D9fA376CF265876Cf6F5174C3Df0FaDaED9dCE",
+      "resultHash": "0x1aed158751026ef9f282465a8cc73f713d21a8efdf4fbd357e6d35f0da80367b",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0xb9c4f4e648d8e32fe884699e2141aec9c8c9198b1d1cc9cb7bf177eab51fffe7",
+        "blockNumber": 59284581,
+        "gasUsed": "350000"
+      },
+      "submit": {
+        "txHash": "0x3459fbfd4eb5ca3081169e67bd91d9095591a24c93b007fe882da00b4c9cb69c",
+        "blockNumber": 59284602,
+        "gasUsed": "150000"
+      },
+      "verify": {
+        "txHash": "0x9e7f04733b7a04a1cb4059ff5b01dde510bdf3ab20c31f5f942e12bcb9641175",
+        "blockNumber": 59286663,
+        "gasUsed": "120000"
+      },
+      "pipelineBlocks": 2083,
+      "totalGas": "620000"
+    },
+    {
+      "taskId": "4306617885800345018751271402219039548462421077694256866364291634858479436357",
+      "lane": 4,
+      "buyer": "0xd54AAF6525152346Ce64C269B5fCA3917067d4d4",
+      "seller": "0x9CBAD924e45e4d06be63796a3b34860D4A752879",
+      "resultHash": "0x23a5efc2e678a710f6ae01b3b580158e4ad52d426deaf0c625b7c8ba29e5b42e",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0x7819f276f825c05cc50cddc0ce43e610ba29917823de27f2758e65c787af808d",
+        "blockNumber": 59284568,
+        "gasUsed": "350000"
+      },
+      "submit": {
+        "txHash": "0xba9d150e5be7e7047fccccdfc5dc02fd89c83a14a758f4939ddb7b8c18425471",
+        "blockNumber": 59284594,
+        "gasUsed": "150000"
+      },
+      "verify": {
+        "txHash": "0x3522c7e655c803cc993b29e83664378c1dfb741491031ac77866b2785e19b9d7",
+        "blockNumber": 59284613,
+        "gasUsed": "150000"
+      },
+      "pipelineBlocks": 46,
+      "totalGas": "650000"
+    },
+    {
+      "taskId": "56746259678349358856691119120602827661025724307494318349960662832627472474545",
+      "lane": 4,
+      "buyer": "0xd54AAF6525152346Ce64C269B5fCA3917067d4d4",
+      "seller": "0x9CBAD924e45e4d06be63796a3b34860D4A752879",
+      "resultHash": "0xa12bbce91cb1e843e07f49e60bfaa14b49ec645f9383a32cb9f8e409e9a65642",
+      "state": "VERIFIED",
+      "create": {
+        "txHash": "0xefa9ddcb8e8ba963e8dc52cb4df72eb80afb9e058a3ee3216e68763f88ba438c",
+        "blockNumber": 59284581,
+        "gasUsed": "350000"
+      },
+      "submit": {
+        "txHash": "0x14e934d5710e686309ebb8115aee1cebcbb179c98693a2d661fcf36dbb8cb8a4",
+        "blockNumber": 59284602,
+        "gasUsed": "150000"
+      },
+      "verify": {
+        "txHash": "0xafc8c408a6819e7d82708c3729548a6c004eaf596cd2b2ac7616760cb0447935",
+        "blockNumber": 59286663,
+        "gasUsed": "120000"
+      },
+      "pipelineBlocks": 2083,
+      "totalGas": "620000"
+    }
+  ],
+  "limitation": "Five independent account lanes executed in two concurrent waves. Timing retained for the recovered verification wave; create and submit concurrency is proven by public transaction/block evidence rather than reconstructed wall-clock claims."
+}

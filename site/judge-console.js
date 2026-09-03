@@ -3,13 +3,16 @@
   const CHAIN_ID_NUMBER = 10143;
   const CONTRACT = '0xee84007f8618c2c38Be8C45E8050144EbF00CE4a';
   const SELLER = '0x637a61f2644E43aDa1eEeEb6Ff827B2aD60e669b';
+  const VERIFIER = '0xE01337d3F0E061017d8Ce547e11d86C0705e8526';
   const EXPLORER = 'https://testnet.monadexplorer.com';
   const SELECTORS = {
     registerAgent: 'b19b03a1',
     setPolicy: '5405c1e6',
+    setVerifier: '5437988d',
     createTask: 'b137d616',
     identities: 'f653b81e',
     policies: '20e98698',
+    verifiers: '6c824487',
   };
   const HASHES = {
     buyerMetadata: '02f3f9f6040221cb5831162bc0a95d0d7df8cedffc215db571bdc7a523e8ae1c',
@@ -157,16 +160,27 @@
         finishProgress(policyStep, 'Existing policy covers this task · no transaction needed');
       }
 
+      const verifierStep = addProgress('3 · VERIFIER', 'Reading independent verifier binding…');
+      const verifierResult = await call(`0x${SELECTORS.verifiers}${addressWord(account)}`);
+      const currentVerifier = `0x${verifierResult.slice(-40)}`.toLowerCase();
+      if (currentVerifier !== VERIFIER.toLowerCase()) {
+        const data = `0x${SELECTORS.setVerifier}${addressWord(VERIFIER)}`;
+        const { hash } = await send(data);
+        finishProgress(verifierStep, `Bound ${short(VERIFIER)} · <a href="${EXPLORER}/tx/${hash}" target="_blank" rel="noreferrer">${short(hash)} ↗</a>`);
+      } else {
+        finishProgress(verifierStep, `Already bound · ${short(VERIFIER)}`);
+      }
+
       const workload = document.getElementById('live-agent').value;
       const intentHash = workload === 'ChainSentinel' ? HASHES.chainsentinel : HASHES.yieldscout;
-      const taskStep = addProgress('3 · ESCROW', `Creating ${workload} task…`);
+      const taskStep = addProgress('4 · ESCROW', `Creating ${workload} task…`);
       const data = `0x${SELECTORS.createTask}${addressWord(SELLER)}${intentHash}${HASHES.policy}`;
       const { hash, receipt } = await send(data, `0x${taskValue.toString(16)}`);
       const event = (receipt.logs || []).find((log) => log.topics && log.topics[0] === HASHES.taskCreatedTopic);
       const taskId = event && event.topics[1] ? BigInt(event.topics[1]).toString() : 'unknown';
       finishProgress(taskStep, `Task ${taskId} is OPEN · <a href="${EXPLORER}/tx/${hash}" target="_blank" rel="noreferrer">view transaction ↗</a>`);
-      const proofStep = addProgress('4 · PROOF', 'The public receipts below show seller submission and independent verification for completed tasks.');
-      finishProgress(proofStep, 'Judge wallet created a real task without receiving any repository credential.');
+      const proofStep = addProgress('5 · HANDOFF', 'The task is ready for the public seller/verifier completion flow.');
+      finishProgress(proofStep, 'Share the task ID through the pilot issue template; no repository credential entered the browser.');
       status.innerHTML = `<span class="verified">LIVE TASK CREATED</span> · task ${taskId} · ${short(hash)}`;
     } catch (error) {
       addProgress('ERROR', error && error.message ? error.message : 'Live task failed', 'frozen');

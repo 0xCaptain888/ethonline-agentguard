@@ -1,0 +1,23 @@
+{
+  "evidenceClass": "LIVE_TESTNET_DEPLOYMENT",
+  "contract": "MonadAgentGuardParallel",
+  "version": "2",
+  "network": "Monad Testnet",
+  "chainId": 10143,
+  "address": "0x91A62595C8eF8c5E5cddcd782cAd7FDdd38D5169",
+  "deployer": "0xd64Fac11d711d7278a8Bb6D7be1E2De1fdBCC564",
+  "transactionHash": "0x262c2b8f451b5d8ef5452f1181c7d2de5b2ab186729af113259da3a5a9f3044e",
+  "blockNumber": 59282433,
+  "compiler": "0.8.26",
+  "optimizer": {
+    "enabled": true,
+    "runs": 200
+  },
+  "constructorArguments": [],
+  "sourceVerification": {
+    "provider": "Sourcify via MonadVision",
+    "status": "EXACT_MATCH",
+    "url": "https://testnet.monadvision.com/contracts/full_match/10143/0x91A62595C8eF8c5E5cddcd782cAd7FDdd38D5169/"
+  },
+  "purpose": "Replace the V1 global task counter with deterministic per-buyer nonce lanes so independent buyers do not contend on one task-id storage slot."
+}

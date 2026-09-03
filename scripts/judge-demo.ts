@@ -25,7 +25,8 @@ console.log(JSON.stringify({
     { at: "00:55", screen: "Live Judge Console — CREATE", narration: "Restore the allowed values, connect a judge wallet and create a real Monad Testnet escrow task without exposing seller or verifier credentials.", decision: allowed },
     { at: "01:25", screen: "Settlement", narration: "MetaMask Agent Wallet Task 56 and both seller workloads commit full reports; only task-specific verifier signatures release MON.", liveEvidence: "MetaMask → YieldScout task 56 + ChainSentinel task 29" },
     { at: "01:55", screen: "Safety outcomes", narration: "Real receipts show VERIFIED, BLOCKED, FROZEN and the two-party REFUNDED recovery path.", liveEvidence: "Tasks 30, 26 and 27" },
-    { at: "02:20", screen: "Why Monad", narration: "Twenty-five complete pipelines separated escrow, result commitment and independent verification across 75 unique Testnet transactions.", benchmark: { pipelines: 25, verified: 25, transactions: 75, averageEndToEndMs: 6566, p95EndToEndMs: 7543 } },
+    { at: "02:05", screen: "V1 bottleneck", narration: "The concurrent benchmark exposed a global task-counter hotspot. The limitation is published, not hidden.", benchmark: { pipelines: 25, lanes: 5, verified: 25, transactions: 75 } },
+    { at: "02:20", screen: "Parallel V2", narration: "Per-buyer nonce lanes removed cross-buyer task-ID contention. Ten complete pipelines produced 30 public transactions, with creates, submissions and verifications included concurrently in blocks.", benchmark: { contract: "0x91A62595C8eF8c5E5cddcd782cAd7FDdd38D5169", pipelines: 10, lanes: 5, verified: 10, transactions: 30, maxCreatesInSingleBlock: 4, maxSubmitsInSingleBlock: 5, maxVerifiesInSingleBlock: 5 } },
     { at: "02:40", screen: "MetaMask Agent Wallet", narration: "MetaMask isolates the self-custodial buyer wallet; AgentGuard adds application policy and settlement proof on Monad.", integration: "npm run sponsor:metamask" },
     { at: "02:55", screen: "Boundary", narration: "This is a Testnet MVP. Two-party recovery is live; neutral arbitration and audited production deployment remain future work." },
   ],
@@ -35,8 +36,9 @@ console.log(JSON.stringify({
     chainSentinelVerified: "https://testnet.monadexplorer.com/tx/0xa97ed7f0863171680fe0dcd4c20130696471d6832db08f57fad65fe42fb6f1fe",
     blocked: "https://testnet.monadexplorer.com/tx/0x35a25bdd69c3de15adb676ac1a29aae37eb09abff518075616aa9f701ee9a34b",
     frozen: "https://testnet.monadexplorer.com/tx/0xa1193b2aaa7a5c9e25d10c1d81331e3180e2b9d83bdacf1f95f8acdbcf58ea8c",
+    parallelV2: "https://testnet.monadexplorer.com/address/0x91A62595C8eF8c5E5cddcd782cAd7FDdd38D5169",
   },
-  whyMonad: "Monad keeps escrow, result commitment and independent verification as separate on-chain authority transitions; 25 complete Testnet pipelines measured 7,543 ms at P95.",
+  whyMonad: "Monad keeps authority transitions separate, and its parallel execution model directly shaped the deployed move from a global task counter to per-buyer nonce lanes.",
   judgeConsole: "https://0xcaptain888.github.io/monad-agentguard/#judge-console",
   sponsorIntegration: {
     name: "MetaMask Agent Wallet",
@@ -45,5 +47,5 @@ console.log(JSON.stringify({
     boundary: "Authenticated BYOK guard broadcast is proven by Task 56; wallet credentials and session remain outside the repository.",
   },
   evidenceVerifier: "npm run judge:check",
-  scriptHash: keccak256(toUtf8Bytes("monad-agentguard:judge-demo:v3")),
+  scriptHash: keccak256(toUtf8Bytes("monad-agentguard:judge-demo:v4")),
 }, null, 2));

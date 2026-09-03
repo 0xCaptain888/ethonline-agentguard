@@ -1,0 +1,45 @@
+name: External pilot task
+description: Submit a Monad Testnet task created from the public AgentGuard Judge Console.
+title: "[Pilot] Complete task "
+labels: ["external-pilot"]
+body:
+  - type: markdown
+    attributes:
+      value: Never post a private key, seed phrase, token or authenticated wallet session.
+  - type: input
+    id: task_id
+    attributes:
+      label: Task ID
+      description: The numeric task ID shown after the escrow transaction is mined.
+    validations:
+      required: true
+  - type: input
+    id: buyer
+    attributes:
+      label: Buyer wallet
+      description: The public Monad Testnet address that created the task.
+    validations:
+      required: true
+  - type: input
+    id: create_tx
+    attributes:
+      label: Creation transaction
+      description: Monad Testnet Explorer transaction URL.
+    validations:
+      required: true
+  - type: dropdown
+    id: workload
+    attributes:
+      label: Workload
+      options:
+        - YieldScout
+        - ChainSentinel
+    validations:
+      required: true
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: Confirmation
+      options:
+        - label: I understand this is Testnet software and the public address/transaction may appear in project evidence.
+          required: true

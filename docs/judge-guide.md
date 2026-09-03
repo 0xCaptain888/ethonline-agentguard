@@ -12,8 +12,8 @@ In the public Demo, open **Live Judge Console**, connect an injected wallet and
 switch to Monad Testnet. Set a task value above the visible maximum budget and
 click Create: the console returns `BLOCKED` before requesting a write. Restore
 the default `0.01 MON` task and `0.05 MON` budget, then create a YieldScout or
-ChainSentinel task. The wallet confirms identity/policy writes only when needed
-and one real escrow transaction. The new task remains `OPEN`; no seller or
+ChainSentinel task. The wallet confirms identity, policy and verifier-binding
+writes only when needed, followed by one real escrow transaction. The new task remains `OPEN`; no seller or
 verifier credential is shipped to the browser.
 
 If no wallet is available, the console says so without affecting the evidence
@@ -57,9 +57,11 @@ address is independent of both buyer and seller.
 Run `npm run evidence:verify` to recompute every committed receipt's evidence
 hash and validate its state, network and transaction trail. This is read-only.
 
-Open [`docs/monad-performance.md`](monad-performance.md) for 25 complete live
-pipelines, 75 unique Testnet transactions and phase-by-phase latency/gas. Run
-`npm run benchmark:e2e:verify` to validate the aggregate fields and uniqueness.
+Open [`docs/monad-performance.md`](monad-performance.md) for the full V1 → V2
+story: 25 sequential pipelines, the concurrent global-counter bottleneck, and
+the deployed per-buyer task-ID architecture. Run all three read-only checks:
+`npm run benchmark:e2e:verify`, `npm run benchmark:concurrent:verify`, and
+`npm run benchmark:parallel:verify`.
 
 Run `npm run sponsor:metamask` to inspect the explicit MetaMask Agent Wallet
 requests for identity, policy, verifier binding and escrow. Then open
@@ -83,6 +85,8 @@ npm test
 npm run demo
 npm run agent:flow
 npm run benchmark:e2e:verify
+npm run benchmark:concurrent:verify
+npm run benchmark:parallel:verify
 npm run sponsor:metamask
 ```
 
@@ -99,9 +103,10 @@ The live testnet runner is opt-in and requires local wallet keys:
 
 ## What is and is not claimed
 
-The contract is a hackathon MVP, not audited production software. The complete
-benchmark measures sequential contract-workflow receipt latency, not Monad
-protocol TPS or concurrent Agent throughput. Two-party FROZEN recovery is live;
+The contracts are hackathon MVPs, not audited production software. The
+benchmarks measure AgentGuard application workflows on Monad Testnet, not
+Monad protocol TPS. V2 concurrency is proven by public transaction/block
+evidence; only retained timing windows are claimed. Two-party FROZEN recovery is live;
 signed deadlines and neutral arbitration remain documented production
 extensions. The MetaMask Agent Wallet broadcast is live evidence, but the
 repository intentionally does not include or inherit its authenticated session.
