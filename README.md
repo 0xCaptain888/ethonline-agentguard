@@ -46,6 +46,25 @@ artifact, while [Why Monad](docs/why-monad.md) explains the execution choice.
 
 The AI planner is not trusted by the contract. The contract and verifier are the authority boundaries.
 
+### A real seller task (DeFiLlama → receipt)
+
+`YieldScout` is more than a label in the demo: it can perform a read-only
+research task against DeFiLlama's public API, filter and rank Monad pools, and
+return a bounded JSON report. The report includes its source URL and fetch
+timestamp, then commits to the exact bytes with a `resultHash`. An independent
+verifier checks the schema, source, chain, ranking and numeric bounds before the
+hash is eligible for settlement. Run it with:
+
+```bash
+npm run yieldscout:report
+```
+
+This command is labelled `LIVE_EXTERNAL_DATA` and makes no blockchain write.
+For a live task, use the printed `resultHash` as the seller commitment in
+`submitResult`; the verifier must validate the report itself, not just trust the
+seller's claim. The [task specification](docs/agent-task-spec.md) documents the
+input, output and failure semantics.
+
 ## Network configuration
 
 | Network | Chain ID | RPC | Explorer |
@@ -81,6 +100,17 @@ npm run task:testnet
 ```
 
 The runner registers buyer and seller identities, creates a `0.01 MON` escrow task, submits a result, verifies it, reads the final task state back from Monad, and writes `evidence/testnet-task-<id>.json`. The evidence file includes the intent/policy/result hashes, receipt status, block number, Explorer links, and a deterministic evidence hash. It never prints or persists private keys.
+
+To make that live task use the external seller output, opt in explicitly:
+
+```bash
+YIELDSCOUT_LIVE_DATA=1 npm run task:testnet
+```
+
+This fetches DeFiLlama, independently validates the structured report, uses
+its `resultHash` in `submitResult`, and records the source, pool IDs and
+verification checks in the receipt. Without the flag, no external request is
+made and the deterministic demo result is used.
 
 The contract also supports a real independent verifier signature through `setVerifier` and `verifyTaskBySignature`. The seller (or another verifier wallet) signs the task decision off-chain; the contract recovers that signer before releasing or freezing escrow. `npm run benchmark` provides a reproducible local throughput baseline; it is deliberately labelled simulation until run against Monad Testnet. There is no claim of production security or Monad throughput from this local benchmark.
 
