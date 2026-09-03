@@ -41,6 +41,7 @@ sample is published with gas and receipt latency.
 - Demo: https://0xcaptain888.github.io/monad-agentguard/
 - GitHub: https://github.com/0xCaptain888/monad-agentguard
 - Contract: https://testnet.monadexplorer.com/address/0xee84007f8618c2c38Be8C45E8050144EbF00CE4a
+- Verified source: https://testnet.monadvision.com/contracts/full_match/10143/0xee84007f8618c2c38Be8C45E8050144EbF00CE4a/
 - Judge manifest: `evidence/judge-manifest.json`
 - One-command verification: `npm run judge:check`
 

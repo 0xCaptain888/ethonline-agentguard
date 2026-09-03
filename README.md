@@ -3,6 +3,7 @@
 [![CI](https://github.com/0xCaptain888/monad-agentguard/actions/workflows/ci.yml/badge.svg)](https://github.com/0xCaptain888/monad-agentguard/actions/workflows/ci.yml)
 [![Demo](https://img.shields.io/badge/demo-live-36d399)](https://0xcaptain888.github.io/monad-agentguard/)
 [![Network](https://img.shields.io/badge/Monad-Testnet-7dd3fc)](https://testnet.monadexplorer.com/address/0xee84007f8618c2c38Be8C45E8050144EbF00CE4a)
+[![Source](https://img.shields.io/badge/source-Sourcify%20exact%20match-8b5cf6)](https://testnet.monadvision.com/contracts/full_match/10143/0xee84007f8618c2c38Be8C45E8050144EbF00CE4a/)
 
 **Autonomous agents can act on Monad — but authority stays bounded and every result is independently verifiable.**
 
@@ -57,6 +58,18 @@ and [judge quick review](docs/judge-guide.md) for the complete path. The
 artifact, while [Why Monad](docs/why-monad.md) explains the execution choice.
 
 The AI planner is not trusted by the contract. The contract and verifier are the authority boundaries.
+
+### Verified deployment
+
+- Contract: [`0xee84007f8618c2c38Be8C45E8050144EbF00CE4a`](https://testnet.monadexplorer.com/address/0xee84007f8618c2c38Be8C45E8050144EbF00CE4a)
+- Source: [Sourcify exact match on MonadVision](https://testnet.monadvision.com/contracts/full_match/10143/0xee84007f8618c2c38Be8C45E8050144EbF00CE4a/)
+- Compiler: Solidity `0.8.26`
+- Optimizer: enabled, `200` runs
+- Constructor arguments: none
+
+The committed `hardhat.config.ts` contains the same compiler and optimizer
+settings used for deployment and the official Monad Sourcify endpoint used for
+verification.
 
 ### A real seller task (DeFiLlama → receipt)
 

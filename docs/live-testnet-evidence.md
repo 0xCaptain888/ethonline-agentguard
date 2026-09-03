@@ -6,7 +6,9 @@ software.
 
 | Field | Value |
 | --- | --- |
-| Contract | [`0xee84007f8618c2c38Be8C45E8050144EbF00CE4a`](https://testnet.monadscan.com/address/0xee84007f8618c2c38Be8C45E8050144EbF00CE4a) |
+| Contract | [`0xee84007f8618c2c38Be8C45E8050144EbF00CE4a`](https://testnet.monadexplorer.com/address/0xee84007f8618c2c38Be8C45E8050144EbF00CE4a) |
+| Verified source | [Sourcify exact match on MonadVision](https://testnet.monadvision.com/contracts/full_match/10143/0xee84007f8618c2c38Be8C45E8050144EbF00CE4a/) |
+| Build settings | Solidity `0.8.26` · optimizer enabled · `200` runs · no constructor arguments |
 | Buyer Agent | `0xd64Fac11d711d7278a8Bb6D7be1E2De1fdBCC564` |
 | Seller Agent | `0x637a61f2644E43aDa1eEeEb6Ff827B2aD60e669b` |
 | Independent verifier | `0xE01337d3F0E061017d8Ce547e11d86C0705e8526` |
