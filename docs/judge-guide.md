@@ -11,7 +11,10 @@ the three live outcomes.
 Run `npm install && npm run agent:flow`. This prints a deterministic
 `TreasuryPlanner → YieldScout → verifier → settlement` request and the exact
 policy checks that produce its decision. It is labelled `SIMULATION` and does
-not move funds.
+not move funds. To show the seller doing actual work, run
+`npm run yieldscout:report`: it reads DeFiLlama, returns the top five Monad
+pools as structured JSON, and prints a keccak result commitment. This is
+labelled `LIVE_EXTERNAL_DATA` and is read-only.
 
 ## 3. Verify the live evidence (2 minutes)
 
@@ -48,6 +51,14 @@ npm run agent:flow
 
 The live testnet runner is opt-in and requires local wallet keys:
 `npm run task:testnet`. Never commit `.env` or private keys.
+
+## The 30-second explanation
+
+> TreasuryPlanner can hire YieldScout, but it cannot move money just because a
+> model said “done”. The policy engine decides first. YieldScout commits to a
+> real, structured result. An independent verifier checks that result. Only a
+> valid signature can release escrow; a policy violation is `BLOCKED`, and a
+> bad post-execution result is `FROZEN`.
 
 ## What is and is not claimed
 
