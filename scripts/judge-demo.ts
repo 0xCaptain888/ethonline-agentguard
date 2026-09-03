@@ -29,7 +29,7 @@ console.log(JSON.stringify({
     { at: "02:55", screen: "Boundary", narration: "FROZEN recovery is a live two-party Testnet primitive; deadlines and neutral arbitration remain a production extension." },
   ],
   liveLinks: {
-    contract: "https://testnet.monadscan.com/address/0xee84007f8618c2c38Be8C45E8050144EbF00CE4a",
+    contract: "https://testnet.monadexplorer.com/address/0xee84007f8618c2c38Be8C45E8050144EbF00CE4a",
     verified: "https://testnet.monadexplorer.com/tx/0x058b29c97b6774aac1f2018bf26508030faa0fcc9f5b5b524df5a3578dd890c7",
     blocked: "https://testnet.monadexplorer.com/tx/0x35a25bdd69c3de15adb676ac1a29aae37eb09abff518075616aa9f701ee9a34b",
     frozen: "https://testnet.monadexplorer.com/tx/0xa1193b2aaa7a5c9e25d10c1d81331e3180e2b9d83bdacf1f95f8acdbcf58ea8c",
