@@ -2,6 +2,7 @@ import { ethers } from "hardhat";
 import type { ContractTransactionResponse } from "ethers";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import type { MonadAgentGuard } from "../typechain-types/index.js";
+import { fetchYieldScoutReport, verifyYieldScoutReport, type YieldScoutReport } from "../src/yieldscout.js";
 
 async function main() {
   const network = await ethers.provider.getNetwork();
@@ -23,7 +24,13 @@ async function main() {
   const taskId = await guard.nextTaskId();
   const intentHash = ethers.id(`monad-agentguard:buyer:buy:task-${taskId}`);
   const policyHash = ethers.id("monad-agentguard:policy:1-mon");
-  const resultHash = ethers.id(`monad-agentguard:result:task-${taskId}`);
+  let externalReport: YieldScoutReport | undefined;
+  if (process.env.YIELDSCOUT_LIVE_DATA === "1") {
+    externalReport = await fetchYieldScoutReport();
+    const verification = verifyYieldScoutReport(externalReport);
+    if (!verification.passed) throw new Error(`YieldScout report failed independent checks: ${verification.reasons.join(", ")}`);
+  }
+  const resultHash = externalReport?.resultHash ?? ethers.id(`monad-agentguard:result:task-${taskId}`);
   const value = ethers.parseEther("0.01");
 
   const txs: Record<
@@ -102,6 +109,12 @@ async function main() {
     state: "VERIFIED",
     onchainState,
     value: value.toString(),
+    ...(externalReport ? {
+      taskType: "YieldScout external liquidity report",
+      externalSource: externalReport.source,
+      poolIds: externalReport.pools.map((pool) => pool.pool),
+      reportVerification: verifyYieldScoutReport(externalReport),
+    } : { taskType: "deterministic demo result" }),
     transactions: txs,
   };
   const evidenceHash = ethers.keccak256(
