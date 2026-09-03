@@ -3,6 +3,9 @@
   "version": "0.3.0",
   "private": false,
   "description": "Bounded authority, escrow, and independently verifiable execution for autonomous agents on Monad.",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "build": "hardhat compile",
     "test": "hardhat test",
