@@ -5,11 +5,11 @@ public Marketplace and use the terminal only for the local policy preview.
 
 | Time | Show | Say |
 | --- | --- | --- |
-| 0:00–0:25 | `TreasuryPlanner → YieldScout` | “One agent hires another, but neither agent can authorize its own payment.” |
+| 0:00–0:25 | `TreasuryPlanner → YieldScout / ChainSentinel` | “One buyer Agent hires two different seller workloads through the same bounded settlement layer.” |
 | 0:25–0:55 | `npm run judge:demo` policy output | “The policy engine decides first: budget, seller permission, risk and confirmation are visible before a transaction is sent.” |
-| 0:55–1:35 | VERIFIED card and MonadScan | “The seller submits a result; an independent verifier signs it; only then does Monad release 0.01 MON.” |
-| 1:35–2:05 | BLOCKED card and MonadScan | “An over-budget or unauthorized request is stopped before execution and refunded.” |
-| 2:05–2:35 | FROZEN card and MonadScan | “A bad result is contained: escrow stays isolated instead of being released.” |
+| 0:55–1:35 | YieldScout 30 + ChainSentinel 29 | “Each seller performs different real work, commits its full report hash, and receives 0.01 MON only after task-specific verification.” |
+| 1:35–2:05 | BLOCKED card and Monad Testnet Explorer | “An over-budget or unauthorized request is stopped before execution and refunded.” |
+| 2:05–2:35 | FROZEN card and Monad Testnet Explorer | “A bad result is contained: escrow stays isolated instead of being released.” |
 | 2:35–2:55 | Contract, hashes, `npm run evidence:verify` | “These are real Monad Testnet transactions, and the receipt hashes are independently recomputed. Task 27 then shows the two approval transactions that refund the buyer.” |
 | 2:55–3:00 | Boundary note | “FROZEN recovery is live two-party Testnet refund; signed approvals, deadlines and neutral arbitration remain production extensions.” |
 

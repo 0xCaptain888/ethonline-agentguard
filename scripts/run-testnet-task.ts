@@ -3,6 +3,7 @@ import type { ContractTransactionResponse } from "ethers";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import type { MonadAgentGuard } from "../typechain-types/index.js";
 import { fetchYieldScoutReport, verifyYieldScoutReport, type YieldScoutReport } from "../src/yieldscout";
+import { fetchChainSentinelReport, verifyChainSentinelReport, type ChainSentinelReport } from "../src/chainsentinel";
 
 async function main() {
   const network = await ethers.provider.getNetwork();
@@ -22,10 +23,12 @@ async function main() {
     deployment.address,
   )) as unknown as MonadAgentGuard;
   const taskId = await guard.nextTaskId();
-  const intentHash = ethers.id(`monad-agentguard:buyer:buy:task-${taskId}`);
+  const scenario = process.env.TASK_SCENARIO ?? (process.env.YIELDSCOUT_LIVE_DATA === "1" ? "yieldscout" : "deterministic");
+  const intentHash = ethers.id(`monad-agentguard:${scenario}:task-${taskId}`);
   const policyHash = ethers.id("monad-agentguard:policy:1-mon");
   let externalReport: YieldScoutReport | undefined;
-  if (process.env.YIELDSCOUT_LIVE_DATA === "1") {
+  let chainReport: ChainSentinelReport | undefined;
+  if (scenario === "yieldscout") {
     try {
       externalReport = await fetchYieldScoutReport();
     } catch (error) {
@@ -36,7 +39,18 @@ async function main() {
     const verification = verifyYieldScoutReport(externalReport);
     if (!verification.passed) throw new Error(`YieldScout report failed independent checks: ${verification.reasons.join(", ")}`);
   }
-  const resultHash = externalReport?.resultHash ?? ethers.id(`monad-agentguard:result:task-${taskId}`);
+  if (scenario === "chainsentinel") {
+    try {
+      chainReport = await fetchChainSentinelReport(ethers.provider);
+    } catch (error) {
+      if (process.env.CHAINSENTINEL_REPORT_FILE) {
+        chainReport = JSON.parse(await readFile(process.env.CHAINSENTINEL_REPORT_FILE, "utf8")) as ChainSentinelReport;
+      } else throw error;
+    }
+    const verification = verifyChainSentinelReport(chainReport);
+    if (!verification.passed) throw new Error(`ChainSentinel report failed independent checks: ${verification.reasons.join(", ")}`);
+  }
+  const resultHash = externalReport?.resultHash ?? chainReport?.resultHash ?? ethers.id(`monad-agentguard:result:task-${taskId}`);
   const value = ethers.parseEther("0.01");
 
   const txs: Record<
@@ -118,8 +132,17 @@ async function main() {
     ...(externalReport ? {
       taskType: "YieldScout external liquidity report",
       externalSource: externalReport.source,
+      agentReport: externalReport,
       poolIds: externalReport.pools.map((pool) => pool.pool),
       reportVerification: verifyYieldScoutReport(externalReport),
+    } : chainReport ? {
+      taskType: "ChainSentinel Monad network report",
+      externalSource: { name: "Monad JSON-RPC", chainId: chainReport.chainId, observedAt: chainReport.observedAt },
+      agentReport: chainReport,
+      latestBlock: chainReport.latestBlock,
+      gasPriceWei: chainReport.gasPriceWei,
+      averageBlockTimeMs: chainReport.sample.averageBlockTimeMs,
+      reportVerification: verifyChainSentinelReport(chainReport),
     } : { taskType: "deterministic demo result" }),
     transactions: txs,
   };

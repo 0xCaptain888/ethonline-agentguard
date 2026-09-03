@@ -1,0 +1,41 @@
+{
+  "manifestVersion": "1",
+  "project": "Monad AgentGuard",
+  "network": "Monad Testnet",
+  "chainId": 10143,
+  "contract": "0xee84007f8618c2c38Be8C45E8050144EbF00CE4a",
+  "agents": [
+    {
+      "name": "TreasuryPlanner",
+      "role": "buyer",
+      "address": "0xd64Fac11d711d7278a8Bb6D7be1E2De1fdBCC564"
+    },
+    {
+      "name": "YieldScout",
+      "role": "seller",
+      "taskId": "30",
+      "dataSource": "DeFiLlama",
+      "state": "VERIFIED",
+      "resultHash": "0xda2d99741a880e33aa7fdf16ffc2f690e7fa444dcca3048aa2e461cbd1bf9470",
+      "evidenceHash": "0x4bf0962b5dca318e42e0be3880a975f40a6cad42b29191e69da5b4e5fc738996",
+      "verificationTx": "0x5ade4e2e783f322fa9c096ef16c609a0afe2323560ef77f2de3ae2b01678d9d9"
+    },
+    {
+      "name": "ChainSentinel",
+      "role": "seller",
+      "taskId": "29",
+      "dataSource": "Monad JSON-RPC",
+      "state": "VERIFIED",
+      "resultHash": "0x7f8f72630f40a2312c7b46eba528c5e7900c63d4db26e4d727de49a4fa466717",
+      "evidenceHash": "0x88cd54badae759492e3a983ab8cebc41572af763b9f3f4063cce5c81e5cb139a",
+      "verificationTx": "0xa97ed7f0863171680fe0dcd4c20130696471d6832db08f57fad65fe42fb6f1fe"
+    }
+  ],
+  "safetyOutcomes": {
+    "BLOCKED": { "taskId": "26", "tx": "0x35a25bdd69c3de15adb676ac1a29aae37eb09abff518075616aa9f701ee9a34b" },
+    "FROZEN": { "taskId": "27", "tx": "0xa1193b2aaa7a5c9e25d10c1d81331e3180e2b9d83bdacf1f95f8acdbcf58ea8c" },
+    "REFUNDED": { "taskId": "27", "tx": "0x610bbf66a7c8bff9cbf951a8a0dd8d03299cfa38a819e67d21574ec7eb0b23d0" }
+  },
+  "benchmark": { "tasks": 25, "successRate": 1, "averageLatencyMs": 2000, "averageGas": 170670 },
+  "verifyCommand": "npm run judge:check"
+}

@@ -51,3 +51,29 @@ approvals and neutral arbiter quorum) remain outside this MVP.
 `createTask` transactions on the same deployment: 100% mined successfully,
 approximately 2,000 ms average receipt latency and 170,670 average gas. This
 measures task creation only, not end-to-end agent latency.
+
+## Preferred fully reproducible receipts (September 3, 2026)
+
+These receipts contain each seller's complete business report. The repository
+verifier recomputes its task-specific hash and checks that it equals the result
+hash committed on Monad before settlement.
+
+### YieldScout · Task 30
+
+- Work: fetch DeFiLlama and rank the top five Monad pools by TVL.
+- Result hash: `0xda2d99741a880e33aa7fdf16ffc2f690e7fa444dcca3048aa2e461cbd1bf9470`
+- Evidence hash: `0x4bf0962b5dca318e42e0be3880a975f40a6cad42b29191e69da5b4e5fc738996`
+- [Create escrow](https://testnet.monadexplorer.com/tx/0x2b57c92ea84e7d660c9e1363908d62b5c4fc4b1ae744055eb2974bdc7f83a2dd)
+- [Submit report hash](https://testnet.monadexplorer.com/tx/0x842c121dadaeb361103d6825415af10f145664f09564806fb3e5e285a7c20794)
+- [Verify and release](https://testnet.monadexplorer.com/tx/0x5ade4e2e783f322fa9c096ef16c609a0afe2323560ef77f2de3ae2b01678d9d9)
+- [Full receipt](../evidence/testnet-task-30.json)
+
+### ChainSentinel · Task 29
+
+- Work: read Monad Testnet block, gas and ten-block timing data.
+- Result hash: `0x7f8f72630f40a2312c7b46eba528c5e7900c63d4db26e4d727de49a4fa466717`
+- Evidence hash: `0x88cd54badae759492e3a983ab8cebc41572af763b9f3f4063cce5c81e5cb139a`
+- [Create escrow](https://testnet.monadexplorer.com/tx/0x0127318b68638e5e87f66c4cdb2d4b7127359774fba0f0b64f605538cea60e6d)
+- [Submit report hash](https://testnet.monadexplorer.com/tx/0x6ac61bd1fd492416300056f860da45af0054e2a4077e5a20ba22892228b843e9)
+- [Verify and release](https://testnet.monadexplorer.com/tx/0xa97ed7f0863171680fe0dcd4c20130696471d6832db08f57fad65fe42fb6f1fe)
+- [Full receipt](../evidence/testnet-task-29.json)

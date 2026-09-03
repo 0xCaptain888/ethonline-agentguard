@@ -1,5 +1,7 @@
 import { keccak256, toUtf8Bytes, getAddress } from "ethers";
 import { readdir, readFile } from "node:fs/promises";
+import { verifyChainSentinelReport } from "../src/chainsentinel";
+import { verifyYieldScoutReport } from "../src/yieldscout";
 
 const expectedState: Record<string, number> = { VERIFIED: 2, BLOCKED: 3, FROZEN: 4, REFUNDED: 5 };
 const hashPattern = /^0x[0-9a-fA-F]{64}$/;
@@ -22,6 +24,18 @@ for (const file of files) {
   if (!receipt.transactions || Object.keys(receipt.transactions).length < minimumTransactions) throw new Error(`${file}: incomplete transaction trail`);
   for (const [name, tx] of Object.entries(receipt.transactions) as Array<[string, any]>) {
     if (!hashPattern.test(tx.hash) || tx.status !== 1 || typeof tx.blockNumber !== "number") throw new Error(`${file}: invalid transaction ${name}`);
+  }
+  if (receipt.taskType === "ChainSentinel Monad network report") {
+    const businessVerification = verifyChainSentinelReport(receipt.agentReport, Date.parse(receipt.generatedAt));
+    if (!businessVerification.passed) throw new Error(`${file}: ChainSentinel business evidence failed: ${businessVerification.reasons.join(", ")}`);
+    if (receipt.agentReport.resultHash.toLowerCase() !== String(receipt.resultHash).toLowerCase()) throw new Error(`${file}: ChainSentinel on-chain result hash mismatch`);
+    checks.push("ChainSentinel report hash");
+  }
+  if (receipt.taskType === "YieldScout external liquidity report" && receipt.agentReport) {
+    const businessVerification = verifyYieldScoutReport(receipt.agentReport);
+    if (!businessVerification.passed) throw new Error(`${file}: YieldScout business evidence failed: ${businessVerification.reasons.join(", ")}`);
+    if (receipt.agentReport.resultHash.toLowerCase() !== String(receipt.resultHash).toLowerCase()) throw new Error(`${file}: YieldScout on-chain result hash mismatch`);
+    checks.push("YieldScout report hash");
   }
   // task 0 was generated from evidencePayload before generatedAt was appended;
   // failure-path receipts intentionally include generatedAt in their hash.

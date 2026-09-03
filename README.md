@@ -1,15 +1,26 @@
 # Monad AgentGuard
 
+[![CI](https://github.com/0xCaptain888/monad-agentguard/actions/workflows/ci.yml/badge.svg)](https://github.com/0xCaptain888/monad-agentguard/actions/workflows/ci.yml)
+[![Demo](https://img.shields.io/badge/demo-live-36d399)](https://0xcaptain888.github.io/monad-agentguard/)
+[![Network](https://img.shields.io/badge/Monad-Testnet-7dd3fc)](https://testnet.monadexplorer.com/address/0xee84007f8618c2c38Be8C45E8050144EbF00CE4a)
+
 **Autonomous agents can act on Monad — but authority stays bounded and every result is independently verifiable.**
 
-> Monad execution target: Testnet chain ID `10143` now; Mainnet chain ID `143` after testnet evidence is complete.
+> Hackathon deployment: Monad Testnet chain ID `10143`. No Mainnet or production-security claim is made.
 
 Monad AgentGuard is a Monad-native control and settlement layer for AI agents. A planner can propose a task, but it cannot authorize itself or certify its own output. Agent identity, policy authority, escrow, execution and verification are deliberately separated.
 
+**Live proof:** two different seller Agents now use the same settlement layer.
+[`YieldScout`](evidence/testnet-task-30.json) commits a real DeFiLlama liquidity
+report, while [`ChainSentinel`](evidence/testnet-task-29.json) commits a fresh
+Monad RPC network report. Both full reports are independently re-hashed by
+`npm run evidence:verify` and match their on-chain result commitments.
+
 ### The concrete Agent-to-Agent workflow
 
-`TreasuryPlanner` (buyer) hires `YieldScout` (seller) to return a structured
-Monad liquidity report. A deterministic policy engine checks the seller
+`TreasuryPlanner` (buyer) hires either `YieldScout` for a structured Monad
+liquidity report or `ChainSentinel` for fresh Monad network telemetry. A
+deterministic policy engine checks the seller
 permission, per-task budget, daily budget, risk score and confirmation before
 any escrow transaction is sent. The seller submits a result hash; an
 independent verifier signs the decision; the contract settles only after that
@@ -18,7 +29,8 @@ signature is recovered on-chain. Run the inspectable local flow with
 
 ```text
 Agent goal → identity → policy gate → Monad escrow → execution
-           → independent verifier → VERIFIED / BLOCKED / FROZEN → Receipt
+           → task-specific verifier
+           → VERIFIED / BLOCKED / FROZEN / REFUNDED → Receipt
 ```
 
 ## Why this is new for Metropolis
@@ -69,7 +81,7 @@ input, output and failure semantics.
 
 | Network | Chain ID | RPC | Explorer |
 | --- | ---: | --- | --- |
-| Monad Testnet | 10143 | `https://rpc-testnet.monadinfra.com` | [MonadScan Testnet](https://testnet.monadscan.com) |
+| Monad Testnet | 10143 | `https://rpc-testnet.monadinfra.com` | [Monad Testnet Explorer](https://testnet.monadexplorer.com) |
 | Monad Mainnet | 143 | `https://rpc.monad.xyz` | [Monad Explorer](https://monadexplorer.com) |
 
 No private key is committed. Use a dedicated testnet wallet through `DEPLOYER_PRIVATE_KEY` only in your local environment.
@@ -85,6 +97,7 @@ npm run benchmark
 npm run benchmark:testnet # opt-in: 25 live Testnet task creations
 npm run evidence:verify
 npm run judge:demo
+npm run judge:check
 ```
 
 Deploy to Monad Testnet after funding a dedicated test wallet:
@@ -166,6 +179,11 @@ transaction trail.
 The recommended three-minute recording sequence is documented in
 [`docs/demo-script.md`](docs/demo-script.md); `npm run judge:demo` prints the
 policy-first Agent-to-Agent story and the three LIVE_TESTNET links.
+
+For a machine-readable entry point, open
+[`evidence/judge-manifest.json`](evidence/judge-manifest.json). The
+[Agent catalog](docs/agent-catalog.md) explains how the same protocol handles
+two different real seller workloads.
 
 `FROZEN` initially isolates escrow after a failed result. The deployed MVP now
 supports a two-party buyer/seller recovery barrier; signed approvals, deadlines

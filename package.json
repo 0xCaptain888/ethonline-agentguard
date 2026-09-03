@@ -1,6 +1,6 @@
 {
   "name": "monad-agentguard",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": false,
   "description": "Bounded authority, escrow, and independently verifiable execution for autonomous agents on Monad.",
   "scripts": {
@@ -19,8 +19,11 @@
     "demo": "tsx scripts/demo.ts",
     "agent:flow": "node --import tsx scripts/agent-to-agent.ts",
     "yieldscout:report": "node --import tsx scripts/yieldscout-report.ts",
+    "chainsentinel:report": "hardhat run scripts/chainsentinel-report.ts --network monadTestnet",
     "judge:demo": "node --import tsx scripts/judge-demo.ts",
-    "evidence:verify": "node --import tsx scripts/verify-evidence.ts"
+    "evidence:verify": "node --import tsx scripts/verify-evidence.ts",
+    "judge:manifest": "node --import tsx scripts/verify-judge-manifest.ts",
+    "judge:check": "npm run build && npm run typecheck && npm test && npm run evidence:verify && npm run judge:manifest && npm run judge:demo"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
