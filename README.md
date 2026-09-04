@@ -129,6 +129,7 @@ as a finished ETHOnline submission.
 - [Arc integration boundary](docs/arc-integration.md)
 - [The Graph adapter](src/ethonline/graph-agent.ts)
 - [Architecture](docs/architecture.md)
+- [ETHOnline architecture](docs/ethonline-architecture.md)
 - [Judge guide](docs/judge-guide.md)
 - [Existing Monad foundation](https://github.com/0xCaptain888/monad-agentguard)
 

@@ -49,7 +49,7 @@ testnet service is unavailable; it will be labelled `SIMULATION`.
 - [ ] Public repo and dated commits during ETHOnline.
 - [ ] Arc integration is load-bearing and uses USDC.
 - [ ] The Graph data is live, not mocked or static.
-- [ ] Bazantic account, gateway, Recipe, and repeatable comparison recorded.
+- [ ] Privy account, wallet control, and repeatable workflow recorded.
 - [ ] 2–4 minute 720p demo video.
 - [ ] Submission names exactly these three partner families and explains each
       integration.
