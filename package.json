@@ -1,8 +1,8 @@
 {
-  "name": "monad-agentguard",
+  "name": "ethonline-agentguard",
   "version": "0.4.0",
   "private": false,
-  "description": "Bounded authority, escrow, and independently verifiable execution for autonomous agents on Monad.",
+  "description": "Agent-to-agent commerce with policy-gated USDC settlement, live Graph data, and reusable x402 recipes.",
   "engines": {
     "node": ">=22"
   },

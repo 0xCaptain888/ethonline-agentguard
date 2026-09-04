@@ -1,4 +1,13 @@
-# Monad AgentGuard
+# ETHOnline AgentGuard
+
+> ETHOnline 2026 Continuity build: policy-gated Agent-to-Agent commerce with
+> Arc USDC settlement, live The Graph data, and reusable Bazantic recipes.
+
+This repository is the dedicated ETHOnline submission surface. It is based on
+the previously shipped AgentGuard policy/verification foundation, but the
+Arc, The Graph, and Bazantic integrations are the new work for this event.
+See the [dated build plan](docs/ethonline-plan.md) for the before/after
+boundary and sponsor qualification checklist.
 
 [![CI](https://github.com/0xCaptain888/monad-agentguard/actions/workflows/ci.yml/badge.svg)](https://github.com/0xCaptain888/monad-agentguard/actions/workflows/ci.yml)
 [![Demo](https://img.shields.io/badge/demo-live-36d399)](https://0xcaptain888.github.io/monad-agentguard/)
