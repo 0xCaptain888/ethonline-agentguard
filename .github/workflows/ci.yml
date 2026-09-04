@@ -20,3 +20,4 @@ jobs:
       - run: npm ci
       - run: npm run security:audit
       - run: npm run ethonline:check
+      - run: npm run judge:check
