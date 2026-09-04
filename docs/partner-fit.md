@@ -5,7 +5,7 @@
 | Partner | Prize surface | Why AgentGuard fits | Hard requirement | Delivery risk |
 | --- | --- | --- | --- | --- |
 | Arc / Circle | Agentic Economy, DeFi/finance, Launch on Arc | USDC escrow, conditional release, risk policy, agent-to-agent settlement | Working frontend/backend, diagram, video, public repo; Launch track also asks for deployment/deployment-readiness by Sep 30 | Medium |
-| The Graph | AI Use Case / Tooling (Continuity), Composable Products | Live indexed data drives YieldScout decisions and is included in the evidence hash | Live provider data, meaningful reasoning/automation, public repo, 2–4 minute video | Medium |
+| The Graph | AI Use Case / Tooling; composable/standardized products | Live indexed data drives YieldScout decisions and is included in the evidence hash | Live provider data, meaningful reasoning/automation, public repo, 2–4 minute video; confirm whether the selected Graph track accepts Continuity in the submission form | Medium |
 | Privy | B2B financial product, financial flow | Organization wallet + policy/signer/intent controls make AgentGuard usable for real treasury operations | Core Privy integration, wallet, one live B2B/financial flow, one Privy control, working demo | Medium |
 | Bazantic (fallback) | Recipes, Agentify an API, Help an Agent | AgentGuard verifier and receipt API are natural x402/MPP services; recipe can chain data → policy → settlement | Account, gateway, recipe, repeatable before/after run and video | Low–medium |
 
@@ -37,3 +37,12 @@ verification → receipt → reusable Bazantic recipe`
 
 Each sponsor must be load-bearing in the same loop. A sponsor logo or a raw
 query without a decision is not sufficient.
+
+## Important qualification note
+
+The ETHGlobal event rules allow a Continuity submission, but explicitly state
+that partner eligibility may vary by partner. The Graph prize page currently
+describes an AI track with both “Start Fresh” and “Continuity” eligibility
+language while its headline is labelled “From Scratch”. Do not assume the
+track from the headline alone: select the option shown in the Hacker Dashboard
+and preserve a screenshot or exported confirmation in the submission folder.

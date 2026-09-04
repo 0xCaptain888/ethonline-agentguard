@@ -47,9 +47,11 @@ testnet service is unavailable; it will be labelled `SIMULATION`.
 ## Eligibility checklist
 
 - [ ] Public repo and dated commits during ETHOnline.
+- [ ] Hacker Dashboard confirms the selected Continuity track for every named
+      partner; partner-specific eligibility is not inferred from a headline.
 - [ ] Arc integration is load-bearing and uses USDC.
 - [ ] The Graph data is live, not mocked or static.
 - [ ] Privy account, wallet control, and repeatable workflow recorded.
-- [ ] 2–4 minute 720p demo video.
+- [ ] Required 2–4 minute 720p demo video with a human voice (no AI voiceover).
 - [ ] Submission names exactly these three partner families and explains each
       integration.

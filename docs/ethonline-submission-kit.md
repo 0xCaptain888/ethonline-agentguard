@@ -1,5 +1,14 @@
 # ETHOnline 2026 submission kit
 
+## Official submission constraints
+
+- Deadline: **September 13, 2026 at 12:00 pm EDT**.
+- The demo video is **required**, must be 2–4 minutes and at least 720p.
+- Select no more than three partner prizes; multiple tracks from one partner
+  still consume one partner slot.
+- This project is submitted through a Continuity track, with a dated before /
+  after record and partner-specific eligibility checked in the dashboard.
+
 ## Project title
 
 **AgentGuard: Policy-Gated Agent-to-Agent Commerce**

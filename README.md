@@ -9,6 +9,19 @@ AgentGuard. The pre-existing Monad implementation is the policy, escrow and
 verification foundation. The ETHOnline feature work is being added in dated
 commits and will be clearly separated from that foundation before submission.
 
+## Official event constraints
+
+- Submission deadline: **September 13, 2026 at 12:00 pm EDT**.
+- A **2–4 minute demo video is required**; upload at least 720p and use a human
+  voice rather than text-to-speech or an AI voiceover.
+- You may select **up to three partner prizes**. If a partner has multiple
+  tracks, that partner still counts as one selection.
+- This repository is a **Continuity** submission. The pre-existing foundation
+  and the ETHOnline additions are documented separately; partner eligibility
+  is checked against each partner's own qualification rules.
+
+Source: [ETHGlobal ETHOnline 2026 submission rules](https://ethglobal.com/events/ethonline2026/info/details).
+
 ## The one workflow
 
 ```text
