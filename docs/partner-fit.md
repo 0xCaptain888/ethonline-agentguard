@@ -6,7 +6,8 @@
 | --- | --- | --- | --- | --- |
 | Arc / Circle | Agentic Economy, DeFi/finance, Launch on Arc | USDC escrow, conditional release, risk policy, agent-to-agent settlement | Working frontend/backend, diagram, video, public repo; Launch track also asks for deployment/deployment-readiness by Sep 30 | Medium |
 | The Graph | AI Use Case / Tooling (Continuity), Composable Products | Live indexed data drives YieldScout decisions and is included in the evidence hash | Live provider data, meaningful reasoning/automation, public repo, 2–4 minute video | Medium |
-| Bazantic | Recipes, Agentify an API, Help an Agent | AgentGuard verifier and receipt API are natural x402/MPP services; recipe can chain data → policy → settlement | Account, gateway, recipe, repeatable before/after run and video | Low–medium |
+| Privy | B2B financial product, financial flow | Organization wallet + policy/signer/intent controls make AgentGuard usable for real treasury operations | Core Privy integration, wallet, one live B2B/financial flow, one Privy control, working demo | Medium |
+| Bazantic (fallback) | Recipes, Agentify an API, Help an Agent | AgentGuard verifier and receipt API are natural x402/MPP services; recipe can chain data → policy → settlement | Account, gateway, recipe, repeatable before/after run and video | Low–medium |
 
 ## Why the other partners are not in the first cut
 
@@ -21,9 +22,9 @@
   our existing settlement firewall.
 - **ENS:** highly compatible with agent names and delegated permissions, but
   ENSv2 must be central. It is a strong reserve option if Arc access blocks us.
-- **Ledger / Privy / Chainlink:** useful infrastructure options, but the
-  currently published prize pages do not give us a stronger, lower-risk path
-  than Arc + Graph + Bazantic.
+- **Ledger / Chainlink:** useful infrastructure options, but they would add a
+  signer or oracle story that is less central than Privy's organization-wallet
+  controls.
 
 ## Scoring lens
 

@@ -12,8 +12,12 @@ The project will target three partner families:
    policy checks, and verifier-gated settlement.
 2. **The Graph** — live Subgraph/MCP data becomes a load-bearing input to the
    buyer's decision and is committed into the receipt.
-3. **Bazantic** — the result/verifier endpoint is exposed as an x402/MPP
-   gateway and a reusable Recipe that another agent can execute.
+3. **Privy** — a business/organization wallet and at least one live wallet
+   control (policy, signer, quorum, or intent) make the boundary usable by a
+   real treasury operator.
+
+Bazantic is the fallback third partner if Privy onboarding blocks the build;
+its x402/MPP gateway and Recipe can reuse the same verifier endpoint.
 
 This is a Continuity submission, not a claim that the pre-existing Monad
 implementation was built during ETHOnline. The submission will include a
@@ -34,7 +38,8 @@ testnet service is unavailable; it will be labelled `SIMULATION`.
 - Arc testnet adapter and USDC escrow flow.
 - Graph live-data adapter (Subgraph MCP or hosted Subgraph) and provenance
   fields in `YieldScout` receipts.
-- Bazantic gateway/Recipe integration and a before/after agent run.
+- Privy organization-wallet integration and a live policy/signer/intent flow.
+- Optional Bazantic gateway/Recipe integration and a before/after agent run.
 - Public architecture diagram, partner-specific integration notes, and
   `FEEDBACK.md` documents.
 - Judge-run command that verifies all hashes without private keys.
