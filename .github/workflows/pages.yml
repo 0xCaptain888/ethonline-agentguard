@@ -1,4 +1,4 @@
-name: Deploy Monad AgentGuard demo
+name: Deploy ETHOnline AgentGuard demo
 
 on:
   push:
@@ -22,9 +22,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      # Pages must be enabled once in Repository Settings → Pages.
+      # This workflow intentionally does not mutate repository settings.
       - uses: actions/configure-pages@v5
-        with:
-          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site

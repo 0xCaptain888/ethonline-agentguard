@@ -1,4 +1,4 @@
-name: Monad AgentGuard CI
+name: ETHOnline AgentGuard CI
 
 on:
   push:

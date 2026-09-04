@@ -17,6 +17,11 @@ const config: HardhatUserConfig = {
       url: process.env.MONAD_RPC_URL ?? "https://rpc.monad.xyz",
       chainId: 143,
       accounts: process.env.DEPLOYER_PRIVATE_KEY ? [process.env.DEPLOYER_PRIVATE_KEY] : []
+    },
+    arcTestnet: {
+      url: process.env.ARC_RPC_URL ?? "https://rpc.testnet.arc.network",
+      chainId: Number(process.env.ARC_CHAIN_ID ?? 5042002),
+      accounts: process.env.DEPLOYER_PRIVATE_KEY ? [process.env.DEPLOYER_PRIVATE_KEY] : []
     }
   },
   sourcify: {

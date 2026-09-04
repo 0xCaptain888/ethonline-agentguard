@@ -42,6 +42,9 @@
     "judge:demo": "node --import tsx scripts/judge-demo.ts",
     "evidence:verify": "node --import tsx scripts/verify-evidence.ts",
     "judge:manifest": "node --import tsx scripts/verify-judge-manifest.ts",
+    "ethonline:graph:check": "node --import tsx scripts/ethonline-graph-check.ts",
+    "ethonline:demo": "tsx scripts/ethonline-demo.ts",
+    "ethonline:check": "npm run build && npm run typecheck && npm test && npm run ethonline:demo",
     "judge:check": "npm run build && npm run typecheck && npm test && npm run evidence:verify && npm run judge:manifest && npm run benchmark:e2e:verify && npm run benchmark:concurrent:verify && npm run benchmark:parallel:verify && npm run judge:demo"
   },
   "devDependencies": {
