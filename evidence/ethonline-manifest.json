@@ -1,0 +1,69 @@
+{
+  "manifestVersion": "1",
+  "submission": "ETHOnline 2026 Continuity",
+  "repository": "https://github.com/0xCaptain888/ethonline-agentguard",
+  "demo": "https://0xcaptain888.github.io/ethonline-agentguard/",
+  "evidencePolicy": {
+    "LIVE_TESTNET": "Public transaction and receipt can be independently verified.",
+    "LIVE_EXTERNAL_DATA": "Provider response was fetched at runtime and its provenance is hashed.",
+    "SIMULATION": "Local deterministic replay; no sponsor account or chain write was used.",
+    "DESIGN": "Documented integration boundary; no live claim is made."
+  },
+  "workflow": [
+    "TreasuryPlanner",
+    "The Graph",
+    "Policy Engine",
+    "Privy",
+    "Arc USDC escrow",
+    "Seller Agent",
+    "Independent Verifier",
+    "Receipt"
+  ],
+  "sponsors": [
+    {
+      "name": "Arc / Circle",
+      "role": "USDC escrow and conditional settlement",
+      "status": "DESIGN",
+      "chain": null,
+      "contract": null,
+      "transactions": [],
+      "evidenceHash": null,
+      "nextProof": "Deploy PolicyEscrowERC20 to Arc testnet and publish create, submit and verify receipts."
+    },
+    {
+      "name": "The Graph",
+      "role": "Live indexed data as a decision input",
+      "status": "DESIGN",
+      "chain": null,
+      "contract": null,
+      "transactions": [],
+      "evidenceHash": null,
+      "nextProof": "Configure GRAPH_SUBGRAPH_URL, run ethonline:graph:check, and attach the response hash to a task receipt."
+    },
+    {
+      "name": "Privy",
+      "role": "Organization wallet and signer/policy boundary",
+      "status": "DESIGN",
+      "chain": null,
+      "contract": null,
+      "transactions": [],
+      "evidenceHash": null,
+      "nextProof": "Create a test organization wallet and record a policy-controlled signing decision."
+    }
+  ],
+  "outcomes": {
+    "VERIFIED": { "status": "SIMULATION", "evidence": "scripts/ethonline-demo.ts" },
+    "BLOCKED": { "status": "SIMULATION", "evidence": "scripts/ethonline-demo.ts" },
+    "FROZEN": { "status": "SIMULATION", "evidence": "scripts/ethonline-demo.ts" }
+  },
+  "continuity": {
+    "foundation": "Monad policy, escrow state machine and verifier were built before ETHOnline.",
+    "newForEthOnline": [
+      "ERC-20 escrow contract boundary",
+      "The Graph provenance adapter",
+      "Arc/Privy integration boundaries",
+      "ETHOnline judge surface and submission package"
+    ]
+  },
+  "lastUpdated": "2026-09-04"
+}

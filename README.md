@@ -71,6 +71,11 @@ scope. No pre-existing Monad transaction is presented as Arc evidence.
 | Privy wallet control | Not yet connected | `DESIGN` |
 | ETHOnline browser demo | In progress | `DESIGN` |
 
+The machine-readable source of truth for these labels is
+[`evidence/ethonline-manifest.json`](evidence/ethonline-manifest.json). Run
+`npm run ethonline:manifest:verify` before publishing a claim; the check fails
+if a `DESIGN` sponsor entry contains a contract, transaction or evidence hash.
+
 ## Reproduce the foundation locally
 
 ```bash
@@ -122,11 +127,28 @@ feedback documents, an architecture diagram and a machine-readable evidence
 manifest. Until those items are complete, this repository is **not** presented
 as a finished ETHOnline submission.
 
+## Five-minute judge path
+
+```bash
+git clone https://github.com/0xCaptain888/ethonline-agentguard.git
+cd ethonline-agentguard
+npm ci
+npm run ethonline:check
+```
+
+Then open the [public demo](https://0xcaptain888.github.io/ethonline-agentguard/)
+and use the policy playground. The page labels every sponsor surface as
+`DESIGN`, `SIMULATION`, or live evidence until a public proof is attached.
+The [ETHOnline evidence manifest](evidence/ethonline-manifest.json) is the
+judge's single index for chain, provider and receipt proof.
+
 ## Links
 
 - [ETHOnline build plan](docs/ethonline-plan.md)
 - [Partner fit matrix](docs/partner-fit.md)
 - [Arc integration boundary](docs/arc-integration.md)
+- [Live-evidence runbook](docs/ethonline-live-runbook.md)
+- [Contract security notes](docs/contract-security-notes.md)
 - [The Graph adapter](src/ethonline/graph-agent.ts)
 - [Architecture](docs/architecture.md)
 - [ETHOnline architecture](docs/ethonline-architecture.md)

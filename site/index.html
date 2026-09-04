@@ -74,10 +74,38 @@
     <div class="state-row"><span><b>Reproducible baseline</b><small>Monad foundation tests and evidence remain available</small></span><a href="https://github.com/0xCaptain888/ethonline-agentguard/blob/main/docs/judge-guide.md">Judge guide ↗</a></div>
   </section>
 
+  <section class="panel">
+    <h2>Browser-ready verification matrix</h2>
+    <p>Every claim has a visible evidence class. A judge can inspect the same
+      labels in the repository manifest without connecting a wallet or trusting
+      a private backend.</p>
+    <table><thead><tr><th>Result</th><th>What it proves</th><th>Current evidence</th></tr></thead><tbody>
+      <tr><td class="verified"><b>VERIFIED</b></td><td>Independent checks pass before release becomes eligible</td><td>Deterministic local replay</td></tr>
+      <tr><td class="blocked"><b>BLOCKED</b></td><td>Policy fails before the seller gateway is called</td><td>Deterministic local replay</td></tr>
+      <tr><td class="frozen"><b>FROZEN</b></td><td>Bad output is isolated after execution</td><td>Deterministic local replay</td></tr>
+    </tbody></table>
+    <div class="actions" style="margin:18px 0 0">
+      <a class="btn alt" href="https://github.com/0xCaptain888/ethonline-agentguard/blob/main/evidence/ethonline-manifest.json">Evidence manifest ↗</a>
+      <a class="btn alt" href="https://github.com/0xCaptain888/ethonline-agentguard/blob/main/docs/contract-security-notes.md">Contract security notes ↗</a>
+      <a class="btn alt" href="https://github.com/0xCaptain888/ethonline-agentguard/blob/main/docs/ethonline-submission-kit.md">Submission kit ↗</a>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Reproduce in one command</h2>
+    <p>Clone the repository and run the judge path. It verifies the contracts,
+      TypeScript, failure-state tests, Graph no-network fallback and the
+      sponsor evidence manifest.</p>
+    <div id="replay" class="mono">npm ci && npm run ethonline:check</div>
+    <button class="alt" id="copyReplay" style="margin-top:12px">Copy judge command</button>
+    <small id="copyStatus" style="display:block;color:var(--muted);margin-top:8px"></small>
+  </section>
+
   <footer>ETHOnline AgentGuard is a Continuity build. No sponsor integration is presented as live until a public testnet transaction and independently verifiable receipt are available.</footer>
 </main>
 <script>
 (() => { const ids=['value','budget','risk','permission','confirmation']; const out=document.getElementById('result'); function render(){ const value=Number(document.getElementById('value').value), budget=Number(document.getElementById('budget').value), risk=Number(document.getElementById('risk').value); const checks=[['Budget',value>0&&value<=budget],['Permission',document.getElementById('permission').checked],['Risk',risk<=40],['Confirmation',document.getElementById('confirmation').checked]]; const failed=checks.filter(([,ok])=>!ok).map(([name])=>name); const ok=failed.length===0; out.innerHTML='<b class="'+(ok?'verified':'blocked')+'">'+(ok?'ALLOW':'BLOCKED')+'</b> · policy decision before execution<br><small>'+checks.map(([name,pass])=>(pass?'✓ ':'✕ ')+name).join(' · ')+(failed.length?'<br>Reason codes: '+failed.map(n=>n.toLowerCase()+'_check_failed').join(', '):'')+'</small>'; } ids.forEach(id=>document.getElementById(id).addEventListener('input',render)); render(); })();
+(() => { const button=document.getElementById('copyReplay'); const status=document.getElementById('copyStatus'); button.addEventListener('click',async()=>{ try { await navigator.clipboard.writeText(document.getElementById('replay').textContent); status.textContent='Copied. This command is read-only with respect to sponsor wallets.'; } catch { status.textContent='Copy unavailable; select the command above.'; } }); })();
 </script>
 </body>
 </html>

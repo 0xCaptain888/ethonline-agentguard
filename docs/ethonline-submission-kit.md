@@ -30,6 +30,8 @@ wallet flow.
 - Architecture diagram
 - Continuity before/after document
 - Sponsor feedback documents
+- [`evidence/ethonline-manifest.json`](../evidence/ethonline-manifest.json)
+  with a machine-readable status for every claim
 
 ## Final demo sequence
 
@@ -48,3 +50,18 @@ wallet flow.
 Use `LIVE_TESTNET` only for a public transaction that can be independently
 verified. Use `LIVE_EXTERNAL_DATA` for a real provider response. Use
 `SIMULATION` for local replay and `DESIGN` for functionality not yet shipped.
+
+## Judge replay contract
+
+The repository must be reviewable without credentials. A judge can run:
+
+```bash
+npm ci
+npm run ethonline:check
+npm run ethonline:manifest:verify
+```
+
+The check proves the contract tests, the three failure states, the Graph
+adapter's no-network fallback, and the manifest's honesty rules. Live Arc,
+Graph and Privy claims are added only after their public testnet evidence is
+available.

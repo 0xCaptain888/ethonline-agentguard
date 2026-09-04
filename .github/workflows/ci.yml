@@ -19,4 +19,4 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run security:audit
-      - run: npm run judge:check
+      - run: npm run ethonline:check
