@@ -76,3 +76,14 @@ The check proves the contract tests, the three failure states, the Graph
 adapter's no-network fallback, and the manifest's honesty rules. Live Arc,
 Graph and Privy claims are added only after their public testnet evidence is
 available.
+
+For an additional integrity check, run:
+
+```bash
+npm run ethonline:receipt:verify
+```
+
+This recomputes the evidence hash for all three deterministic receipts and
+checks that release eligibility matches the state. It is intentionally
+credential-free and labelled `SIMULATION`; it does not replace public Arc,
+Graph or Privy evidence.

@@ -1,6 +1,7 @@
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { runAgentCommerceWorkflow } from "../src/ethonline/workflow";
+import { hashAgentCommerceReceipt, verifyAgentCommerceReceipt } from "../src/ethonline/receipt";
 
 const graphObservation = {
   source: "The Graph" as const,
@@ -84,4 +85,31 @@ test("Privy authorization denial is BLOCKED without a seller result hash", () =>
   assert.equal(receipt.state, "BLOCKED");
   assert.equal(receipt.resultHash, null);
   assert.ok(receipt.verification.reasons.includes("authorization_not_approved"));
+});
+
+test("receipt verifier accepts an untampered receipt", () => {
+  const receipt = run();
+  const verification = verifyAgentCommerceReceipt(receipt);
+  assert.equal(verification.valid, true);
+  assert.equal(verification.recomputedEvidenceHash, receipt.evidenceHash);
+});
+
+test("receipt verifier detects evidence tampering", () => {
+  const receipt = run();
+  const tampered = { ...receipt, sellerAgent: "UntrustedSeller" };
+  const verification = verifyAgentCommerceReceipt(tampered);
+  assert.equal(verification.valid, false);
+  assert.ok(verification.errors.includes("evidence_hash_mismatch"));
+  assert.notEqual(hashAgentCommerceReceipt(tampered), receipt.evidenceHash);
+});
+
+test("receipt verifier enforces frozen release invariant", () => {
+  const receipt = run({
+    verifyResult: () => ({ passed: false, reasons: ["bad_output"], checks: { resultHashBound: false } }),
+  });
+  const invalid = { ...receipt, releaseEligible: true };
+  const verification = verifyAgentCommerceReceipt(invalid);
+  assert.equal(verification.valid, false);
+  assert.ok(verification.errors.includes("evidence_hash_mismatch"));
+  assert.ok(verification.errors.includes("frozen_state_invariant_failed"));
 });

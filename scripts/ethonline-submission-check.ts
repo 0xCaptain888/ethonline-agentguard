@@ -13,7 +13,10 @@ const requiredFiles = [
   "site/index.html",
   "docs/browser-evidence.md",
   "src/ethonline/workflow.ts",
+  "src/ethonline/receipt.ts",
+  "src/ethonline/demo-fixtures.ts",
   "test/ethonline-workflow.test.ts",
+  "scripts/ethonline-receipt-check.ts",
   ".github/workflows/pages.yml",
   ".github/workflows/ci.yml",
   ".github/workflows/codeql.yml"

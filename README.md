@@ -180,6 +180,13 @@ that policy failures short-circuit before verification, failed authorization
 cannot produce a result hash, and a bad seller result becomes `FROZEN` rather
 than eligible for release.
 
+Receipt integrity can be checked independently with
+`npm run ethonline:receipt:verify`. The verifier recomputes each evidence hash
+and checks the state invariants: `VERIFIED` must be release-eligible,
+`BLOCKED` must have no result hash, and `FROZEN` must hold a result without
+making it eligible for release. This command is a local `SIMULATION`; it does
+not contact sponsor APIs or broadcast a transaction.
+
 For the final form, use the [submission checklist](docs/ethonline-submission-checklist.md)
 and run `npm run ethonline:submission:check` first.
 

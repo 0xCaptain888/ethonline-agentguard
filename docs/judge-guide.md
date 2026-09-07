@@ -57,6 +57,11 @@ address is independent of both buyer and seller.
 Run `npm run evidence:verify` to recompute every committed receipt's evidence
 hash and validate its state, network and transaction trail. This is read-only.
 
+For the ETHOnline-specific local receipts, run
+`npm run ethonline:receipt:verify`. It independently recomputes the evidence
+hash and enforces the `VERIFIED` / `BLOCKED` / `FROZEN` release invariants;
+the output is labelled `SIMULATION` because no sponsor wallet is used.
+
 Open [`docs/monad-performance.md`](monad-performance.md) for the full V1 → V2
 story: 25 sequential pipelines, the concurrent global-counter bottleneck, and
 the deployed per-buyer task-ID architecture. Run all three read-only checks:
