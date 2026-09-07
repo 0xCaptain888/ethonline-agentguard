@@ -20,6 +20,10 @@ const requiredFiles = [
   "test/privy-agent.test.ts",
   "scripts/ethonline-receipt-check.ts",
   "scripts/ethonline-privy-check.ts",
+  "subgraph/subgraph.yaml",
+  "subgraph/schema.graphql",
+  "subgraph/src/policy-escrow.ts",
+  "subgraph/queries/yieldscout.graphql",
   ".github/workflows/pages.yml",
   ".github/workflows/ci.yml",
   ".github/workflows/codeql.yml"

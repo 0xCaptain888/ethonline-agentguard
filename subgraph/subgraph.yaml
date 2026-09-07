@@ -1,0 +1,52 @@
+specVersion: 1.3.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: PolicyEscrowERC20
+    network: arc-testnet
+    source:
+      # Replaced with the public deployment address before Studio deployment.
+      address: "0x0000000000000000000000000000000000000001"
+      abi: PolicyEscrowERC20
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.9
+      language: wasm/assemblyscript
+      entities:
+        - Agent
+        - Policy
+        - VerifierBinding
+        - Task
+        - RecoveryApproval
+        - ProtocolStats
+      abis:
+        - name: PolicyEscrowERC20
+          file: ./abis/PolicyEscrowERC20.json
+      eventHandlers:
+        - event: AgentRegistered(indexed address,indexed address,bytes32)
+          handler: handleAgentRegistered
+        - event: PolicyUpdated(indexed address,uint256,bool,bool)
+          handler: handlePolicyUpdated
+        - event: VerifierUpdated(indexed address,indexed address)
+          handler: handleVerifierUpdated
+        - event: TaskCreated(indexed uint256,indexed address,indexed address,uint256,bytes32,bytes32)
+          handler: handleTaskCreated
+        - event: ResultSubmitted(indexed uint256,bytes32)
+          handler: handleResultSubmitted
+        - event: TaskBlocked(indexed uint256,bytes32)
+          handler: handleTaskBlocked
+        - event: TaskVerified(indexed uint256,bytes32,uint256)
+          handler: handleTaskVerified
+        - event: TaskFrozen(indexed uint256,bytes32)
+          handler: handleTaskFrozen
+        - event: FrozenRecoveryApproved(indexed uint256,indexed address,uint8)
+          handler: handleFrozenRecoveryApproved
+        - event: TaskRefunded(indexed uint256,uint256)
+          handler: handleTaskRefunded
+        - event: TaskRecoveredVerified(indexed uint256,uint256)
+          handler: handleTaskRecoveredVerified
+      file: ./src/policy-escrow.ts

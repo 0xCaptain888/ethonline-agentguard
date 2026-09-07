@@ -1,0 +1,78 @@
+type Agent @entity(immutable: false) {
+  id: Bytes!
+  owner: Bytes!
+  metadataHash: Bytes!
+  active: Boolean!
+  registeredAt: BigInt!
+  registeredBlock: BigInt!
+  registeredTx: Bytes!
+  tasksBought: [Task!]! @derivedFrom(field: "buyer")
+  tasksSold: [Task!]! @derivedFrom(field: "seller")
+}
+
+type Policy @entity(immutable: false) {
+  id: Bytes!
+  owner: Bytes!
+  maxValue: BigInt!
+  requireConfirmation: Boolean!
+  active: Boolean!
+  updatedAt: BigInt!
+  updatedTx: Bytes!
+}
+
+type VerifierBinding @entity(immutable: false) {
+  id: Bytes!
+  owner: Bytes!
+  verifier: Bytes!
+  updatedAt: BigInt!
+  updatedTx: Bytes!
+}
+
+type Task @entity(immutable: false) {
+  id: ID!
+  taskId: BigInt!
+  buyer: Agent!
+  seller: Agent!
+  value: BigInt!
+  intentHash: Bytes!
+  policyHash: Bytes!
+  resultHash: Bytes
+  reasonHash: Bytes
+  state: String!
+  createdAt: BigInt!
+  updatedAt: BigInt!
+  createdBlock: BigInt!
+  createTx: Bytes!
+  submitTx: Bytes
+  settlementTx: Bytes
+  releasedValue: BigInt
+  refundedValue: BigInt
+  recoveryDecision: Int
+  recoveryApprovals: Int!
+  approvals: [RecoveryApproval!]! @derivedFrom(field: "task")
+}
+
+type RecoveryApproval @entity(immutable: true) {
+  id: ID!
+  task: Task!
+  approver: Bytes!
+  decision: Int!
+  timestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ProtocolStats @entity(immutable: false) {
+  id: ID!
+  agents: Int!
+  policies: Int!
+  tasks: Int!
+  verified: Int!
+  blocked: Int!
+  frozen: Int!
+  refunded: Int!
+  recoveredVerified: Int!
+  totalEscrowed: BigInt!
+  totalReleased: BigInt!
+  totalRefunded: BigInt!
+  updatedAt: BigInt!
+}

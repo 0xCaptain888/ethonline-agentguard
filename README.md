@@ -90,6 +90,7 @@ scope. No pre-existing Monad transaction is presented as Arc evidence.
 | VERIFIED / BLOCKED / FROZEN state model | Working and tested | `LIVE_TESTNET` / `SIMULATION` where explicitly marked |
 | ETHOnline workflow orchestrator | Deterministic end-to-end join with four regression cases | `SIMULATION` |
 | The Graph adapter | Read-only adapter with deterministic evidence hash | `DESIGN` until a live provider is configured |
+| Arc task-index Subgraph | Schema, ABI and 11 event handlers compile for `arc-testnet` | `DESIGN` until contract address and Studio deployment exist |
 | Arc USDC settlement | Not yet deployed | `DESIGN` |
 | Privy wallet control | Not yet connected | `DESIGN` |
 | ETHOnline browser demo | In progress | `DESIGN` |
@@ -134,6 +135,13 @@ It never signs, broadcasts or stores a private key. The endpoint must be
 provided locally through `GRAPH_SUBGRAPH_URL` or an equivalent runtime config.
 A Studio slug or deploy key alone is not a runtime data source; the live claim
 is promoted only after a real Query URL returns provenance-bearing data.
+
+The custom [`subgraph/`](subgraph/) indexes the Arc escrow lifecycle itself:
+agent registration, policy and verifier bindings, task creation, submission,
+verification, blocking, freezing and recovery. Its YieldScout query uses
+seller outcome history and aggregate release/refund data as a decision input.
+The checked-in address remains a visible placeholder until the real Arc
+deployment is complete.
 
 ## Privy read-only authorization preflight
 

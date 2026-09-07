@@ -1,0 +1,16 @@
+{
+  "name": "agentguard-arc-subgraph",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy:studio": "graph deploy --studio 0-x-captain-888"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-ts": "0.38.2"
+  },
+  "devDependencies": {
+    "@graphprotocol/graph-cli": "0.98.1"
+  }
+}

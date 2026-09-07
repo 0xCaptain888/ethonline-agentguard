@@ -13,6 +13,7 @@ Run this list immediately before submitting in the Hacker Dashboard.
 ## Technical evidence
 
 - [ ] Graph status is honestly marked `LIVE_EXTERNAL_DATA` or `DESIGN`.
+- [ ] Arc task-index Subgraph codegen/build succeeds and its manifest contains the real deployment address and start block.
 - [ ] Arc status is honestly marked `LIVE_TESTNET` or `DESIGN`.
 - [ ] Privy status is honestly marked live or `DESIGN`.
 - [ ] Every live transaction has a public explorer URL.

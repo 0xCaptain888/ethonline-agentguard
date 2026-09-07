@@ -1,0 +1,25 @@
+query YieldScoutSellerHistory($seller: Bytes!) {
+  protocolStats(id: "global") {
+    tasks
+    verified
+    blocked
+    frozen
+    totalEscrowed
+    totalReleased
+    totalRefunded
+    updatedAt
+  }
+  tasks(first: 20, orderBy: updatedAt, orderDirection: desc, where: { seller: $seller }) {
+    taskId
+    state
+    value
+    buyer { id }
+    seller { id }
+    policyHash
+    resultHash
+    createdAt
+    updatedAt
+    createTx
+    settlementTx
+  }
+}
