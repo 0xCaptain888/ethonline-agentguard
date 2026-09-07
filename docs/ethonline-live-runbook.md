@@ -16,6 +16,10 @@ npm run ethonline:preflight
 The command prints only whether a variable is present; it never prints the
 value and never broadcasts a transaction.
 
+If a deploy key, API key or App Secret was pasted into chat or an issue, revoke
+and regenerate it before continuing. Put the replacement only in the ignored
+local `.env`; never send it through the repository or browser Demo.
+
 ## 1. Arc / Circle
 
 1. Fund a disposable Arc Testnet wallet with gas and test USDC.
@@ -29,7 +33,9 @@ value and never broadcasts a transaction.
 
 ## 2. The Graph
 
-1. Set `GRAPH_SUBGRAPH_URL` (and `GRAPH_API_KEY` if the provider requires it).
+1. A Studio slug and deploy key are not a query endpoint. Deploy or publish the
+   Subgraph, then set its actual `GRAPH_SUBGRAPH_URL` and, if required,
+   `GRAPH_API_KEY`.
 2. Run `npm run ethonline:graph:check` and retain the response provenance.
 3. Pass the response into YieldScout so the recommendation is derived from
    the live data, not from a copied fixture.
@@ -41,11 +47,14 @@ value and never broadcasts a transaction.
 ## 3. Privy
 
 1. Create a test application and organization wallet.
-2. Set `PRIVY_APP_ID` and `PRIVY_CLIENT_ID` locally.
-3. Configure a signer/policy that allows only the bounded USDC task.
-4. Record the human-readable intent and the resulting authorization decision;
+2. Set `PRIVY_APP_ID`, the rotated `PRIVY_APP_SECRET`, `PRIVY_WALLET_ID`,
+   `PRIVY_WALLET_ADDRESS` and `PRIVY_JWKS_URL` locally.
+3. Run `npm run ethonline:privy:check`. The output contains only sanitized
+   wallet metadata and an evidence hash; it never prints the App Secret.
+4. Configure a signer/policy that allows only the bounded USDC task.
+5. Record the human-readable intent and the resulting authorization decision;
    do not commit access tokens or private key material.
-5. Change Privy to a live status in the manifest only when the control is used
+6. Change Privy to a live status in the manifest only when the control is used
    in the Arc path.
 
 ## Evidence rule

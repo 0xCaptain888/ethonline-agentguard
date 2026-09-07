@@ -132,6 +132,17 @@ endpoint, timestamp, query, variables and deterministic `evidenceHash`.
 
 It never signs, broadcasts or stores a private key. The endpoint must be
 provided locally through `GRAPH_SUBGRAPH_URL` or an equivalent runtime config.
+A Studio slug or deploy key alone is not a runtime data source; the live claim
+is promoted only after a real Query URL returns provenance-bearing data.
+
+## Privy read-only authorization preflight
+
+`npm run ethonline:privy:check` verifies that the configured Privy Wallet ID
+resolves to the expected address and reports whether an owner and at least one
+policy are attached. Its evidence is sanitized and hashed; the App Secret is
+used only in the request header. This read-only proof does not promote Privy
+to a live sponsor integration until the same authorization boundary controls
+an Arc transaction.
 
 ## Security boundary
 

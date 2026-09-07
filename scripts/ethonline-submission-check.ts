@@ -15,8 +15,11 @@ const requiredFiles = [
   "src/ethonline/workflow.ts",
   "src/ethonline/receipt.ts",
   "src/ethonline/demo-fixtures.ts",
+  "src/ethonline/privy-agent.ts",
   "test/ethonline-workflow.test.ts",
+  "test/privy-agent.test.ts",
   "scripts/ethonline-receipt-check.ts",
+  "scripts/ethonline-privy-check.ts",
   ".github/workflows/pages.yml",
   ".github/workflows/ci.yml",
   ".github/workflows/codeql.yml"
