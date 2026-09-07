@@ -6,7 +6,7 @@
 | --- | --- | --- | --- | --- |
 | Arc / Circle | Agentic Economy, DeFi/finance, Launch on Arc | USDC escrow, conditional release, risk policy, agent-to-agent settlement | Working frontend/backend, diagram, video, public repo; Launch track also asks for deployment/deployment-readiness by Sep 30 | Completed testnet evidence |
 | The Graph | AI Use Case / Tooling; composable/standardized products | Live indexed data drives YieldScout decisions and is included in the evidence hash | Live provider data, meaningful reasoning/automation, public repo, 2–4 minute video; confirm whether the selected Graph track accepts Continuity in the submission form | Completed live-data evidence |
-| Privy | B2B financial product, financial flow | Organization wallet + policy/signer/intent controls make AgentGuard usable for real treasury operations | Core Privy integration, wallet, one live B2B/financial flow, one Privy control, working demo | Medium |
+| Privy | B2B financial product, financial flow | A dedicated policy-controlled wallet signs only bounded AgentGuard and USDC calls | Core Privy integration, wallet, one live B2B/financial flow, one Privy control, working demo | Completed testnet evidence |
 | Bazantic (fallback) | Recipes, Agentify an API, Help an Agent | AgentGuard verifier and receipt API are natural x402/MPP services; recipe can chain data → policy → settlement | Account, gateway, recipe, repeatable before/after run and video | Low–medium |
 
 ## Why the other partners are not in the first cut
@@ -32,8 +32,8 @@ The event judges technicality, originality, practicality, usability/DX, and
 WOW factor. Our winning narrative is therefore one observable loop, not three
 unrelated integrations:
 
-`live Graph seller history → bounded policy decision → USDC escrow on Arc →
-independent verification → VERIFIED release → receipt`
+`live Graph seller history → bounded policy decision → Privy authorization →
+USDC escrow on Arc → independent verification → VERIFIED release → receipt`
 
 Each sponsor must be load-bearing in the same loop. A sponsor logo or a raw
 query without a decision is not sufficient.

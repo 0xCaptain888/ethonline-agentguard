@@ -35,10 +35,10 @@ testnet service is unavailable; it will be labelled `SIMULATION`.
 
 ## New work required
 
-- [x] Arc Testnet adapter and two real USDC escrow flows.
+- [x] Arc Testnet adapter and three real USDC escrow flows.
 - [x] Graph live-data adapter, custom Subgraph and provenance fields in the
   Graph-driven YieldScout receipt.
-- Privy organization-wallet integration and a live policy/signer/intent flow.
+- [x] Privy policy-controlled wallet and live Arc signer/intent flow.
 - Optional Bazantic gateway/Recipe integration and a before/after agent run.
 - Public architecture diagram, partner-specific integration notes, and
   `FEEDBACK.md` documents.
@@ -51,7 +51,7 @@ testnet service is unavailable; it will be labelled `SIMULATION`.
       partner; partner-specific eligibility is not inferred from a headline.
 - [x] Arc integration is load-bearing and uses test USDC.
 - [x] The Graph data is live, not mocked or static.
-- [ ] Privy account, wallet control, and repeatable workflow recorded.
+- [x] Privy account, wallet control, and repeatable workflow recorded.
 - [ ] Required 2–4 minute 720p demo video with a human voice (no AI voiceover).
 - [ ] Submission names exactly these three partner families and explains each
       integration.

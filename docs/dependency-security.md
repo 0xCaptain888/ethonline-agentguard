@@ -2,10 +2,10 @@
 
 ## Current result
 
-AgentGuard is a static GitHub Pages demo plus a local Hardhat development
-toolchain. `package.json` has no `dependencies`; all npm packages are
-`devDependencies`. Therefore the published site does not ship the Hardhat
-runtime, Solidity compiler, test runner or their transitive packages.
+AgentGuard is a static GitHub Pages demo plus local execution tools. The
+runtime dependency surface contains the Privy Node SDK and `viem`; Hardhat,
+the Solidity compiler and test tooling remain `devDependencies`. The published
+static site does not ship any Node dependency.
 
 The current checks are:
 
@@ -17,7 +17,8 @@ npm run security:audit
 npm run security:audit:full
 ```
 
-As of September 3, 2026, the runtime audit is clean. The full audit reports 46
+As of September 7, 2026, the runtime audit is clean after upgrading `viem` to
+`2.56.3` and its production WebSocket dependency to `8.21.0`. The full audit reports 46
 advisories in the Hardhat 2 / Toolbox 5 development tree after the available
 non-breaking fixes. The remaining high-severity entries are transitive tools
 such as `adm-zip`, `undici`, `serialize-javascript`, `tmp` and `lodash`.

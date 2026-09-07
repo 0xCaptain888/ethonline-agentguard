@@ -25,9 +25,9 @@ Select only partners with real evidence in the final build:
 2. The Graph
 3. Privy
 
-Arc and The Graph have real evidence. Keep Privy selected only if a
-Privy-controlled Arc write is completed before submission; otherwise replace
-it with the strongest eligible partner whose technology is genuinely used.
+All three selections have real, load-bearing evidence. Privy controls the
+buyer writes, The Graph supplies the seller-history decision input, and Arc
+holds and conditionally releases USDC.
 
 ## Required links
 
@@ -49,10 +49,11 @@ it with the strongest eligible partner whose technology is genuinely used.
 
 1. Show the one-line problem: an Agent can act, but should not hold unlimited
    authority.
-2. Open the committed Graph-driven receipt and show the live seller-history
-   observation: one prior task, 100% verified rate, zero indexing errors.
+2. Open the committed Privy-authorized receipt and show the live seller-history
+   observation, verified rate and zero indexing errors.
 3. Show the `ALLOW` decision and the task-bound Graph/policy hashes.
-4. Open the Arc task-creation transaction.
+4. Show that the task-creation sender is the dedicated Privy wallet and open
+   the Arc task-creation transaction.
 5. Open the seller result and independent verification transactions.
 6. Show the live `VERIFIED` release, 1 USDC settlement and evidence hash.
 7. Change the budget and show `BLOCKED` before any write.
@@ -75,9 +76,8 @@ npm run ethonline:manifest:verify
 ```
 
 The check proves the contract tests, the three failure states, the custom
-Subgraph build and the manifest's honesty rules. Arc and The Graph claims are
-backed by public testnet evidence. Privy remains `DESIGN` until it authorizes
-an Arc write.
+Subgraph build and the manifest's honesty rules. Arc, The Graph and Privy are
+backed by a single composed live workflow and public testnet evidence.
 
 For an additional integrity check, run:
 

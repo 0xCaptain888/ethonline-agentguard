@@ -46,18 +46,24 @@ Completed with Studio version `v0.1.0`:
 
 ## 3. Privy
 
-1. Create a test application and organization wallet.
-2. Set `PRIVY_APP_ID`, the rotated `PRIVY_APP_SECRET`, `PRIVY_WALLET_ID`,
-   `PRIVY_WALLET_ADDRESS` and `PRIVY_JWKS_URL` locally.
-3. Run `npm run ethonline:privy:check`. The output contains only sanitized
-   wallet metadata and an evidence hash; it never prints the App Secret.
-4. Configure a signer/policy that allows only the bounded USDC task.
-5. Record the human-readable intent and the resulting authorization decision;
-   do not commit access tokens or private key material.
-6. Change Privy to a live status in the manifest only when the control is used
-   in the Arc path.
+Completed with a dedicated Privy wallet and P-256 authorization key:
+
+1. `npm run ethonline:privy:keygen` generated local authorization material in
+   ignored file `.env.privy` with mode `0600`.
+2. `npm run ethonline:privy:setup` created a policy restricted to chain
+   `5042002`, zero native value and only the escrow and Arc USDC targets.
+3. The policy was attached to wallet
+   `0x8b9cD36D829fC658feD8938a057c27CE072bd554`.
+4. `npm run ethonline:privy:arc-task` used Privy to sign agent registration,
+   policy setup, verifier binding, USDC approval and task creation.
+5. The seller submitted independently; the verifier released 1 USDC only
+   after all Graph, policy and identity checks passed.
+6. The sanitized evidence is committed at
+   `evidence/arc-testnet-privy-authorized-task.json`. No App Secret or private
+   authorization material is printed or committed.
 
 ## Evidence rule
 
-Privy is the remaining sponsor step and stays `DESIGN`. A clearly labelled
-partial integration scores better than an unverifiable live claim.
+Arc and Privy writes are `LIVE_TESTNET`; The Graph is `LIVE_EXTERNAL_DATA`.
+The browser's `BLOCKED` and `FROZEN` paths remain `SIMULATION` and are never
+presented as sponsor network writes.

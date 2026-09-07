@@ -2,7 +2,7 @@
   "name": "ethonline-agentguard",
   "version": "0.5.0",
   "private": false,
-  "description": "Agent-to-agent commerce with policy-gated USDC settlement, live Graph data, and reusable x402 recipes.",
+  "description": "Policy-gated agent commerce with live Graph decisions, Privy-controlled wallets and verified USDC settlement on Arc.",
   "engines": {
     "node": ">=22"
   },
@@ -51,13 +51,17 @@
     "ethonline:subgraph:codegen": "npm --prefix subgraph run codegen",
     "ethonline:subgraph:build": "npm --prefix subgraph run build",
     "ethonline:subgraph:check": "npm run ethonline:subgraph:abi && npm --prefix subgraph ci --no-audit --no-fund && npm run ethonline:subgraph:codegen && npm run ethonline:subgraph:build",
-    "ethonline:privy:check": "node --env-file-if-exists=.env --import tsx scripts/ethonline-privy-check.ts",
+    "ethonline:privy:check": "node --env-file-if-exists=.env --env-file-if-exists=.env.privy --import tsx scripts/ethonline-privy-check.ts",
+    "ethonline:privy:keygen": "node --import tsx scripts/create-privy-authorization-key.ts",
+    "ethonline:privy:setup": "node --env-file-if-exists=.env --env-file-if-exists=.env.privy --import tsx scripts/setup-privy-arc-wallet.ts",
+    "ethonline:privy:arc-task": "node --env-file-if-exists=.env --env-file-if-exists=.env.privy --import tsx scripts/run-privy-arc-task.ts",
+    "ethonline:privy:evidence:verify": "node --env-file-if-exists=.env --import tsx scripts/verify-privy-arc-evidence.ts",
     "ethonline:demo": "tsx scripts/ethonline-demo.ts",
     "ethonline:receipt:verify": "node --import tsx scripts/ethonline-receipt-check.ts",
     "ethonline:manifest:verify": "node --import tsx scripts/verify-ethonline-manifest.ts",
     "ethonline:submission:check": "node --import tsx scripts/ethonline-submission-check.ts",
     "ethonline:preflight": "node --env-file-if-exists=.env --import tsx scripts/ethonline-preflight.ts",
-    "ethonline:check": "npm run build && npm run typecheck && npm test && npm run ethonline:subgraph:check && npm run ethonline:demo && npm run ethonline:receipt:verify && npm run ethonline:graph:check && npm run ethonline:privy:check && npm run ethonline:manifest:verify && npm run ethonline:submission:check",
+    "ethonline:check": "npm run build && npm run typecheck && npm test && npm run ethonline:subgraph:check && npm run ethonline:demo && npm run ethonline:receipt:verify && npm run ethonline:graph:check && npm run ethonline:privy:check && npm run ethonline:privy:evidence:verify && npm run ethonline:manifest:verify && npm run ethonline:submission:check",
     "judge:check": "npm run build && npm run typecheck && npm test && npm run evidence:verify && npm run judge:manifest && npm run benchmark:e2e:verify && npm run benchmark:concurrent:verify && npm run benchmark:parallel:verify && npm run judge:demo"
   },
   "devDependencies": {
@@ -65,5 +69,9 @@
     "hardhat": "^2.22.19",
     "tsx": "^4.19.4",
     "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@privy-io/node": "^0.34.0",
+    "viem": "^2.44.2"
   }
 }

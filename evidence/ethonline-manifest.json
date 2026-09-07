@@ -27,13 +27,13 @@
       "chain": "Arc Testnet (chain 5042002)",
       "contract": "0x85b6df0684529fFAB07C6B62eDB6F04a3eC4E67d",
       "transactions": [
-        "0x74c8e15dec1d570db4c326b403a4470e8c1d86b6f7b1e40f56547a8d47b66fb5",
-        "0x0f9b2f2a1fe01fb2c235ba885c7a7d9902bcdd7329a271889b0db6c95f3f67a3",
-        "0x2c599f4985dc42f8dea76ebe9ef777dca103b50236c2a736d87ac44fb5f07df1",
-        "0x328a7d5169ff26ffbfa3cf811555c651920790de452ea0657cda7ffb7139efff"
+        "0x72c5312c1763065c789597632fc633b17e78578171cd748f094ddb47d562a341",
+        "0x7ec5e29f0ad2cfc210a72fd4e5220c580b2e6407eb21080ee0947990b9cd06f6",
+        "0x1b9954b64963e9f153884556b87845e90e2021ebfa2f6c31bf656ad3851c1fe4",
+        "0x94b172ee29faadbf4a48d0d752685358fff082df9d65bf3753ac779a146d1fc8"
       ],
-      "evidenceHash": "0xf6bae0580506cc121423ec5394c43021f65b83ef3675b6152b5a19fda2381a5b",
-      "nextProof": "Complete: approve, create, submit and independently verified release are public on Arc Testnet."
+      "evidenceHash": "0x8e285743668e16c24a5de71b9408261d549a20bf81e675fc089ac4e6def787d7",
+      "nextProof": "Complete: a Privy-controlled buyer approved USDC, created the task, received the seller result and released 1 USDC only after independent verification."
     },
     {
       "name": "The Graph",
@@ -42,22 +42,28 @@
       "chain": "Arc Testnet indexed by The Graph Studio",
       "contract": "0x85b6df0684529fFAB07C6B62eDB6F04a3eC4E67d",
       "transactions": [],
-      "evidenceHash": "0x4f02ed60151fea39edb4d3b45aeef14b24f23fc17dcd5c99ad2deb99eec57b68",
-      "nextProof": "Complete: live seller history produced the task-bound Graph evidence hash and the Subgraph indexed both VERIFIED settlements without errors."
+      "evidenceHash": "0xf3b6f231a396733f4f0605a02f946752bcf2628d05e9bab0480337e320653d42",
+      "nextProof": "Complete: live indexed seller history produced the task-bound Graph evidence hash used by the Privy-authorized policy decision; all three tasks are now indexed VERIFIED without errors."
     },
     {
       "name": "Privy",
       "role": "Organization wallet and signer/policy boundary",
-      "status": "DESIGN",
-      "chain": null,
-      "contract": null,
-      "transactions": [],
-      "evidenceHash": null,
-      "nextProof": "Create a test organization wallet and record a policy-controlled signing decision."
+      "status": "LIVE_TESTNET",
+      "chain": "Arc Testnet (chain 5042002)",
+      "contract": "0x85b6df0684529fFAB07C6B62eDB6F04a3eC4E67d",
+      "transactions": [
+        "0xe0547eadcef3a33c15b251b23af561c9bb88016cc6430a94c94758030cf8b0bc",
+        "0x8eea6b0f1d8b41ca758d77315676b25d62ec657222ea36c258bce619c04f3d22",
+        "0xd1e62b7572901c22f4fdaee715c57bb177a67e6e43ff4176adf40c205ddb2fd4",
+        "0x72c5312c1763065c789597632fc633b17e78578171cd748f094ddb47d562a341",
+        "0x7ec5e29f0ad2cfc210a72fd4e5220c580b2e6407eb21080ee0947990b9cd06f6"
+      ],
+      "evidenceHash": "0x80d0f8ec6e8beb2f48a002c94cfc260d200df1a7cc2075daa1d4c8b831a0e0e8",
+      "nextProof": "Complete: Privy policy gim53hj8mv9xhxizrn5ukruq authorized five bounded Arc writes from wallet 0x8b9cD36D829fC658feD8938a057c27CE072bd554."
     }
   ],
   "outcomes": {
-    "VERIFIED": { "status": "LIVE_TESTNET", "evidence": "evidence/arc-testnet-graph-driven-task.json" },
+    "VERIFIED": { "status": "LIVE_TESTNET", "evidence": "evidence/arc-testnet-privy-authorized-task.json" },
     "BLOCKED": { "status": "SIMULATION", "evidence": "scripts/ethonline-demo.ts" },
     "FROZEN": { "status": "SIMULATION", "evidence": "scripts/ethonline-demo.ts" }
   },
@@ -66,7 +72,7 @@
     "newForEthOnline": [
       "ERC-20 escrow contract boundary",
       "The Graph provenance adapter",
-      "Arc/Privy integration boundaries",
+      "Privy policy-controlled Arc transaction signer",
       "ETHOnline judge surface and submission package"
     ]
   },

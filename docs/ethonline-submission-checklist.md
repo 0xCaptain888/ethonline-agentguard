@@ -15,7 +15,8 @@ Run this list immediately before submitting in the Hacker Dashboard.
 - [x] Graph is honestly marked `LIVE_EXTERNAL_DATA` and its observation is bound into the Arc task.
 - [x] Arc task-index Subgraph codegen/build succeeds and points to the real deployment address and start block.
 - [x] Arc is honestly marked `LIVE_TESTNET` with approve/create/submit/verify hashes.
-- [x] Privy remains honestly marked `DESIGN`.
+- [x] Privy is honestly marked `LIVE_TESTNET` with a policy ID, wallet sender,
+      authorization evidence hash and five public Arc writes.
 - [x] Every live transaction has a public explorer URL.
 - [x] Evidence hashes are committed and reproducible.
 - [x] Public Demo browser evidence check loads the committed manifest after Pages deployment.

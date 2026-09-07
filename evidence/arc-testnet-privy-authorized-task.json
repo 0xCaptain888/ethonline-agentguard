@@ -1,0 +1,210 @@
+{
+  "evidenceVersion": "1",
+  "evidenceClass": "LIVE_TESTNET+LIVE_EXTERNAL_DATA+LIVE_PRIVY_AUTHORIZATION",
+  "network": "Arc Testnet",
+  "chainId": "5042002",
+  "contract": "0x85b6df0684529fFAB07C6B62eDB6F04a3eC4E67d",
+  "settlementToken": "0x3600000000000000000000000000000000000000",
+  "buyer": "0x8b9cD36D829fC658feD8938a057c27CE072bd554",
+  "seller": "0xC8DAe1757EE08e23E4ead8F9099C01855a749a59",
+  "verifier": "0xae6034823d7Ff505C87a44e33D58677E1eDa740D",
+  "taskId": "49729611910078900427755243435870633554743331717822925122290378791830782395952",
+  "state": "VERIFIED",
+  "value": "1000000",
+  "graphObservation": {
+    "source": "The Graph",
+    "endpoint": "https://api.studio.thegraph.com/query/1758863/0-x-captain-888/v0.1.0",
+    "fetchedAt": "2026-09-07T15:17:25.741Z",
+    "query": "query PrivyBuyerTask($seller: Bytes!) {\n    _meta { block { number hash } deployment hasIndexingErrors }\n    tasks(first: 20, orderBy: updatedAt, orderDirection: desc, where: { seller: $seller }) {\n      taskId state value createTx settlementTx\n    }\n  }",
+    "variables": {
+      "seller": "0xc8dae1757ee08e23e4ead8f9099c01855a749a59"
+    },
+    "data": {
+      "tasks": [
+        {
+          "taskId": "33969503313480512185595943498318405198659480166392856492294338993101944224568",
+          "state": "VERIFIED",
+          "value": "1000000",
+          "createTx": "0x0f9b2f2a1fe01fb2c235ba885c7a7d9902bcdd7329a271889b0db6c95f3f67a3",
+          "settlementTx": "0x328a7d5169ff26ffbfa3cf811555c651920790de452ea0657cda7ffb7139efff"
+        },
+        {
+          "taskId": "110573160350315721270748341960979787374961600451550033674039520231831690231174",
+          "state": "VERIFIED",
+          "value": "1000000",
+          "createTx": "0x3ae6a73165e6133641ba4dd8629f5d4a85039358f6fbc97f10e57ffd63d1fcb1",
+          "settlementTx": "0x70889053707ee7c5fc8181737ac00366d0f9007b65276c69fed98feca018f957"
+        }
+      ],
+      "_meta": {
+        "block": {
+          "number": 60927220,
+          "hash": "0xc79be4f62dc089939ae4690cdf776bf81b340bfd4ae2b69fc938ea9dda7b7a1f"
+        },
+        "deployment": "QmWk5NVbZsQcZnaZsQhczJXm6HcoZNpGvzGKGdyRhJL8Sy",
+        "hasIndexingErrors": false
+      }
+    },
+    "evidenceHash": "0xf3b6f231a396733f4f0605a02f946752bcf2628d05e9bab0480337e320653d42"
+  },
+  "policy": {
+    "decision": "ALLOW",
+    "reasons": [],
+    "checks": {
+      "perTaskBudget": true,
+      "dailyBudget": true,
+      "sellerPermission": true,
+      "riskLimit": true,
+      "confirmation": true
+    },
+    "policyHash": "0xa8518a673c74c055dcc2719d720f559e89e2cc8520a0cd1cc9e427983b30f5e7",
+    "decisionHash": "0x61fbae73a3c63fc16032101831336199df0aac28eb0b51661a261865d998732f"
+  },
+  "intent": {
+    "task": "Privy-authorized YieldScout hire on Arc",
+    "buyerAgent": "TreasuryPlanner",
+    "sellerAgent": "YieldScout",
+    "buyerWallet": "0x8b9cD36D829fC658feD8938a057c27CE072bd554",
+    "privyWalletId": "s5oh35djv0pjiyhp4dzineeo",
+    "privyPolicyId": "gim53hj8mv9xhxizrn5ukruq",
+    "valueUSDC": "1.000000",
+    "graphEvidenceHash": "0xf3b6f231a396733f4f0605a02f946752bcf2628d05e9bab0480337e320653d42",
+    "graphHistoryCount": 2,
+    "graphVerifiedRate": 1,
+    "policyDecisionHash": "0x61fbae73a3c63fc16032101831336199df0aac28eb0b51661a261865d998732f"
+  },
+  "intentHash": "0xc2e7b9ab60a12b70458182106d7f7c1803dad11cb0ac69ff4606098fbb8611ad",
+  "sellerResult": {
+    "recommendation": "hire",
+    "taskId": "49729611910078900427755243435870633554743331717822925122290378791830782395952",
+    "seller": "0xC8DAe1757EE08e23E4ead8F9099C01855a749a59",
+    "graphEvidenceHash": "0xf3b6f231a396733f4f0605a02f946752bcf2628d05e9bab0480337e320653d42",
+    "verifiedRate": 1,
+    "riskScore": 0,
+    "privyAuthorizedBuyer": "0x8b9cD36D829fC658feD8938a057c27CE072bd554"
+  },
+  "resultHash": "0x881c2b005ce8ecc37124b869bbd6fe8fe18abcfe3665bf751f42be0ec95eac59",
+  "independentVerification": {
+    "indexingHealthy": true,
+    "sellerHistoryPresent": true,
+    "verifiedRateAccepted": true,
+    "policyAllowed": true,
+    "graphHashBound": true,
+    "privyBuyerBound": true,
+    "privyPolicyBound": true
+  },
+  "privyAuthorization": {
+    "provider": "Privy",
+    "walletId": "s5oh35djv0pjiyhp4dzineeo",
+    "walletAddress": "0x8b9cD36D829fC658feD8938a057c27CE072bd554",
+    "policyId": "gim53hj8mv9xhxizrn5ukruq",
+    "method": "eth_signTransaction",
+    "authorizedTransactions": [
+      {
+        "label": "registerAgent",
+        "provider": "Privy",
+        "method": "eth_signTransaction",
+        "walletId": "s5oh35djv0pjiyhp4dzineeo",
+        "policyId": "gim53hj8mv9xhxizrn5ukruq",
+        "chainId": "5042002",
+        "target": "0x85b6df0684529fFAB07C6B62eDB6F04a3eC4E67d",
+        "sender": "0x8b9cD36D829fC658feD8938a057c27CE072bd554",
+        "transactionHash": "0xe0547eadcef3a33c15b251b23af561c9bb88016cc6430a94c94758030cf8b0bc"
+      },
+      {
+        "label": "setPolicy",
+        "provider": "Privy",
+        "method": "eth_signTransaction",
+        "walletId": "s5oh35djv0pjiyhp4dzineeo",
+        "policyId": "gim53hj8mv9xhxizrn5ukruq",
+        "chainId": "5042002",
+        "target": "0x85b6df0684529fFAB07C6B62eDB6F04a3eC4E67d",
+        "sender": "0x8b9cD36D829fC658feD8938a057c27CE072bd554",
+        "transactionHash": "0x8eea6b0f1d8b41ca758d77315676b25d62ec657222ea36c258bce619c04f3d22"
+      },
+      {
+        "label": "setVerifier",
+        "provider": "Privy",
+        "method": "eth_signTransaction",
+        "walletId": "s5oh35djv0pjiyhp4dzineeo",
+        "policyId": "gim53hj8mv9xhxizrn5ukruq",
+        "chainId": "5042002",
+        "target": "0x85b6df0684529fFAB07C6B62eDB6F04a3eC4E67d",
+        "sender": "0x8b9cD36D829fC658feD8938a057c27CE072bd554",
+        "transactionHash": "0xd1e62b7572901c22f4fdaee715c57bb177a67e6e43ff4176adf40c205ddb2fd4"
+      },
+      {
+        "label": "approve",
+        "provider": "Privy",
+        "method": "eth_signTransaction",
+        "walletId": "s5oh35djv0pjiyhp4dzineeo",
+        "policyId": "gim53hj8mv9xhxizrn5ukruq",
+        "chainId": "5042002",
+        "target": "0x3600000000000000000000000000000000000000",
+        "sender": "0x8b9cD36D829fC658feD8938a057c27CE072bd554",
+        "transactionHash": "0x72c5312c1763065c789597632fc633b17e78578171cd748f094ddb47d562a341"
+      },
+      {
+        "label": "createTask",
+        "provider": "Privy",
+        "method": "eth_signTransaction",
+        "walletId": "s5oh35djv0pjiyhp4dzineeo",
+        "policyId": "gim53hj8mv9xhxizrn5ukruq",
+        "chainId": "5042002",
+        "target": "0x85b6df0684529fFAB07C6B62eDB6F04a3eC4E67d",
+        "sender": "0x8b9cD36D829fC658feD8938a057c27CE072bd554",
+        "transactionHash": "0x7ec5e29f0ad2cfc210a72fd4e5220c580b2e6407eb21080ee0947990b9cd06f6"
+      }
+    ],
+    "authorizationEvidenceHash": "0x80d0f8ec6e8beb2f48a002c94cfc260d200df1a7cc2075daa1d4c8b831a0e0e8"
+  },
+  "transactions": {
+    "fundPrivyGas": {
+      "hash": "0x9bb781f8767d235d9919e34fb7ad28f7ff9dbe02ee0c97421fc792c43a0ec079",
+      "blockNumber": 60927207,
+      "explorer": "https://testnet.arcscan.app/tx/0x9bb781f8767d235d9919e34fb7ad28f7ff9dbe02ee0c97421fc792c43a0ec079"
+    },
+    "fundPrivyUsdc": {
+      "hash": "0x5b5624b10d9592967e919b611c89aa9b5dd98efab028597dfa07ad4c9da18e99",
+      "blockNumber": 60927215,
+      "explorer": "https://testnet.arcscan.app/tx/0x5b5624b10d9592967e919b611c89aa9b5dd98efab028597dfa07ad4c9da18e99"
+    },
+    "registerAgent": {
+      "hash": "0xe0547eadcef3a33c15b251b23af561c9bb88016cc6430a94c94758030cf8b0bc",
+      "blockNumber": 60927235,
+      "explorer": "https://testnet.arcscan.app/tx/0xe0547eadcef3a33c15b251b23af561c9bb88016cc6430a94c94758030cf8b0bc"
+    },
+    "setPolicy": {
+      "hash": "0x8eea6b0f1d8b41ca758d77315676b25d62ec657222ea36c258bce619c04f3d22",
+      "blockNumber": 60927244,
+      "explorer": "https://testnet.arcscan.app/tx/0x8eea6b0f1d8b41ca758d77315676b25d62ec657222ea36c258bce619c04f3d22"
+    },
+    "setVerifier": {
+      "hash": "0xd1e62b7572901c22f4fdaee715c57bb177a67e6e43ff4176adf40c205ddb2fd4",
+      "blockNumber": 60927251,
+      "explorer": "https://testnet.arcscan.app/tx/0xd1e62b7572901c22f4fdaee715c57bb177a67e6e43ff4176adf40c205ddb2fd4"
+    },
+    "approve": {
+      "hash": "0x72c5312c1763065c789597632fc633b17e78578171cd748f094ddb47d562a341",
+      "blockNumber": 60927259,
+      "explorer": "https://testnet.arcscan.app/tx/0x72c5312c1763065c789597632fc633b17e78578171cd748f094ddb47d562a341"
+    },
+    "createTask": {
+      "hash": "0x7ec5e29f0ad2cfc210a72fd4e5220c580b2e6407eb21080ee0947990b9cd06f6",
+      "blockNumber": 60927266,
+      "explorer": "https://testnet.arcscan.app/tx/0x7ec5e29f0ad2cfc210a72fd4e5220c580b2e6407eb21080ee0947990b9cd06f6"
+    },
+    "submitResult": {
+      "hash": "0x1b9954b64963e9f153884556b87845e90e2021ebfa2f6c31bf656ad3851c1fe4",
+      "blockNumber": 60927271,
+      "explorer": "https://testnet.arcscan.app/tx/0x1b9954b64963e9f153884556b87845e90e2021ebfa2f6c31bf656ad3851c1fe4"
+    },
+    "verifyAndRelease": {
+      "hash": "0x94b172ee29faadbf4a48d0d752685358fff082df9d65bf3753ac779a146d1fc8",
+      "blockNumber": 60927275,
+      "explorer": "https://testnet.arcscan.app/tx/0x94b172ee29faadbf4a48d0d752685358fff082df9d65bf3753ac779a146d1fc8"
+    }
+  },
+  "generatedAt": "2026-09-07T15:17:50.443Z",
+  "evidenceHash": "0x8e285743668e16c24a5de71b9408261d549a20bf81e675fc089ac4e6def787d7"
+}

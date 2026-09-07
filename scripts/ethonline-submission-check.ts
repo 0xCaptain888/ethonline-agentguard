@@ -13,6 +13,7 @@ const requiredFiles = [
   "evidence/arc-testnet-deployment.json",
   "evidence/arc-testnet-bootstrap-task.json",
   "evidence/arc-testnet-graph-driven-task.json",
+  "evidence/arc-testnet-privy-authorized-task.json",
   "site/index.html",
   "docs/browser-evidence.md",
   "src/ethonline/workflow.ts",
@@ -23,6 +24,9 @@ const requiredFiles = [
   "test/privy-agent.test.ts",
   "scripts/ethonline-receipt-check.ts",
   "scripts/ethonline-privy-check.ts",
+  "scripts/setup-privy-arc-wallet.ts",
+  "scripts/run-privy-arc-task.ts",
+  "scripts/verify-privy-arc-evidence.ts",
   "subgraph/subgraph.yaml",
   "subgraph/schema.graphql",
   "subgraph/src/policy-escrow.ts",
@@ -60,6 +64,10 @@ async function main() {
   if (manifest.sponsors?.length !== 3) throw new Error("manifest must contain exactly three sponsor entries");
   for (const state of ["VERIFIED", "BLOCKED", "FROZEN"]) {
     if (!manifest.outcomes?.[state]) throw new Error(`manifest missing ${state}`);
+  }
+  const privy = manifest.sponsors.find((sponsor: any) => sponsor.name === "Privy");
+  if (privy?.status !== "LIVE_TESTNET" || privy.transactions.length < 1 || !privy.evidenceHash) {
+    throw new Error("Privy live policy-controlled Arc evidence is missing");
   }
   console.log(JSON.stringify({
     evidenceClass: "ETHONLINE_SUBMISSION_PREFLIGHT",

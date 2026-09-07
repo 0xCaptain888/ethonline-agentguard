@@ -14,7 +14,7 @@
   <h1>The authorization firewall for agent-to-agent commerce.</h1>
   <p>AgentGuard lets an autonomous buyer hire a seller Agent while keeping authority bounded: live data informs the decision, policy controls the spend, and an independent verifier decides whether payment is released.</p>
   <div class="actions">
-    <span class="pill"><span class="dot" style="background:var(--green)"></span> Arc + The Graph live · Privy honestly DESIGN</span>
+    <span class="pill"><span class="dot" style="background:var(--green)"></span> Arc + The Graph + Privy · one live composed proof</span>
     <a class="btn" href="https://github.com/0xCaptain888/ethonline-agentguard">GitHub repository</a>
     <a class="btn alt" href="https://github.com/0xCaptain888/ethonline-agentguard/blob/main/docs/ethonline-plan.md">Build plan</a>
     <a class="btn alt" href="https://github.com/0xCaptain888/ethonline-agentguard/blob/main/docs/partner-fit.md">Partner fit</a>
@@ -22,7 +22,7 @@
 
   <section class="panel">
     <h2>The judge-visible loop</h2>
-    <p>A real The Graph observation scores the YieldScout seller before policy approval. The approved intent is then settled through Arc USDC escrow and released only after independent verification. Privy remains explicitly labelled <b>DESIGN</b> until it authorizes an Arc write.</p>
+    <p>A real The Graph observation scores the YieldScout seller before policy approval. A dedicated Privy wallet authorizes only bounded Arc writes. USDC is released only after independent verification.</p>
     <div class="flow">
       <div class="step"><b>01 · SIGNAL</b>The Graph live observation</div>
       <div class="step"><b>02 · PLAN</b>TreasuryPlanner proposes</div>
@@ -36,18 +36,18 @@
 
   <section class="panel">
     <div class="eyebrow">Primary live proof · Arc Testnet</div>
-    <h2>Graph-informed Agent-to-Agent settlement</h2>
-    <p>The custom Subgraph supplied a 100% verified seller history. AgentGuard bound that observation and the policy decision into a new 1 USDC task, then recorded seller submission and independent VERIFIED release on Arc.</p>
+    <h2>Graph-informed, Privy-authorized Agent-to-Agent settlement</h2>
+    <p>The custom Subgraph supplied a 100% verified seller history. AgentGuard bound that observation and policy decision into a new 1 USDC task, a restricted Privy wallet created it, and an independent verifier released payment on Arc.</p>
     <div class="grid">
-      <article class="card"><div class="tag verified">THE GRAPH · LIVE_EXTERNAL_DATA</div><h3>2 tasks · 2 VERIFIED</h3><p>No indexing errors. 2 USDC escrowed and 2 USDC released.</p><div class="mono">Graph hash: 0x4f02ed60…e57b68</div></article>
-      <article class="card"><div class="tag verified">ARC · LIVE_TESTNET</div><h3>Task 339695…224568</h3><p>approve → create → submit → independently verify → release</p><div class="mono">Evidence: 0xf6bae058…81a5b</div></article>
-      <article class="card"><div class="tag pending">PRIVY · DESIGN</div><h3>No inflated claim</h3><p>The adapter exists, but Privy has not authorized this Arc transaction.</p><div class="mono">Required next proof: Privy-controlled Arc write</div></article>
+      <article class="card"><div class="tag verified">THE GRAPH · LIVE_EXTERNAL_DATA</div><h3>3 tasks · 3 VERIFIED</h3><p>No indexing errors. Historical VERIFIED rate became a load-bearing risk input.</p><div class="mono">Graph hash: 0xf3b6f231…653d42</div></article>
+      <article class="card"><div class="tag verified">ARC · LIVE_TESTNET</div><h3>Task 497296…395952</h3><p>approve → create → submit → independently verify → release</p><div class="mono">Evidence: 0x8e285743…787d7</div></article>
+      <article class="card"><div class="tag verified">PRIVY · LIVE_TESTNET</div><h3>Five bounded writes</h3><p>The buyer wallet could sign only Arc escrow and USDC calls with zero native value.</p><div class="mono">Authorization: 0x80d0f8ec…0e0e8</div></article>
     </div>
     <div class="actions" style="margin:18px 0 0">
-      <a class="btn" href="https://testnet.arcscan.app/tx/0x328a7d5169ff26ffbfa3cf811555c651920790de452ea0657cda7ffb7139efff">Open VERIFIED release ↗</a>
-      <a class="btn alt" href="https://testnet.arcscan.app/tx/0x0f9b2f2a1fe01fb2c235ba885c7a7d9902bcdd7329a271889b0db6c95f3f67a3">Open task creation ↗</a>
+      <a class="btn" href="https://testnet.arcscan.app/tx/0x94b172ee29faadbf4a48d0d752685358fff082df9d65bf3753ac779a146d1fc8">Open VERIFIED release ↗</a>
+      <a class="btn alt" href="https://testnet.arcscan.app/tx/0x7ec5e29f0ad2cfc210a72fd4e5220c580b2e6407eb21080ee0947990b9cd06f6">Open Privy-created task ↗</a>
       <a class="btn alt" href="https://thegraph.com/studio/subgraph/0-x-captain-888">Open Subgraph ↗</a>
-      <a class="btn alt" href="https://github.com/0xCaptain888/ethonline-agentguard/blob/main/evidence/arc-testnet-graph-driven-task.json">Full receipt ↗</a>
+      <a class="btn alt" href="https://github.com/0xCaptain888/ethonline-agentguard/blob/main/evidence/arc-testnet-privy-authorized-task.json">Full receipt ↗</a>
     </div>
   </section>
 
@@ -65,8 +65,8 @@
     <table><thead><tr><th>Foundation from before ETHOnline</th><th>New ETHOnline feature</th><th>Status</th></tr></thead><tbody>
       <tr><td>Monad policy engine, escrow state machine, independent verifier</td><td>Arc USDC settlement adapter</td><td class="verified">LIVE_TESTNET</td></tr>
       <tr><td>YieldScout report hashing and receipt format</td><td>The Graph live query becomes a decision input</td><td class="verified">LIVE_EXTERNAL_DATA</td></tr>
-      <tr><td>Browser judge console patterns</td><td>Privy organization wallet / signer control</td><td class="pending">DESIGN</td></tr>
-      <tr><td>Monad testnet evidence</td><td>ETHOnline-specific Arc + Graph evidence manifest</td><td class="verified">LIVE</td></tr>
+      <tr><td>Browser judge console patterns</td><td>Privy P-256 wallet + Arc/contract allowlist</td><td class="verified">LIVE_TESTNET</td></tr>
+      <tr><td>Monad testnet evidence</td><td>ETHOnline-specific Arc + Graph + Privy evidence manifest</td><td class="verified">LIVE</td></tr>
     </tbody></table>
   </section>
 
@@ -110,9 +110,9 @@
 
   <section class="panel">
     <h2>Evidence status</h2>
-    <div class="state-row"><span><b>Arc USDC VERIFIED release</b><small>1 USDC released after independent verification</small></span><a href="https://testnet.arcscan.app/tx/0x328a7d5169ff26ffbfa3cf811555c651920790de452ea0657cda7ffb7139efff">LIVE_TESTNET ↗</a></div>
-    <div class="state-row"><span><b>The Graph provenance</b><small>Task-bound live seller history · 2/2 indexed VERIFIED</small></span><a href="https://github.com/0xCaptain888/ethonline-agentguard/blob/main/evidence/arc-testnet-graph-driven-task.json">LIVE_EXTERNAL_DATA ↗</a></div>
-    <div class="state-row"><span><b>Privy authorization</b><small>Read-only boundary exists; no Privy-controlled Arc write yet</small></span><span class="pending">DESIGN</span></div>
+    <div class="state-row"><span><b>Arc USDC VERIFIED release</b><small>1 USDC released after independent verification</small></span><a href="https://testnet.arcscan.app/tx/0x94b172ee29faadbf4a48d0d752685358fff082df9d65bf3753ac779a146d1fc8">LIVE_TESTNET ↗</a></div>
+    <div class="state-row"><span><b>The Graph provenance</b><small>Task-bound seller history drove policy approval · 3/3 indexed VERIFIED</small></span><a href="https://github.com/0xCaptain888/ethonline-agentguard/blob/main/evidence/arc-testnet-privy-authorized-task.json">LIVE_EXTERNAL_DATA ↗</a></div>
+    <div class="state-row"><span><b>Privy authorization</b><small>Restricted buyer wallet signed five public Arc writes</small></span><a href="https://testnet.arcscan.app/tx/0x7ec5e29f0ad2cfc210a72fd4e5220c580b2e6407eb21080ee0947990b9cd06f6">LIVE_TESTNET ↗</a></div>
     <div class="state-row"><span><b>Reproducible baseline</b><small>Monad foundation tests and evidence remain available</small></span><a href="https://github.com/0xCaptain888/ethonline-agentguard/blob/main/docs/judge-guide.md">Judge guide ↗</a></div>
   </section>
 
@@ -120,8 +120,8 @@
     <h2>Browser evidence verification</h2>
     <p>The page loads the same machine-readable manifest committed in the
       repository and checks its schema, sponsor count, outcome coverage and
-      honesty rules. The manifest points to live Arc and Graph proof while
-      preserving Privy as DESIGN.</p>
+      honesty rules. The manifest points to the single live Arc, The Graph and
+      Privy proof while preserving browser-only outcomes as simulation.</p>
     <div id="manifestBadge" class="pill"><span class="dot"></span>Loading manifest…</div>
     <div id="manifestResult" style="margin-top:14px"></div>
     <button class="alt" id="verifyManifest" style="margin-top:12px">Verify browser manifest</button>
@@ -133,7 +133,7 @@
       labels in the repository manifest without connecting a wallet or trusting
       a private backend.</p>
     <table><thead><tr><th>Result</th><th>What it proves</th><th>Current evidence</th></tr></thead><tbody>
-      <tr><td class="verified"><b>VERIFIED</b></td><td>Independent checks pass before release becomes eligible</td><td><a href="https://testnet.arcscan.app/tx/0x328a7d5169ff26ffbfa3cf811555c651920790de452ea0657cda7ffb7139efff">Live Arc release ↗</a></td></tr>
+      <tr><td class="verified"><b>VERIFIED</b></td><td>Independent checks pass before release becomes eligible</td><td><a href="https://testnet.arcscan.app/tx/0x94b172ee29faadbf4a48d0d752685358fff082df9d65bf3753ac779a146d1fc8">Live Privy-authorized Arc release ↗</a></td></tr>
       <tr><td class="blocked"><b>BLOCKED</b></td><td>Policy fails before the seller gateway is called</td><td>Deterministic local replay</td></tr>
       <tr><td class="frozen"><b>FROZEN</b></td><td>Bad output is isolated after execution</td><td>Deterministic local replay</td></tr>
     </tbody></table>
@@ -154,7 +154,7 @@
     <small id="copyStatus" style="display:block;color:var(--muted);margin-top:8px"></small>
   </section>
 
-  <footer>ETHOnline AgentGuard is a Continuity build. Arc and The Graph are backed by public evidence; Privy remains DESIGN until it controls an Arc write. BLOCKED and FROZEN are deterministic simulations.</footer>
+  <footer>ETHOnline AgentGuard is a Continuity build. Arc, The Graph and Privy are backed by one public evidence chain. BLOCKED and FROZEN are deterministic simulations.</footer>
 </main>
 <script>
 (() => { const ids=['value','budget','risk','permission','confirmation']; const out=document.getElementById('result'); function render(){ const value=Number(document.getElementById('value').value), budget=Number(document.getElementById('budget').value), risk=Number(document.getElementById('risk').value); const checks=[['Budget',value>0&&value<=budget],['Permission',document.getElementById('permission').checked],['Risk',risk<=40],['Confirmation',document.getElementById('confirmation').checked]]; const failed=checks.filter(([,ok])=>!ok).map(([name])=>name); const ok=failed.length===0; out.innerHTML='<b class="'+(ok?'verified':'blocked')+'">'+(ok?'ALLOW':'BLOCKED')+'</b> · policy decision before execution<br><small>'+checks.map(([name,pass])=>(pass?'✓ ':'✕ ')+name).join(' · ')+(failed.length?'<br>Reason codes: '+failed.map(n=>n.toLowerCase()+'_check_failed').join(', '):'')+'</small>'; } ids.forEach(id=>document.getElementById(id).addEventListener('input',render)); render(); })();

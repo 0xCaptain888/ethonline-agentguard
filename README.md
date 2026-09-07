@@ -54,10 +54,9 @@ into the on-chain task intent before USDC settlement.
 
 | Partner | Load-bearing role | Status |
 | --- | --- | --- |
-| Arc / Circle | USDC escrow and conditional Agent-to-Agent settlement | `LIVE_TESTNET` · two 1 USDC tasks settled as VERIFIED |
-| The Graph | Live indexed data drives YieldScout's decision and receipt | `LIVE_EXTERNAL_DATA` · custom Subgraph indexed both Arc tasks |
-| Privy | Organization wallet and policy/signer/intent control | Configuration boundary ready; SDK flow pending |
-| Bazantic | Optional fallback: x402/MPP gateway and reusable Recipe | Not selected unless Privy onboarding blocks us |
+| Arc / Circle | USDC escrow and conditional Agent-to-Agent settlement | `LIVE_TESTNET` · Privy-authorized 1 USDC task settled as VERIFIED |
+| The Graph | Live indexed data drives YieldScout's decision and receipt | `LIVE_EXTERNAL_DATA` · seller history is bound into the live task intent |
+| Privy | Policy-controlled buyer wallet and transaction authorization | `LIVE_TESTNET` · five bounded Arc writes signed by a Privy wallet |
 
 The submission will name only partners that are actually used in the final
 demo. Sponsor SDKs, accounts and network writes are never simulated as live
@@ -90,31 +89,35 @@ scope. No pre-existing Monad transaction is presented as Arc evidence.
 | VERIFIED / BLOCKED / FROZEN state model | Working and tested | `LIVE_TESTNET` / `SIMULATION` where explicitly marked |
 | ETHOnline workflow orchestrator | Deterministic end-to-end join with four regression cases | `SIMULATION` |
 | The Graph adapter | Live Studio query with deterministic provenance hash | `LIVE_EXTERNAL_DATA` |
-| Arc task-index Subgraph | Version `v0.1.0`, 11 event handlers, 2 tasks / 2 VERIFIED, no indexing errors | `LIVE_EXTERNAL_DATA` |
+| Arc task-index Subgraph | Version `v0.1.0`, 11 event handlers, 3 tasks / 3 VERIFIED with no indexing errors | `LIVE_EXTERNAL_DATA` |
 | Arc escrow deployment | Contract `0x85b6…E67d` deployed at block `60909613` | `LIVE_TESTNET` |
 | Arc USDC task settlement | Graph-informed approve/create/submit/verify/release complete | `LIVE_TESTNET` |
-| Privy wallet control | Not yet connected | `DESIGN` |
-| ETHOnline browser demo | Live Arc and Graph evidence plus interactive failure-state replay | `LIVE_TESTNET` + `SIMULATION` |
+| Privy wallet control | Policy-bound wallet signed register, policy, verifier, approval and task creation writes | `LIVE_TESTNET` |
+| ETHOnline browser demo | Live Arc, The Graph and Privy evidence plus interactive failure-state replay | `LIVE_TESTNET` + `LIVE_EXTERNAL_DATA` + `SIMULATION` |
 
 The machine-readable source of truth for these labels is
 [`evidence/ethonline-manifest.json`](evidence/ethonline-manifest.json). Run
 `npm run ethonline:manifest:verify` before publishing a claim; the check fails
 if a `DESIGN` sponsor entry contains a contract, transaction or evidence hash.
-The [Graph-driven Arc task receipt](evidence/arc-testnet-graph-driven-task.json)
+The [Privy-authorized Arc task receipt](evidence/arc-testnet-privy-authorized-task.json)
 is the strongest proof: a live Subgraph observation scored the seller, the
-policy allowed a bounded 1 USDC task, and an independent verifier released the
-escrow. The earlier [bootstrap task](evidence/arc-testnet-bootstrap-task.json)
-seeded the seller history consumed by that decision.
+policy allowed a bounded 1 USDC task, Privy authorized the buyer's writes, and
+an independent verifier released the escrow. The earlier
+[Graph-driven task](evidence/arc-testnet-graph-driven-task.json) and
+[bootstrap task](evidence/arc-testnet-bootstrap-task.json) seeded the seller
+history consumed by that decision.
 
 ### Primary live proof
 
 - Arc contract: [`0x85b6…E67d`](https://testnet.arcscan.app/address/0x85b6df0684529fFAB07C6B62eDB6F04a3eC4E67d)
-- Graph-driven task ID: `33969503313480512185595943498318405198659480166392856492294338993101944224568`
-- Create: [`0x0f9b…67a3`](https://testnet.arcscan.app/tx/0x0f9b2f2a1fe01fb2c235ba885c7a7d9902bcdd7329a271889b0db6c95f3f67a3)
-- Submit: [`0x2c59…df1`](https://testnet.arcscan.app/tx/0x2c599f4985dc42f8dea76ebe9ef777dca103b50236c2a736d87ac44fb5f07df1)
-- VERIFIED release: [`0x328a…efff`](https://testnet.arcscan.app/tx/0x328a7d5169ff26ffbfa3cf811555c651920790de452ea0657cda7ffb7139efff)
-- Task evidence hash: `0xf6bae0580506cc121423ec5394c43021f65b83ef3675b6152b5a19fda2381a5b`
-- Task-bound Graph hash: `0x4f02ed60151fea39edb4d3b45aeef14b24f23fc17dcd5c99ad2deb99eec57b68`
+- Privy buyer: [`0x8b9c…d554`](https://testnet.arcscan.app/address/0x8b9cD36D829fC658feD8938a057c27CE072bd554)
+- Privy-authorized task ID: `49729611910078900427755243435870633554743331717822925122290378791830782395952`
+- Create: [`0x7ec5…06f6`](https://testnet.arcscan.app/tx/0x7ec5e29f0ad2cfc210a72fd4e5220c580b2e6407eb21080ee0947990b9cd06f6)
+- Submit: [`0x1b99…1fe4`](https://testnet.arcscan.app/tx/0x1b9954b64963e9f153884556b87845e90e2021ebfa2f6c31bf656ad3851c1fe4)
+- VERIFIED release: [`0x94b1…1fc8`](https://testnet.arcscan.app/tx/0x94b172ee29faadbf4a48d0d752685358fff082df9d65bf3753ac779a146d1fc8)
+- Task evidence hash: `0x8e285743668e16c24a5de71b9408261d549a20bf81e675fc089ac4e6def787d7`
+- Privy authorization hash: `0x80d0f8ec6e8beb2f48a002c94cfc260d200df1a7cc2075daa1d4c8b831a0e0e8`
+- Task-bound Graph hash: `0xf3b6f231a396733f4f0605a02f946752bcf2628d05e9bab0480337e320653d42`
 - Subgraph: [AgentGuard Arc task index v0.1.0](https://thegraph.com/studio/subgraph/0-x-captain-888)
 
 ## Why this repository is the ETHOnline entry point
@@ -159,17 +162,32 @@ verification, blocking, freezing and recovery. Its YieldScout query uses
 seller outcome history and aggregate release/refund data as a decision input.
 The checked-in Subgraph manifest points to the live Arc Testnet deployment at
 block `60909613`. Studio version `v0.1.0` is deployed at IPFS deployment
-`QmWk5NVbZsQcZnaZsQhczJXm6HcoZNpGvzGKGdyRhJL8Sy`. It indexed both real tasks
-as `VERIFIED`, with 2 USDC escrowed and 2 USDC released and no indexing errors.
+`QmWk5NVbZsQcZnaZsQhczJXm6HcoZNpGvzGKGdyRhJL8Sy`. It has indexed all three
+real tasks as `VERIFIED`, including the Privy-created task, with no indexing
+errors.
 
-## Privy read-only authorization preflight
+## Privy policy-controlled Arc authorization
 
-`npm run ethonline:privy:check` verifies that the configured Privy Wallet ID
-resolves to the expected address and reports whether an owner and at least one
-policy are attached. Its evidence is sanitized and hashed; the App Secret is
-used only in the request header. This read-only proof does not promote Privy
-to a live sponsor integration until the same authorization boundary controls
-an Arc transaction.
+The live flow creates a dedicated Privy wallet with a P-256 owner and attaches
+a policy restricted to Arc chain `5042002`, zero native value and only two
+targets: the AgentGuard escrow and Arc USDC contracts. That wallet signed five
+public writes: agent registration, spend policy, verifier binding, USDC
+approval and task creation. Seller submission and verifier settlement remain
+separate roles.
+
+The complete sanitized receipt is
+[`evidence/arc-testnet-privy-authorized-task.json`](evidence/arc-testnet-privy-authorized-task.json).
+Local authorization material and the App Secret remain ignored files. The
+reproducible setup and task runners are `npm run ethonline:privy:setup` and
+`npm run ethonline:privy:arc-task`; they require local credentials and testnet
+funds and are not part of the credential-free judge command.
+
+Any reviewer can independently re-hash the receipt and query Arc for every
+Privy-authorized sender, target, value and transaction status with:
+
+```bash
+npm run ethonline:privy:evidence:verify
+```
 
 ## Security boundary
 
@@ -190,12 +208,12 @@ The ETHOnline demo is a separate browser surface with:
 2. One `BLOCKED` policy decision before any write.
 3. One `FROZEN` bad-output path with recovery boundary shown.
 4. Arc transaction and receipt evidence visible to the judge.
-5. A Graph provenance panel and Privy authorization panel.
+5. A Graph provenance panel and the real Privy wallet authorization proof.
 
 The final submission will include a 2–4 minute video, public source, sponsor
 feedback documents, an architecture diagram and a machine-readable evidence
-manifest. The remaining sponsor gap is Privy authorization of an Arc write;
-it stays explicitly labelled `DESIGN` until that proof exists.
+manifest. Arc, The Graph and Privy now meet the repository's live-evidence
+rule; `BLOCKED` and `FROZEN` remain explicitly labelled deterministic replay.
 
 ## Five-minute judge path
 
