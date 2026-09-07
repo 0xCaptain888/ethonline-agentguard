@@ -41,6 +41,8 @@ wallet flow.
 - Sponsor feedback documents
 - [`evidence/ethonline-manifest.json`](../evidence/ethonline-manifest.json)
   with a machine-readable status for every claim
+- [AI usage disclosure](ai-usage.md)
+- [Judge scoring map](scoring-map.md)
 
 ## Final demo sequence
 

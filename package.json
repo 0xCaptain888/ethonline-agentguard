@@ -45,8 +45,9 @@
     "ethonline:graph:check": "node --import tsx scripts/ethonline-graph-check.ts",
     "ethonline:demo": "tsx scripts/ethonline-demo.ts",
     "ethonline:manifest:verify": "node --import tsx scripts/verify-ethonline-manifest.ts",
+    "ethonline:submission:check": "node --import tsx scripts/ethonline-submission-check.ts",
     "ethonline:preflight": "node --import tsx scripts/ethonline-preflight.ts",
-    "ethonline:check": "npm run build && npm run typecheck && npm test && npm run ethonline:demo && npm run ethonline:graph:check && npm run ethonline:manifest:verify",
+    "ethonline:check": "npm run build && npm run typecheck && npm test && npm run ethonline:demo && npm run ethonline:graph:check && npm run ethonline:manifest:verify && npm run ethonline:submission:check",
     "judge:check": "npm run build && npm run typecheck && npm test && npm run evidence:verify && npm run judge:manifest && npm run benchmark:e2e:verify && npm run benchmark:concurrent:verify && npm run benchmark:parallel:verify && npm run judge:demo"
   },
   "devDependencies": {

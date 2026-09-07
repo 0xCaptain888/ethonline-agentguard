@@ -8,6 +8,7 @@ This is the dedicated **ETHOnline 2026 Continuity** submission repository for
 AgentGuard. The pre-existing Monad implementation is the policy, escrow and
 verification foundation. The ETHOnline feature work is being added in dated
 commits and will be clearly separated from that foundation before submission.
+This is a **Continuity submission** rather than a From Scratch entry.
 
 ## Official event constraints
 
@@ -89,6 +90,15 @@ The machine-readable source of truth for these labels is
 `npm run ethonline:manifest:verify` before publishing a claim; the check fails
 if a `DESIGN` sponsor entry contains a contract, transaction or evidence hash.
 
+## Why this repository is the ETHOnline entry point
+
+The account has chain-specific and historical experiments, but this is the only
+repository submitted to ETHOnline. The relationship is documented in the
+[repository map](docs/repo-map.md). The scoring-oriented review path is in the
+[judge scoring map](docs/scoring-map.md), and the AI-assisted development
+disclosure is in [docs/ai-usage.md](docs/ai-usage.md). See the [AI usage
+disclosure](docs/ai-usage.md) for the exact human/AI responsibility boundary.
+
 ## Reproduce the foundation locally
 
 ```bash
@@ -154,6 +164,9 @@ and use the policy playground. The page labels every sponsor surface as
 `DESIGN`, `SIMULATION`, or live evidence until a public proof is attached.
 The [ETHOnline evidence manifest](evidence/ethonline-manifest.json) is the
 judge's single index for chain, provider and receipt proof.
+
+For the final form, use the [submission checklist](docs/ethonline-submission-checklist.md)
+and run `npm run ethonline:submission:check` first.
 
 ## Links
 
