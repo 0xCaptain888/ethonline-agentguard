@@ -5,8 +5,8 @@ ID `5042002`). It turns Agent registration, policy, task, verification,
 settlement and recovery events into a queryable audit and seller-reliability
 surface for YieldScout.
 
-The checked-in manifest intentionally contains a placeholder address until a
-real Arc deployment exists. Do not deploy it unchanged.
+The checked-in manifest points to the public Arc Testnet deployment
+`0x85b6df0684529fFAB07C6B62eDB6F04a3eC4E67d` from block `60909613`.
 
 ```bash
 npm install
@@ -15,9 +15,8 @@ npm run build
 npm run deploy:studio
 ```
 
-Before Studio deployment, replace the address and `startBlock` in
-`subgraph.yaml` with the public `PolicyEscrowERC20` deployment values. Use the
-rotated local deploy key; never commit it.
+Use the rotated local deploy key for Studio deployment; never commit it. Wait
+for the version to sync and run the judge query before pressing Publish.
 
 The judge query is in [`queries/yieldscout.graphql`](queries/yieldscout.graphql).
 YieldScout uses verified/frozen history and aggregate release/refund data as a

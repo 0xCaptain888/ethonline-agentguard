@@ -54,7 +54,7 @@ testnet evidence is available.
 
 | Partner | Load-bearing role | Status |
 | --- | --- | --- |
-| Arc / Circle | USDC escrow and conditional Agent-to-Agent settlement | Adapter boundary ready; live integration pending |
+| Arc / Circle | USDC escrow and conditional Agent-to-Agent settlement | Contract deployed on Arc Testnet; live task settlement pending |
 | The Graph | Live indexed data drives YieldScout's decision and receipt | Read-only adapter ready; provider configuration pending |
 | Privy | Organization wallet and policy/signer/intent control | Configuration boundary ready; SDK flow pending |
 | Bazantic | Optional fallback: x402/MPP gateway and reusable Recipe | Not selected unless Privy onboarding blocks us |
@@ -91,7 +91,8 @@ scope. No pre-existing Monad transaction is presented as Arc evidence.
 | ETHOnline workflow orchestrator | Deterministic end-to-end join with four regression cases | `SIMULATION` |
 | The Graph adapter | Read-only adapter with deterministic evidence hash | `DESIGN` until a live provider is configured |
 | Arc task-index Subgraph | Schema, ABI and 11 event handlers compile for `arc-testnet` | `DESIGN` until contract address and Studio deployment exist |
-| Arc USDC settlement | Not yet deployed | `DESIGN` |
+| Arc escrow deployment | Contract `0x85b6…E67d` deployed at block `60909613` | `LIVE_TESTNET` deployment evidence only |
+| Arc USDC task settlement | Contract available; approve/create/submit/verify pending | `DESIGN` |
 | Privy wallet control | Not yet connected | `DESIGN` |
 | ETHOnline browser demo | In progress | `DESIGN` |
 
@@ -99,6 +100,9 @@ The machine-readable source of truth for these labels is
 [`evidence/ethonline-manifest.json`](evidence/ethonline-manifest.json). Run
 `npm run ethonline:manifest:verify` before publishing a claim; the check fails
 if a `DESIGN` sponsor entry contains a contract, transaction or evidence hash.
+The separate [Arc deployment receipt](evidence/arc-testnet-deployment.json)
+proves bytecode and deployment only; it does not promote the Arc sponsor claim
+until a real task settlement is attached.
 
 ## Why this repository is the ETHOnline entry point
 
@@ -142,6 +146,10 @@ verification, blocking, freezing and recovery. Its YieldScout query uses
 seller outcome history and aggregate release/refund data as a decision input.
 The checked-in address remains a visible placeholder until the real Arc
 deployment is complete.
+
+The checked-in Subgraph manifest now points to the real Arc Testnet deployment
+at block `60909613`. It still requires a Studio version deployment and a
+successful query before The Graph can be labelled `LIVE_EXTERNAL_DATA`.
 
 ## Privy read-only authorization preflight
 

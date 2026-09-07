@@ -10,6 +10,7 @@ const requiredFiles = [
   "docs/scoring-map.md",
   "docs/ethonline-submission-checklist.md",
   "evidence/ethonline-manifest.json",
+  "evidence/arc-testnet-deployment.json",
   "site/index.html",
   "docs/browser-evidence.md",
   "src/ethonline/workflow.ts",

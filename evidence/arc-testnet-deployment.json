@@ -1,0 +1,20 @@
+{
+  "evidenceVersion": "1",
+  "evidenceClass": "LIVE_TESTNET",
+  "scope": "CONTRACT_DEPLOYMENT_ONLY",
+  "network": "Arc Testnet",
+  "chainId": 5042002,
+  "contract": "PolicyEscrowERC20",
+  "address": "0x85b6df0684529fFAB07C6B62eDB6F04a3eC4E67d",
+  "settlementToken": "0x3600000000000000000000000000000000000000",
+  "deployer": "0x56145F004254C338EA19Da6860f5c18C45c145dD",
+  "deploymentTx": "0x2d3cded3c01b9d730409f0a6ffdbad35f44581e040f76c5e9e64228463e5e166",
+  "startBlock": 60909613,
+  "blockHash": "0xc2f8e1158904d71588c7aef03a6cc49149d4ab30a37cda5a5db0f2a33ca58957",
+  "receiptStatus": 1,
+  "gasUsed": "1484764",
+  "runtimeCodeHash": "0x691496e8e031d4ad2068e443752e9fc775309dd05823f27f766870c8cdfb6861",
+  "explorer": "https://testnet.arcscan.app/tx/0x2d3cded3c01b9d730409f0a6ffdbad35f44581e040f76c5e9e64228463e5e166",
+  "deployedAt": "2026-09-07T12:44:22.616Z",
+  "limitation": "This proves the Arc Testnet contract deployment only. Arc remains DESIGN in the sponsor manifest until a real USDC task is created, submitted and independently verified."
+}

@@ -8,10 +8,9 @@ dataSources:
     name: PolicyEscrowERC20
     network: arc-testnet
     source:
-      # Replaced with the public deployment address before Studio deployment.
-      address: "0x0000000000000000000000000000000000000001"
+      address: "0x85b6df0684529fFAB07C6B62eDB6F04a3eC4E67d"
       abi: PolicyEscrowERC20
-      startBlock: 0
+      startBlock: 60909613
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.9
