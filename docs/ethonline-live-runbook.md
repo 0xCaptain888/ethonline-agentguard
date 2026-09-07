@@ -22,27 +22,27 @@ local `.env`; never send it through the repository or browser Demo.
 
 ## 1. Arc / Circle
 
-1. Fund a disposable Arc Testnet wallet with gas and test USDC.
-2. Set `ARC_RPC_URL`, `ARC_CHAIN_ID` and `ARC_USDC_ADDRESS` locally.
-3. Deploy `PolicyEscrowERC20.sol` using the deploy script and save the public
-   contract address.
-4. Approve USDC, create one named buyer/seller task, submit the result and run
-   independent verification.
-5. Put the create/submit/verify transaction hashes plus the receipt hash into
-   `evidence/ethonline-manifest.json` and change Arc to `LIVE_TESTNET`.
+Completed on Arc Testnet, chain `5042002`:
+
+1. `PolicyEscrowERC20` deployed at `0x85b6…E67d`.
+2. A bootstrap 1 USDC task seeded YieldScout seller history.
+3. A second 1 USDC task was created from live Graph history.
+4. Seller submission and independent verification released escrow.
+5. Public proof is stored in `evidence/arc-testnet-graph-driven-task.json` and
+   Arc is marked `LIVE_TESTNET`.
 
 ## 2. The Graph
 
-1. A Studio slug and deploy key are not a query endpoint. Deploy or publish the
-   Subgraph, then set its actual `GRAPH_SUBGRAPH_URL` and, if required,
-   `GRAPH_API_KEY`.
-2. Run `npm run ethonline:graph:check` and retain the response provenance.
-3. Pass the response into YieldScout so the recommendation is derived from
-   the live data, not from a copied fixture.
-4. Include endpoint, query, observed timestamp and the deterministic source
-   hash in the task receipt.
-5. Change The Graph to `LIVE_EXTERNAL_DATA` only after the response can be
-   replayed or independently inspected.
+Completed with Studio version `v0.1.0`:
+
+1. The custom Subgraph indexes the Arc escrow from block `60909613`.
+2. The live query reported the bootstrap seller task as VERIFIED.
+3. YieldScout converted that history into a 100% verified rate and risk score
+   `0`; the policy returned `ALLOW`.
+4. The observation hash `0x4f02…7b68` and policy decision hash were bound into
+   the second task intent.
+5. The Subgraph subsequently indexed both tasks as VERIFIED with no indexing
+   errors; The Graph is marked `LIVE_EXTERNAL_DATA`.
 
 ## 3. Privy
 
@@ -59,6 +59,5 @@ local `.env`; never send it through the repository or browser Demo.
 
 ## Evidence rule
 
-If any sponsor step is unavailable, keep it `DESIGN` and show the blocker in
-the Demo. A clearly labelled partial build scores better than an unverifiable
-live claim.
+Privy is the remaining sponsor step and stays `DESIGN`. A clearly labelled
+partial integration scores better than an unverifiable live claim.

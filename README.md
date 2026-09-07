@@ -45,17 +45,17 @@ default. Every decision is bound to hashes that a judge can recompute.
 The deterministic orchestration path is implemented in
 [`src/ethonline/workflow.ts`](src/ethonline/workflow.ts). It is the narrow
 join between the Graph observation, policy decision, Privy authorization
-boundary, seller result, independent verifier and receipt. The path has no
-side effects: it is deliberately safe to replay during judging, while Arc
-settlement and live sponsor credentials remain separate adapters until public
-testnet evidence is available.
+boundary, seller result, independent verifier and receipt. The browser replay
+has no side effects and is safe for judging. The repository also contains a
+real Arc Testnet runner whose Graph observation and policy decision are bound
+into the on-chain task intent before USDC settlement.
 
 ## ETHOnline sponsor fit
 
 | Partner | Load-bearing role | Status |
 | --- | --- | --- |
-| Arc / Circle | USDC escrow and conditional Agent-to-Agent settlement | Contract deployed on Arc Testnet; live task settlement pending |
-| The Graph | Live indexed data drives YieldScout's decision and receipt | Read-only adapter ready; provider configuration pending |
+| Arc / Circle | USDC escrow and conditional Agent-to-Agent settlement | `LIVE_TESTNET` · two 1 USDC tasks settled as VERIFIED |
+| The Graph | Live indexed data drives YieldScout's decision and receipt | `LIVE_EXTERNAL_DATA` · custom Subgraph indexed both Arc tasks |
 | Privy | Organization wallet and policy/signer/intent control | Configuration boundary ready; SDK flow pending |
 | Bazantic | Optional fallback: x402/MPP gateway and reusable Recipe | Not selected unless Privy onboarding blocks us |
 
@@ -89,20 +89,33 @@ scope. No pre-existing Monad transaction is presented as Arc evidence.
 | Policy engine and independent verification | Working and tested on the Monad foundation | `LIVE_TESTNET` (Monad foundation) |
 | VERIFIED / BLOCKED / FROZEN state model | Working and tested | `LIVE_TESTNET` / `SIMULATION` where explicitly marked |
 | ETHOnline workflow orchestrator | Deterministic end-to-end join with four regression cases | `SIMULATION` |
-| The Graph adapter | Read-only adapter with deterministic evidence hash | `DESIGN` until a live provider is configured |
-| Arc task-index Subgraph | Schema, ABI and 11 event handlers compile for `arc-testnet` | `DESIGN` until contract address and Studio deployment exist |
-| Arc escrow deployment | Contract `0x85b6…E67d` deployed at block `60909613` | `LIVE_TESTNET` deployment evidence only |
-| Arc USDC task settlement | Contract available; approve/create/submit/verify pending | `DESIGN` |
+| The Graph adapter | Live Studio query with deterministic provenance hash | `LIVE_EXTERNAL_DATA` |
+| Arc task-index Subgraph | Version `v0.1.0`, 11 event handlers, 2 tasks / 2 VERIFIED, no indexing errors | `LIVE_EXTERNAL_DATA` |
+| Arc escrow deployment | Contract `0x85b6…E67d` deployed at block `60909613` | `LIVE_TESTNET` |
+| Arc USDC task settlement | Graph-informed approve/create/submit/verify/release complete | `LIVE_TESTNET` |
 | Privy wallet control | Not yet connected | `DESIGN` |
-| ETHOnline browser demo | In progress | `DESIGN` |
+| ETHOnline browser demo | Live Arc and Graph evidence plus interactive failure-state replay | `LIVE_TESTNET` + `SIMULATION` |
 
 The machine-readable source of truth for these labels is
 [`evidence/ethonline-manifest.json`](evidence/ethonline-manifest.json). Run
 `npm run ethonline:manifest:verify` before publishing a claim; the check fails
 if a `DESIGN` sponsor entry contains a contract, transaction or evidence hash.
-The separate [Arc deployment receipt](evidence/arc-testnet-deployment.json)
-proves bytecode and deployment only; it does not promote the Arc sponsor claim
-until a real task settlement is attached.
+The [Graph-driven Arc task receipt](evidence/arc-testnet-graph-driven-task.json)
+is the strongest proof: a live Subgraph observation scored the seller, the
+policy allowed a bounded 1 USDC task, and an independent verifier released the
+escrow. The earlier [bootstrap task](evidence/arc-testnet-bootstrap-task.json)
+seeded the seller history consumed by that decision.
+
+### Primary live proof
+
+- Arc contract: [`0x85b6…E67d`](https://testnet.arcscan.app/address/0x85b6df0684529fFAB07C6B62eDB6F04a3eC4E67d)
+- Graph-driven task ID: `33969503313480512185595943498318405198659480166392856492294338993101944224568`
+- Create: [`0x0f9b…67a3`](https://testnet.arcscan.app/tx/0x0f9b2f2a1fe01fb2c235ba885c7a7d9902bcdd7329a271889b0db6c95f3f67a3)
+- Submit: [`0x2c59…df1`](https://testnet.arcscan.app/tx/0x2c599f4985dc42f8dea76ebe9ef777dca103b50236c2a736d87ac44fb5f07df1)
+- VERIFIED release: [`0x328a…efff`](https://testnet.arcscan.app/tx/0x328a7d5169ff26ffbfa3cf811555c651920790de452ea0657cda7ffb7139efff)
+- Task evidence hash: `0xf6bae0580506cc121423ec5394c43021f65b83ef3675b6152b5a19fda2381a5b`
+- Task-bound Graph hash: `0x4f02ed60151fea39edb4d3b45aeef14b24f23fc17dcd5c99ad2deb99eec57b68`
+- Subgraph: [AgentGuard Arc task index v0.1.0](https://thegraph.com/studio/subgraph/0-x-captain-888)
 
 ## Why this repository is the ETHOnline entry point
 
@@ -144,12 +157,10 @@ The custom [`subgraph/`](subgraph/) indexes the Arc escrow lifecycle itself:
 agent registration, policy and verifier bindings, task creation, submission,
 verification, blocking, freezing and recovery. Its YieldScout query uses
 seller outcome history and aggregate release/refund data as a decision input.
-The checked-in address remains a visible placeholder until the real Arc
-deployment is complete.
-
-The checked-in Subgraph manifest now points to the real Arc Testnet deployment
-at block `60909613`. It still requires a Studio version deployment and a
-successful query before The Graph can be labelled `LIVE_EXTERNAL_DATA`.
+The checked-in Subgraph manifest points to the live Arc Testnet deployment at
+block `60909613`. Studio version `v0.1.0` is deployed at IPFS deployment
+`QmWk5NVbZsQcZnaZsQhczJXm6HcoZNpGvzGKGdyRhJL8Sy`. It indexed both real tasks
+as `VERIFIED`, with 2 USDC escrowed and 2 USDC released and no indexing errors.
 
 ## Privy read-only authorization preflight
 
@@ -173,9 +184,9 @@ Read [SECURITY.md](SECURITY.md) and [dependency security notes](docs/dependency-
 
 ## Demo and submission artifacts
 
-The ETHOnline demo will be a separate browser surface with:
+The ETHOnline demo is a separate browser surface with:
 
-1. One live or explicitly labelled testnet `VERIFIED` task.
+1. One live Arc Testnet `VERIFIED` task driven by real Graph data.
 2. One `BLOCKED` policy decision before any write.
 3. One `FROZEN` bad-output path with recovery boundary shown.
 4. Arc transaction and receipt evidence visible to the judge.
@@ -183,8 +194,8 @@ The ETHOnline demo will be a separate browser surface with:
 
 The final submission will include a 2–4 minute video, public source, sponsor
 feedback documents, an architecture diagram and a machine-readable evidence
-manifest. Until those items are complete, this repository is **not** presented
-as a finished ETHOnline submission.
+manifest. The remaining sponsor gap is Privy authorization of an Arc write;
+it stays explicitly labelled `DESIGN` until that proof exists.
 
 ## Five-minute judge path
 

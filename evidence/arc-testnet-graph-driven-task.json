@@ -1,0 +1,130 @@
+{
+  "evidenceVersion": "1",
+  "evidenceClass": "LIVE_TESTNET+LIVE_EXTERNAL_DATA",
+  "network": "Arc Testnet",
+  "chainId": "5042002",
+  "contract": "0x85b6df0684529fFAB07C6B62eDB6F04a3eC4E67d",
+  "settlementToken": "0x3600000000000000000000000000000000000000",
+  "buyer": "0x56145F004254C338EA19Da6860f5c18C45c145dD",
+  "seller": "0xC8DAe1757EE08e23E4ead8F9099C01855a749a59",
+  "verifier": "0xae6034823d7Ff505C87a44e33D58677E1eDa740D",
+  "taskId": "33969503313480512185595943498318405198659480166392856492294338993101944224568",
+  "state": "VERIFIED",
+  "value": "1000000",
+  "graphObservation": {
+    "source": "The Graph",
+    "endpoint": "https://api.studio.thegraph.com/query/1758863/0-x-captain-888/v0.1.0",
+    "fetchedAt": "2026-09-07T13:07:50.452Z",
+    "query": "query YieldScoutSellerHistory($seller: Bytes!) {\n    _meta { block { number hash } deployment hasIndexingErrors }\n    protocolStats(id: \"global\") { tasks verified blocked frozen totalEscrowed totalReleased totalRefunded updatedAt }\n    tasks(first: 20, orderBy: updatedAt, orderDirection: desc, where: { seller: $seller }) {\n      taskId state value policyHash resultHash createdAt updatedAt createTx settlementTx\n    }\n  }",
+    "variables": {
+      "seller": "0xc8dae1757ee08e23e4ead8f9099c01855a749a59"
+    },
+    "data": {
+      "protocolStats": {
+        "tasks": 1,
+        "verified": 1,
+        "blocked": 0,
+        "frozen": 0,
+        "totalEscrowed": "1000000",
+        "totalReleased": "1000000",
+        "totalRefunded": "0",
+        "updatedAt": "1788786011"
+      },
+      "tasks": [
+        {
+          "taskId": "110573160350315721270748341960979787374961600451550033674039520231831690231174",
+          "state": "VERIFIED",
+          "value": "1000000",
+          "policyHash": "0xe374d32a9b20b9a4e3df957de80bc170ea6c7e18ebef39129073d0045d5f90bd",
+          "resultHash": "0x124415ea4819862f771cf7200034ca3eccf29c7a54996bb45c2cad3b0cc62169",
+          "createdAt": "1788786006",
+          "updatedAt": "1788786011",
+          "createTx": "0x3ae6a73165e6133641ba4dd8629f5d4a85039358f6fbc97f10e57ffd63d1fcb1",
+          "settlementTx": "0x70889053707ee7c5fc8181737ac00366d0f9007b65276c69fed98feca018f957"
+        }
+      ],
+      "_meta": {
+        "block": {
+          "number": 60912312,
+          "hash": "0xe90f283d565c3e4e8e0a8279daf5b37763b8eca404c36389453d8db2a2b232fa"
+        },
+        "deployment": "QmWk5NVbZsQcZnaZsQhczJXm6HcoZNpGvzGKGdyRhJL8Sy",
+        "hasIndexingErrors": false
+      }
+    },
+    "evidenceHash": "0x4f02ed60151fea39edb4d3b45aeef14b24f23fc17dcd5c99ad2deb99eec57b68"
+  },
+  "sellerScore": {
+    "historyCount": 1,
+    "verified": 1,
+    "failed": 0,
+    "verifiedRate": 1,
+    "riskScore": 0
+  },
+  "policy": {
+    "decision": "ALLOW",
+    "reasons": [],
+    "checks": {
+      "perTaskBudget": true,
+      "dailyBudget": true,
+      "sellerPermission": true,
+      "riskLimit": true,
+      "confirmation": true
+    },
+    "policyHash": "0xa8518a673c74c055dcc2719d720f559e89e2cc8520a0cd1cc9e427983b30f5e7",
+    "decisionHash": "0x61fbae73a3c63fc16032101831336199df0aac28eb0b51661a261865d998732f"
+  },
+  "intent": {
+    "task": "YieldScout seller selection from live Arc task history",
+    "buyerAgent": "TreasuryPlanner",
+    "sellerAgent": "YieldScout",
+    "seller": "0xC8DAe1757EE08e23E4ead8F9099C01855a749a59",
+    "valueUSDC": "1.000000",
+    "graphEvidenceHash": "0x4f02ed60151fea39edb4d3b45aeef14b24f23fc17dcd5c99ad2deb99eec57b68",
+    "graphVerifiedRate": 1,
+    "graphHistoryCount": 1,
+    "policyDecisionHash": "0x61fbae73a3c63fc16032101831336199df0aac28eb0b51661a261865d998732f"
+  },
+  "intentHash": "0xc43338abb2021bba058c46f566b688070834cfcfa90ad98357333aa454b762cd",
+  "sellerResult": {
+    "recommendation": "hire",
+    "seller": "0xC8DAe1757EE08e23E4ead8F9099C01855a749a59",
+    "verifiedRate": 1,
+    "riskScore": 0,
+    "graphEvidenceHash": "0x4f02ed60151fea39edb4d3b45aeef14b24f23fc17dcd5c99ad2deb99eec57b68",
+    "taskId": "33969503313480512185595943498318405198659480166392856492294338993101944224568"
+  },
+  "resultHash": "0x7d87925597dae72e87522a4a14352b9217e62308e4784405c24e8b22913431be",
+  "independentVerification": {
+    "indexingHealthy": true,
+    "sellerHistoryPresent": true,
+    "verifiedRateAccepted": true,
+    "policyAllowed": true,
+    "graphHashBound": true,
+    "sellerBound": true
+  },
+  "transactions": {
+    "approve": {
+      "hash": "0x74c8e15dec1d570db4c326b403a4470e8c1d86b6f7b1e40f56547a8d47b66fb5",
+      "blockNumber": 60912324,
+      "explorer": "https://testnet.arcscan.app/tx/0x74c8e15dec1d570db4c326b403a4470e8c1d86b6f7b1e40f56547a8d47b66fb5"
+    },
+    "createTask": {
+      "hash": "0x0f9b2f2a1fe01fb2c235ba885c7a7d9902bcdd7329a271889b0db6c95f3f67a3",
+      "blockNumber": 60912331,
+      "explorer": "https://testnet.arcscan.app/tx/0x0f9b2f2a1fe01fb2c235ba885c7a7d9902bcdd7329a271889b0db6c95f3f67a3"
+    },
+    "submitResult": {
+      "hash": "0x2c599f4985dc42f8dea76ebe9ef777dca103b50236c2a736d87ac44fb5f07df1",
+      "blockNumber": 60912336,
+      "explorer": "https://testnet.arcscan.app/tx/0x2c599f4985dc42f8dea76ebe9ef777dca103b50236c2a736d87ac44fb5f07df1"
+    },
+    "verifyAndRelease": {
+      "hash": "0x328a7d5169ff26ffbfa3cf811555c651920790de452ea0657cda7ffb7139efff",
+      "blockNumber": 60912341,
+      "explorer": "https://testnet.arcscan.app/tx/0x328a7d5169ff26ffbfa3cf811555c651920790de452ea0657cda7ffb7139efff"
+    }
+  },
+  "generatedAt": "2026-09-07T13:08:02.571Z",
+  "evidenceHash": "0xf6bae0580506cc121423ec5394c43021f65b83ef3675b6152b5a19fda2381a5b"
+}

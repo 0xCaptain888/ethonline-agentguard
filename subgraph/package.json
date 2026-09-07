@@ -5,7 +5,7 @@
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy:studio": "graph deploy --studio 0-x-captain-888"
+    "deploy:studio": "graph deploy 0-x-captain-888 subgraph.yaml --version-label v0.1.0"
   },
   "dependencies": {
     "@graphprotocol/graph-ts": "0.38.2"

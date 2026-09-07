@@ -1,0 +1,78 @@
+{
+  "evidenceVersion": "1",
+  "evidenceClass": "LIVE_TESTNET",
+  "network": "Arc Testnet",
+  "chainId": "5042002",
+  "contract": "0x85b6df0684529fFAB07C6B62eDB6F04a3eC4E67d",
+  "settlementToken": "0x3600000000000000000000000000000000000000",
+  "buyer": "0x56145F004254C338EA19Da6860f5c18C45c145dD",
+  "seller": "0xC8DAe1757EE08e23E4ead8F9099C01855a749a59",
+  "verifier": "0xae6034823d7Ff505C87a44e33D58677E1eDa740D",
+  "taskId": "110573160350315721270748341960979787374961600451550033674039520231831690231174",
+  "state": "VERIFIED",
+  "value": "1000000",
+  "intent": {
+    "task": "Bootstrap YieldScout seller reliability history",
+    "buyerAgent": "TreasuryPlanner",
+    "sellerAgent": "YieldScout",
+    "valueUSDC": "1.000000",
+    "evidenceClass": "LIVE_TESTNET"
+  },
+  "intentHash": "0x5c1eeb77766a941a5180b21f2e78685ede0ad70e5d85e1650ebe5c1e22953f3e",
+  "policyHash": "0xe374d32a9b20b9a4e3df957de80bc170ea6c7e18ebef39129073d0045d5f90bd",
+  "sellerResult": {
+    "recommendation": "bootstrap-complete",
+    "source": "Arc Testnet",
+    "taskId": "110573160350315721270748341960979787374961600451550033674039520231831690231174"
+  },
+  "resultHash": "0x124415ea4819862f771cf7200034ca3eccf29c7a54996bb45c2cad3b0cc62169",
+  "transactions": {
+    "fundSeller": {
+      "hash": "0xe575b75f4abd113f57669b221c5d159bc947e93e23935d35cc7024d6416db641",
+      "blockNumber": 60911405,
+      "explorer": "https://testnet.arcscan.app/tx/0xe575b75f4abd113f57669b221c5d159bc947e93e23935d35cc7024d6416db641"
+    },
+    "registerBuyer": {
+      "hash": "0xf361914c866b9ab764eed24ebaf0df483b9f8a43e522731c47c1d4dff6f7640b",
+      "blockNumber": 60911408,
+      "explorer": "https://testnet.arcscan.app/tx/0xf361914c866b9ab764eed24ebaf0df483b9f8a43e522731c47c1d4dff6f7640b"
+    },
+    "registerSeller": {
+      "hash": "0x7f521e427ea53a5d617faeec2b7993f695a83cdaff2cc79882249f47aadd01ae",
+      "blockNumber": 60911413,
+      "explorer": "https://testnet.arcscan.app/tx/0x7f521e427ea53a5d617faeec2b7993f695a83cdaff2cc79882249f47aadd01ae"
+    },
+    "setPolicy": {
+      "hash": "0x6fdcb2311266079f569c64fc84a34a8d88d2944d7c03ab1f44c1eef17e86a072",
+      "blockNumber": 60911418,
+      "explorer": "https://testnet.arcscan.app/tx/0x6fdcb2311266079f569c64fc84a34a8d88d2944d7c03ab1f44c1eef17e86a072"
+    },
+    "setVerifier": {
+      "hash": "0x37c9fd9d146d3f23f3ada57982e8a074ed322a71cdf4b70877124a478a0f36cf",
+      "blockNumber": 60911422,
+      "explorer": "https://testnet.arcscan.app/tx/0x37c9fd9d146d3f23f3ada57982e8a074ed322a71cdf4b70877124a478a0f36cf"
+    },
+    "approve": {
+      "hash": "0x829bb3b143a28736eb5fdb2fd9240afa79f5fd169bdb35d6d8ab085dde63251b",
+      "blockNumber": 60911426,
+      "explorer": "https://testnet.arcscan.app/tx/0x829bb3b143a28736eb5fdb2fd9240afa79f5fd169bdb35d6d8ab085dde63251b"
+    },
+    "createTask": {
+      "hash": "0x3ae6a73165e6133641ba4dd8629f5d4a85039358f6fbc97f10e57ffd63d1fcb1",
+      "blockNumber": 60911430,
+      "explorer": "https://testnet.arcscan.app/tx/0x3ae6a73165e6133641ba4dd8629f5d4a85039358f6fbc97f10e57ffd63d1fcb1"
+    },
+    "submitResult": {
+      "hash": "0xba1a6ad8bba0665c951d9b68c9f7a52a7e6040cbc880d8b57337dc6f3af03d14",
+      "blockNumber": 60911435,
+      "explorer": "https://testnet.arcscan.app/tx/0xba1a6ad8bba0665c951d9b68c9f7a52a7e6040cbc880d8b57337dc6f3af03d14"
+    },
+    "verifyAndRelease": {
+      "hash": "0x70889053707ee7c5fc8181737ac00366d0f9007b65276c69fed98feca018f957",
+      "blockNumber": 60911439,
+      "explorer": "https://testnet.arcscan.app/tx/0x70889053707ee7c5fc8181737ac00366d0f9007b65276c69fed98feca018f957"
+    }
+  },
+  "generatedAt": "2026-09-07T13:00:12.504Z",
+  "evidenceHash": "0x24752de4b6acce7ecb3ad7c7ecdacc3d5249b03432b190a4ea5d2a4db28bb073"
+}

@@ -1,6 +1,7 @@
 # Privy feedback
 
-Status: pending live wallet integration.
+Status: `DESIGN`; public wallet identifiers are configured, but no Privy-
+authorized Arc write is claimed.
 
 Record after testing:
 

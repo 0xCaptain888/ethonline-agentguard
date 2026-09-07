@@ -11,6 +11,8 @@ const requiredFiles = [
   "docs/ethonline-submission-checklist.md",
   "evidence/ethonline-manifest.json",
   "evidence/arc-testnet-deployment.json",
+  "evidence/arc-testnet-bootstrap-task.json",
+  "evidence/arc-testnet-graph-driven-task.json",
   "site/index.html",
   "docs/browser-evidence.md",
   "src/ethonline/workflow.ts",

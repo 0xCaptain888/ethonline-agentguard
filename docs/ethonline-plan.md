@@ -35,9 +35,9 @@ testnet service is unavailable; it will be labelled `SIMULATION`.
 
 ## New work required
 
-- Arc testnet adapter and USDC escrow flow.
-- Graph live-data adapter (Subgraph MCP or hosted Subgraph) and provenance
-  fields in `YieldScout` receipts.
+- [x] Arc Testnet adapter and two real USDC escrow flows.
+- [x] Graph live-data adapter, custom Subgraph and provenance fields in the
+  Graph-driven YieldScout receipt.
 - Privy organization-wallet integration and a live policy/signer/intent flow.
 - Optional Bazantic gateway/Recipe integration and a before/after agent run.
 - Public architecture diagram, partner-specific integration notes, and
@@ -46,11 +46,11 @@ testnet service is unavailable; it will be labelled `SIMULATION`.
 
 ## Eligibility checklist
 
-- [ ] Public repo and dated commits during ETHOnline.
+- [x] Public repo and dated commits during ETHOnline.
 - [ ] Hacker Dashboard confirms the selected Continuity track for every named
       partner; partner-specific eligibility is not inferred from a headline.
-- [ ] Arc integration is load-bearing and uses USDC.
-- [ ] The Graph data is live, not mocked or static.
+- [x] Arc integration is load-bearing and uses test USDC.
+- [x] The Graph data is live, not mocked or static.
 - [ ] Privy account, wallet control, and repeatable workflow recorded.
 - [ ] Required 2–4 minute 720p demo video with a human voice (no AI voiceover).
 - [ ] Submission names exactly these three partner families and explains each

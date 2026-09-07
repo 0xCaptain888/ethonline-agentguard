@@ -23,22 +23,27 @@
     {
       "name": "Arc / Circle",
       "role": "USDC escrow and conditional settlement",
-      "status": "DESIGN",
-      "chain": null,
-      "contract": null,
-      "transactions": [],
-      "evidenceHash": null,
-      "nextProof": "Deploy PolicyEscrowERC20 to Arc testnet and publish create, submit and verify receipts."
+      "status": "LIVE_TESTNET",
+      "chain": "Arc Testnet (chain 5042002)",
+      "contract": "0x85b6df0684529fFAB07C6B62eDB6F04a3eC4E67d",
+      "transactions": [
+        "0x74c8e15dec1d570db4c326b403a4470e8c1d86b6f7b1e40f56547a8d47b66fb5",
+        "0x0f9b2f2a1fe01fb2c235ba885c7a7d9902bcdd7329a271889b0db6c95f3f67a3",
+        "0x2c599f4985dc42f8dea76ebe9ef777dca103b50236c2a736d87ac44fb5f07df1",
+        "0x328a7d5169ff26ffbfa3cf811555c651920790de452ea0657cda7ffb7139efff"
+      ],
+      "evidenceHash": "0xf6bae0580506cc121423ec5394c43021f65b83ef3675b6152b5a19fda2381a5b",
+      "nextProof": "Complete: approve, create, submit and independently verified release are public on Arc Testnet."
     },
     {
       "name": "The Graph",
       "role": "Live indexed data as a decision input",
-      "status": "DESIGN",
-      "chain": null,
-      "contract": null,
+      "status": "LIVE_EXTERNAL_DATA",
+      "chain": "Arc Testnet indexed by The Graph Studio",
+      "contract": "0x85b6df0684529fFAB07C6B62eDB6F04a3eC4E67d",
       "transactions": [],
-      "evidenceHash": null,
-      "nextProof": "Configure GRAPH_SUBGRAPH_URL, run ethonline:graph:check, and attach the response hash to a task receipt."
+      "evidenceHash": "0x4f02ed60151fea39edb4d3b45aeef14b24f23fc17dcd5c99ad2deb99eec57b68",
+      "nextProof": "Complete: live seller history produced the task-bound Graph evidence hash and the Subgraph indexed both VERIFIED settlements without errors."
     },
     {
       "name": "Privy",
@@ -52,7 +57,7 @@
     }
   ],
   "outcomes": {
-    "VERIFIED": { "status": "SIMULATION", "evidence": "scripts/ethonline-demo.ts" },
+    "VERIFIED": { "status": "LIVE_TESTNET", "evidence": "evidence/arc-testnet-graph-driven-task.json" },
     "BLOCKED": { "status": "SIMULATION", "evidence": "scripts/ethonline-demo.ts" },
     "FROZEN": { "status": "SIMULATION", "evidence": "scripts/ethonline-demo.ts" }
   },
