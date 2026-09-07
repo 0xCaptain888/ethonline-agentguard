@@ -66,6 +66,31 @@
     <div id="result"></div>
   </section>
 
+  <section class="panel" id="judgeReplay">
+    <h2>Judge replay: run the complete local workflow</h2>
+    <p>This browser replay mirrors the same deterministic boundaries as
+      <code>src/ethonline/workflow.ts</code>. It never connects a wallet or
+      moves funds; the point is to let a reviewer operate the decision path,
+      not just read about it.</p>
+    <div class="grid">
+      <label>Seller result
+        <select id="sellerQuality" style="width:100%;margin-top:6px;padding:10px;border-radius:8px;border:1px solid var(--line);background:#080b14;color:var(--text)">
+          <option value="valid">Valid, verifier checks pass</option>
+          <option value="bad">Malformed, verifier rejects</option>
+        </select>
+      </label>
+      <label>Privy authorization
+        <select id="authorization" style="width:100%;margin-top:6px;padding:10px;border-radius:8px;border:1px solid var(--line);background:#080b14;color:var(--text)">
+          <option value="approved">Approved</option>
+          <option value="denied">Denied</option>
+        </select>
+      </label>
+      <div><span class="tag">WORKFLOW STATE</span><div id="workflowState" class="tag verified" style="font-size:22px;margin-top:10px">VERIFIED</div></div>
+    </div>
+    <div id="workflowTrace" class="mono" style="margin-top:16px"></div>
+    <div id="workflowEvidence" style="margin-top:12px"></div>
+  </section>
+
   <section class="panel">
     <h2>Evidence status</h2>
     <div class="state-row"><span><b>Arc USDC transaction</b><small>Awaiting configured testnet contract and wallet</small></span><span class="pending">DESIGN</span></div>
@@ -116,6 +141,39 @@
 </main>
 <script>
 (() => { const ids=['value','budget','risk','permission','confirmation']; const out=document.getElementById('result'); function render(){ const value=Number(document.getElementById('value').value), budget=Number(document.getElementById('budget').value), risk=Number(document.getElementById('risk').value); const checks=[['Budget',value>0&&value<=budget],['Permission',document.getElementById('permission').checked],['Risk',risk<=40],['Confirmation',document.getElementById('confirmation').checked]]; const failed=checks.filter(([,ok])=>!ok).map(([name])=>name); const ok=failed.length===0; out.innerHTML='<b class="'+(ok?'verified':'blocked')+'">'+(ok?'ALLOW':'BLOCKED')+'</b> · policy decision before execution<br><small>'+checks.map(([name,pass])=>(pass?'✓ ':'✕ ')+name).join(' · ')+(failed.length?'<br>Reason codes: '+failed.map(n=>n.toLowerCase()+'_check_failed').join(', '):'')+'</small>'; } ids.forEach(id=>document.getElementById(id).addEventListener('input',render)); render(); })();
+(() => {
+  const quality = document.getElementById('sellerQuality');
+  const authorization = document.getElementById('authorization');
+  const state = document.getElementById('workflowState');
+  const trace = document.getElementById('workflowTrace');
+  const evidence = document.getElementById('workflowEvidence');
+  function render() {
+    const value = Number(document.getElementById('value').value);
+    const budget = Number(document.getElementById('budget').value);
+    const risk = Number(document.getElementById('risk').value);
+    const permitted = document.getElementById('permission').checked;
+    const confirmed = document.getElementById('confirmation').checked;
+    const policyOk = value > 0 && value <= budget && permitted && risk <= 40 && confirmed;
+    const authOk = authorization.value === 'approved';
+    const finalState = !policyOk || !authOk ? 'BLOCKED' : quality.value === 'bad' ? 'FROZEN' : 'VERIFIED';
+    const className = finalState.toLowerCase();
+    state.textContent = finalState;
+    state.className = 'tag ' + className;
+    const steps = [
+      ['1', 'The Graph observation', 'hashed input'],
+      ['2', 'Policy engine', policyOk ? 'ALLOW' : 'BLOCK'],
+      ['3', 'Privy boundary', authOk ? 'approved' : 'denied'],
+      ['4', 'Seller Agent', finalState === 'BLOCKED' ? 'not called' : 'result returned'],
+      ['5', 'Independent verifier', finalState === 'VERIFIED' ? 'passed' : finalState === 'FROZEN' ? 'rejected' : 'not called'],
+      ['6', 'Receipt', finalState + ' · release ' + (finalState === 'VERIFIED' ? 'eligible' : 'held')],
+    ];
+    trace.innerHTML = steps.map(([n, name, result]) => n + '  ' + name + ' → ' + result).join('<br>');
+    evidence.innerHTML = '<span class="pill"><span class="dot" style="background:var(--' + (finalState === 'VERIFIED' ? 'green' : finalState === 'BLOCKED' ? 'amber' : 'red') + ')"></span>SIMULATION · browser replay only</span>' +
+      '<div style="margin-top:10px;color:var(--muted)">' + (finalState === 'VERIFIED' ? 'Independent verification passed; payment would become eligible for release.' : finalState === 'BLOCKED' ? 'No seller execution and no payment write occurs.' : 'Seller executed, but the failed result remains isolated for recovery.') + '</div>';
+  }
+  [quality, authorization, document.getElementById('value'), document.getElementById('budget'), document.getElementById('risk'), document.getElementById('permission'), document.getElementById('confirmation')].forEach((element) => element.addEventListener('input', render));
+  render();
+})();
 (() => { const button=document.getElementById('copyReplay'); const status=document.getElementById('copyStatus'); button.addEventListener('click',async()=>{ try { await navigator.clipboard.writeText(document.getElementById('replay').textContent); status.textContent='Copied. This command is read-only with respect to sponsor wallets.'; } catch { status.textContent='Copy unavailable; select the command above.'; } }); })();
 (() => {
   const badge=document.getElementById('manifestBadge');

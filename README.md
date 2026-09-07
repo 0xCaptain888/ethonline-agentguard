@@ -42,6 +42,14 @@ grade its own work. A policy violation is blocked before execution. A bad
 post-execution result is isolated as `FROZEN`; funds are not released by
 default. Every decision is bound to hashes that a judge can recompute.
 
+The deterministic orchestration path is implemented in
+[`src/ethonline/workflow.ts`](src/ethonline/workflow.ts). It is the narrow
+join between the Graph observation, policy decision, Privy authorization
+boundary, seller result, independent verifier and receipt. The path has no
+side effects: it is deliberately safe to replay during judging, while Arc
+settlement and live sponsor credentials remain separate adapters until public
+testnet evidence is available.
+
 ## ETHOnline sponsor fit
 
 | Partner | Load-bearing role | Status |
@@ -80,6 +88,7 @@ scope. No pre-existing Monad transaction is presented as Arc evidence.
 | --- | --- | --- |
 | Policy engine and independent verification | Working and tested on the Monad foundation | `LIVE_TESTNET` (Monad foundation) |
 | VERIFIED / BLOCKED / FROZEN state model | Working and tested | `LIVE_TESTNET` / `SIMULATION` where explicitly marked |
+| ETHOnline workflow orchestrator | Deterministic end-to-end join with four regression cases | `SIMULATION` |
 | The Graph adapter | Read-only adapter with deterministic evidence hash | `DESIGN` until a live provider is configured |
 | Arc USDC settlement | Not yet deployed | `DESIGN` |
 | Privy wallet control | Not yet connected | `DESIGN` |
@@ -164,6 +173,12 @@ and use the policy playground. The page labels every sponsor surface as
 `DESIGN`, `SIMULATION`, or live evidence until a public proof is attached.
 The [ETHOnline evidence manifest](evidence/ethonline-manifest.json) is the
 judge's single index for chain, provider and receipt proof.
+
+The orchestrator regression suite is in
+[`test/ethonline-workflow.test.ts`](test/ethonline-workflow.test.ts). It proves
+that policy failures short-circuit before verification, failed authorization
+cannot produce a result hash, and a bad seller result becomes `FROZEN` rather
+than eligible for release.
 
 For the final form, use the [submission checklist](docs/ethonline-submission-checklist.md)
 and run `npm run ethonline:submission:check` first.

@@ -7,8 +7,8 @@ command; the story should feel like a product, not a code tour.
 | --- | --- | --- |
 | 0:00–0:18 | Hero + Agent workflow | “Autonomous Agents can spend, but they cannot be allowed to approve their own budget or grade their own work. AgentGuard is the authorization and settlement firewall between intent and money.” |
 | 0:18–0:48 | Task 56 one-click replay | “A MetaMask Agent Wallet registered identity, committed policy, bound an independent verifier and created YieldScout escrow. The seller committed fresh DeFiLlama data; only a matching verifier decision released it.” |
-| 0:48–1:12 | Policy playground: exceed budget | “Change one boundary. The request becomes BLOCKED before the wallet sees a transaction.” |
-| 1:12–1:35 | VERIFIED / BLOCKED / FROZEN / REFUNDED | “Success releases after proof. Policy failure stops early. Bad output freezes funds. Buyer and seller can jointly recover them.” |
+| 0:48–1:12 | Browser judge replay: exceed budget | “Change one boundary. The request becomes BLOCKED before the seller or wallet sees a transaction.” |
+| 1:12–1:35 | Browser judge replay: valid vs malformed seller result | “A valid result becomes VERIFIED only after the independent verifier. A malformed result becomes FROZEN, with release held.” |
 | 1:35–2:05 | V1 benchmark and hotspot | “Twenty-five complete V1 pipelines proved the flow, but concurrent creation exposed a shared global counter. We publish the limitation.” |
 | 2:05–2:30 | Parallel V2 comparison | “V2 derives IDs from per-buyer nonce lanes. Ten complete pipelines across five buyer/seller lanes produced 30 public transactions, with creates, submissions and verifications included concurrently in blocks.” |
 | 2:30–2:48 | MetaMask sponsor section | “MetaMask isolates self-custodial signing; AgentGuard adds task-level authorization, independent verification and Monad settlement.” |
