@@ -74,6 +74,17 @@
     <div class="state-row"><span><b>Reproducible baseline</b><small>Monad foundation tests and evidence remain available</small></span><a href="https://github.com/0xCaptain888/ethonline-agentguard/blob/main/docs/judge-guide.md">Judge guide ↗</a></div>
   </section>
 
+  <section class="panel" id="browserEvidence">
+    <h2>Browser evidence verification</h2>
+    <p>The page loads the same machine-readable manifest committed in the
+      repository and checks its schema, sponsor count, outcome coverage and
+      honesty rules. This is a browser consistency check—not a claim of live
+      sponsor evidence.</p>
+    <div id="manifestBadge" class="pill"><span class="dot"></span>Loading manifest…</div>
+    <div id="manifestResult" style="margin-top:14px"></div>
+    <button class="alt" id="verifyManifest" style="margin-top:12px">Verify browser manifest</button>
+  </section>
+
   <section class="panel">
     <h2>Browser-ready verification matrix</h2>
     <p>Every claim has a visible evidence class. A judge can inspect the same
@@ -106,6 +117,30 @@
 <script>
 (() => { const ids=['value','budget','risk','permission','confirmation']; const out=document.getElementById('result'); function render(){ const value=Number(document.getElementById('value').value), budget=Number(document.getElementById('budget').value), risk=Number(document.getElementById('risk').value); const checks=[['Budget',value>0&&value<=budget],['Permission',document.getElementById('permission').checked],['Risk',risk<=40],['Confirmation',document.getElementById('confirmation').checked]]; const failed=checks.filter(([,ok])=>!ok).map(([name])=>name); const ok=failed.length===0; out.innerHTML='<b class="'+(ok?'verified':'blocked')+'">'+(ok?'ALLOW':'BLOCKED')+'</b> · policy decision before execution<br><small>'+checks.map(([name,pass])=>(pass?'✓ ':'✕ ')+name).join(' · ')+(failed.length?'<br>Reason codes: '+failed.map(n=>n.toLowerCase()+'_check_failed').join(', '):'')+'</small>'; } ids.forEach(id=>document.getElementById(id).addEventListener('input',render)); render(); })();
 (() => { const button=document.getElementById('copyReplay'); const status=document.getElementById('copyStatus'); button.addEventListener('click',async()=>{ try { await navigator.clipboard.writeText(document.getElementById('replay').textContent); status.textContent='Copied. This command is read-only with respect to sponsor wallets.'; } catch { status.textContent='Copy unavailable; select the command above.'; } }); })();
+(() => {
+  const badge=document.getElementById('manifestBadge');
+  const out=document.getElementById('manifestResult');
+  const button=document.getElementById('verifyManifest');
+  let manifest;
+  function render(result, ok){
+    badge.innerHTML='<span class="dot" style="background:'+(ok?'var(--green)':'var(--red)')+'"></span>'+(ok?'Manifest checks passed':'Manifest needs review');
+    out.innerHTML='<div class="mono">'+result.join('<br>')+'</div>';
+  }
+  async function verify(){
+    try {
+      manifest = manifest || await fetch('ethonline-manifest.json',{cache:'no-store'}).then((response)=>{ if(!response.ok) throw new Error('manifest HTTP '+response.status); return response.json(); });
+      const errors=[];
+      if(manifest.manifestVersion!=='1') errors.push('manifestVersion must be 1');
+      if(manifest.submission!=='ETHOnline 2026 Continuity') errors.push('submission label mismatch');
+      if(!Array.isArray(manifest.sponsors)||manifest.sponsors.length!==3) errors.push('exactly three sponsor entries required');
+      (manifest.sponsors||[]).forEach((sponsor)=>{ if(sponsor.status==='DESIGN' && (sponsor.chain!==null||sponsor.contract!==null||sponsor.transactions.length!==0||sponsor.evidenceHash!==null)) errors.push(sponsor.name+': DESIGN entry contains live evidence'); });
+      ['VERIFIED','BLOCKED','FROZEN'].forEach((state)=>{ if(!manifest.outcomes||!manifest.outcomes[state]) errors.push('missing '+state+' outcome'); });
+      const lines=(manifest.sponsors||[]).map((sponsor)=>sponsor.name+' → '+sponsor.status).concat(['VERIFIED → '+manifest.outcomes?.VERIFIED?.status,'BLOCKED → '+manifest.outcomes?.BLOCKED?.status,'FROZEN → '+manifest.outcomes?.FROZEN?.status]);
+      if(errors.length) render(errors.concat(lines),false); else render(['ETHOnline manifest schema: valid'].concat(lines),true);
+    } catch(error){ render(['Manifest unavailable in this deployment.',String(error.message||error)],false); }
+  }
+  button.addEventListener('click',verify); verify();
+})();
 </script>
 </body>
 </html>

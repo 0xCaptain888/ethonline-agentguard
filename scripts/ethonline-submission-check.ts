@@ -11,6 +11,7 @@ const requiredFiles = [
   "docs/ethonline-submission-checklist.md",
   "evidence/ethonline-manifest.json",
   "site/index.html",
+  "docs/browser-evidence.md",
   ".github/workflows/pages.yml",
   ".github/workflows/ci.yml",
   ".github/workflows/codeql.yml"
@@ -35,7 +36,7 @@ async function main() {
   for (const phrase of requiredPhrases) if (!readme.includes(phrase)) throw new Error(`README missing required phrase: ${phrase}`);
 
   const site = await readFile("site/index.html", "utf8");
-  for (const phrase of ["VERIFIED", "BLOCKED", "FROZEN", "Evidence manifest", "Copy judge command"]) {
+  for (const phrase of ["VERIFIED", "BLOCKED", "FROZEN", "Evidence manifest", "Copy judge command", "Browser evidence verification", "ethonline-manifest.json"]) {
     if (!site.includes(phrase)) throw new Error(`Demo missing judge-visible element: ${phrase}`);
   }
 

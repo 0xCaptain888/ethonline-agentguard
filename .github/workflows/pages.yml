@@ -25,6 +25,8 @@ jobs:
       # Pages must be enabled once in Repository Settings → Pages.
       # This workflow intentionally does not mutate repository settings.
       - uses: actions/configure-pages@v5
+      - name: Publish public evidence manifest
+        run: cp evidence/ethonline-manifest.json site/ethonline-manifest.json
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site

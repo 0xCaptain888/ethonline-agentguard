@@ -17,6 +17,7 @@ Run this list immediately before submitting in the Hacker Dashboard.
 - [ ] Privy status is honestly marked live or `DESIGN`.
 - [ ] Every live transaction has a public explorer URL.
 - [ ] Evidence hashes are reproducible.
+- [ ] Public Demo browser evidence check loads the committed manifest.
 - [ ] VERIFIED, BLOCKED and FROZEN are all demonstrated.
 
 ## Submission media
