@@ -4,6 +4,22 @@
 prototype, not an audited production contract. The source intentionally keeps
 the settlement surface small so a judge can inspect the state transitions.
 
+## Public source verification
+
+The deployed Arc Testnet bytecode is an exact-match verified contract:
+
+- Contract: [`PolicyEscrowERC20`](https://testnet.arcscan.app/address/0x85b6df0684529fFAB07C6B62eDB6F04a3eC4E67d?tab=contract)
+- Address: `0x85b6df0684529fFAB07C6B62eDB6F04a3eC4E67d`
+- Compiler: `v0.8.26+commit.8a97fa7a`
+- Optimizer: enabled, `200` runs
+- EVM version: `paris`
+- License: MIT
+- Verified source path: `contracts/PolicyEscrowERC20.sol`
+
+The exact Solidity Standard JSON input used for verification is committed as
+[`verification/arc-policy-escrow-standard-input.json`](../verification/arc-policy-escrow-standard-input.json),
+so a reviewer can reproduce the compiler settings and source set locally.
+
 ## Invariants shown by the tests
 
 - The escrow token is immutable per deployment; a task cannot switch payment
@@ -23,8 +39,9 @@ the settlement surface small so a judge can inspect the state transitions.
   production deployment should use a threshold signer or MPC policy.
 - Replay protection, nonce management and token return-value edge cases need a
   dedicated audit before mainnet use.
-- Arc deployment, Privy signing and sponsor-specific production controls are
-  not claimed until their public testnet evidence is added to the manifest.
+- Arc deployment and Privy signing are backed by public testnet evidence. This
+  verification is not a claim of a formal security audit or production
+  readiness; the prototype boundaries above still apply.
 
 ## Judge verification
 

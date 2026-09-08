@@ -19,6 +19,8 @@ const requiredFiles = [
   "evidence/arc-testnet-privy-authorized-task.json",
   "evidence/arc-testnet-live-failure-outcomes.json",
   "site/index.html",
+  "docs/live-browser-task.md",
+  "verification/arc-policy-escrow-standard-input.json",
   "docs/browser-evidence.md",
   "src/ethonline/workflow.ts",
   "src/ethonline/receipt.ts",

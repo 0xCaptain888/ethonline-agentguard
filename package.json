@@ -47,6 +47,7 @@
     "ethonline:arc:deploy": "node --env-file-if-exists=.env ./node_modules/hardhat/internal/cli/bootstrap.js run scripts/deploy-arc-escrow.ts --network arcTestnet",
     "ethonline:arc:bootstrap-task": "node --env-file-if-exists=.env ./node_modules/hardhat/internal/cli/bootstrap.js run scripts/run-arc-bootstrap-task.ts --network arcTestnet",
     "ethonline:arc:graph-task": "node --env-file-if-exists=.env ./node_modules/hardhat/internal/cli/bootstrap.js run scripts/run-arc-graph-driven-task.ts --network arcTestnet",
+    "ethonline:arc:verification-input": "node --import tsx scripts/export-arc-verification-input.ts",
     "ethonline:subgraph:abi": "node --import tsx scripts/sync-subgraph-abi.ts",
     "ethonline:subgraph:codegen": "npm --prefix subgraph run codegen",
     "ethonline:subgraph:build": "npm --prefix subgraph run build",

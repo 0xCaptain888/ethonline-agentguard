@@ -35,6 +35,7 @@ holds and conditionally releases USDC.
 - ETHOnline demo URL
 - 2–4 minute video (720p or higher)
 - Arc deployment and transaction links
+- Arcscan verified-source link and reproducible Standard JSON compiler input
 - The Graph live-query evidence
 - Privy wallet/control evidence
 - Architecture diagram
@@ -60,6 +61,10 @@ holds and conditionally releases USDC.
    the live Arc BLOCKED refund transaction `0x6de4…fe6f`.
 8. Corrupt the browser result to show FROZEN, then open the live independent
    verifier rejection transaction `0xb94f…ced1`.
+9. Optional: open **Operate one bounded Arc Testnet task**, connect a judge
+   wallet, run the readiness check, and show the separate confirmation gates.
+   Do not ask a judge to spend funds; the committed receipts above are the
+   source of truth for the submission.
 
 ## Submission honesty rule
 

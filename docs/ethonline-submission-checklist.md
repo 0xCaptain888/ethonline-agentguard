@@ -4,7 +4,7 @@ Run this list immediately before submitting in the Hacker Dashboard.
 
 ## Repository
 
-- [ ] Repository is public and the final `v1.0.0` commit is on `main`.
+- [x] Repository is public and the final `v1.0.0` release commit is on `main`.
 - [x] README identifies this as the only ETHOnline submission repository.
 - [x] Continuity before/after boundary is visible.
 - [x] AI usage disclosure is present.
@@ -15,24 +15,26 @@ Run this list immediately before submitting in the Hacker Dashboard.
 - [x] Graph is honestly marked `LIVE_EXTERNAL_DATA` and its observation is bound into the Arc task.
 - [x] Arc task-index Subgraph codegen/build succeeds and points to the real deployment address and start block.
 - [x] Arc is honestly marked `LIVE_TESTNET` with approve/create/submit/verify hashes.
+- [x] Arc escrow source is publicly verified (exact match) with compiler,
+      optimizer and EVM settings documented in README and security notes.
 - [x] Privy is honestly marked `LIVE_TESTNET` with a policy ID, wallet sender,
       authorization evidence hashes and nine public Arc writes.
 - [x] Every live transaction has a public explorer URL.
 - [x] Evidence hashes are committed and reproducible.
-- [ ] Public Demo browser evidence check loads the new v1 manifest after Pages deployment.
+- [x] Public Demo browser evidence check loads the v1 manifest after Pages deployment.
 - [x] VERIFIED, BLOCKED and FROZEN each have distinct public Arc Testnet receipts.
 
 ## Submission media
 
 - [ ] Human-narrated 2–4 minute video, at least 720p.
 - [ ] Video shows one complete workflow, not disconnected feature tours.
-- [ ] Updated v1 Demo URL loads in a clean browser window after Pages deployment.
-- [ ] GitHub, Demo, Judge Guide and Evidence Manifest links work against the final commit.
+- [x] Updated v1 Demo URL loads in a clean browser window after Pages deployment.
+- [x] GitHub, Demo, Judge Guide and Evidence Manifest links work against the final commit.
 
 ## Release and dashboard
 
-- [ ] Publish immutable tag and GitHub Release `ethonline-v1.0.0` using
-      `docs/ethonline-v1.0.0-release.md` after this commit reaches `main`.
+- [x] Publish immutable tag and GitHub Release `ethonline-v1.0.0` using
+      `docs/ethonline-v1.0.0-release.md`.
 - [ ] Confirm Continuity eligibility for Arc, The Graph and Privy in the
       Hacker Dashboard and preserve a screenshot.
 - [ ] Select exactly Arc, The Graph and Privy in the final submission.

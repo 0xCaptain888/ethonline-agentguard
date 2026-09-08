@@ -15,6 +15,10 @@ Arc Testnet transactions and machine-verifiable evidence.
 [Evidence Manifest](evidence/ethonline-manifest.json) ·
 [Five-minute Judge Path](docs/ethonline-submission-kit.md)
 
+For a real testnet walkthrough, use the optional [live browser task path](docs/live-browser-task.md).
+It connects an EIP-1193 wallet, checks readiness and asks for a separate wallet
+confirmation for every Arc/USDC write.
+
 This is the dedicated **ETHOnline 2026 Continuity** submission repository for
 AgentGuard. The pre-existing Monad implementation is the policy, escrow and
 verification foundation. The ETHOnline feature work is being added in dated
@@ -123,7 +127,8 @@ history consumed by that decision.
 
 ### Primary live proof
 
-- Arc contract: [`0x85b6…E67d`](https://testnet.arcscan.app/address/0x85b6df0684529fFAB07C6B62eDB6F04a3eC4E67d)
+- Arc contract: [`PolicyEscrowERC20 · verified source`](https://testnet.arcscan.app/address/0x85b6df0684529fFAB07C6B62eDB6F04a3eC4E67d?tab=contract) · `0x85b6…E67d`
+- Verified build: Solidity `v0.8.26+commit.8a97fa7a`, optimizer enabled (`200` runs), EVM `paris`, MIT. The exact Standard JSON input is committed at [`verification/arc-policy-escrow-standard-input.json`](verification/arc-policy-escrow-standard-input.json).
 - Privy buyer: [`0x8b9c…d554`](https://testnet.arcscan.app/address/0x8b9cD36D829fC658feD8938a057c27CE072bd554)
 - Privy-authorized task ID: `49729611910078900427755243435870633554743331717822925122290378791830782395952`
 - Create: [`0x7ec5…06f6`](https://testnet.arcscan.app/tx/0x7ec5e29f0ad2cfc210a72fd4e5220c580b2e6407eb21080ee0947990b9cd06f6)
@@ -274,6 +279,7 @@ and run `npm run ethonline:submission:check` first.
 - [ETHOnline build plan](docs/ethonline-plan.md)
 - [Partner fit matrix](docs/partner-fit.md)
 - [Arc integration boundary](docs/arc-integration.md)
+- [Contract security notes and verified build](docs/contract-security-notes.md)
 - [Live-evidence runbook](docs/ethonline-live-runbook.md)
 - [Contract security notes](docs/contract-security-notes.md)
 - [The Graph adapter](src/ethonline/graph-agent.ts)
@@ -281,6 +287,7 @@ and run `npm run ethonline:submission:check` first.
 - [ETHOnline architecture](docs/ethonline-architecture.md)
 - [One-page submission architecture](docs/assets/ethonline-agentguard-architecture.svg)
 - [Final ETHGlobal form copy](docs/ethonline-form-copy.md)
+- [Live browser task path](docs/live-browser-task.md)
 - [Judge guide](docs/judge-guide.md)
 - [Existing Monad foundation](https://github.com/0xCaptain888/monad-agentguard)
 
