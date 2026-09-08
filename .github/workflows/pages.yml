@@ -26,7 +26,9 @@ jobs:
       # This workflow intentionally does not mutate repository settings.
       - uses: actions/configure-pages@v5
       - name: Publish public evidence manifest
-        run: cp evidence/ethonline-manifest.json site/ethonline-manifest.json
+        run: |
+          cp evidence/ethonline-manifest.json site/ethonline-manifest.json
+          cp docs/assets/ethonline-agentguard-architecture.svg site/ethonline-agentguard-architecture.svg
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site

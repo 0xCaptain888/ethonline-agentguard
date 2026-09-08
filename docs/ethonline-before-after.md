@@ -12,5 +12,6 @@ AgentGuard foundation from work created for ETHOnline 2026.
 | Monad task receipts | Cross-sponsor receipt binding source, policy and settlement hashes | machine-readable ETHOnline evidence manifest |
 
 No Monad transaction is relabelled as Arc or Privy evidence. The Privy claim
-is backed by its own Arc Testnet sender and five public policy-authorized
-writes; the browser-only failure-state replay remains labelled `SIMULATION`.
+is backed by its own Arc Testnet sender and nine public policy-authorized
+writes. The browser remains a safe replay surface, while all three outcomes
+also have separate public Arc receipts.

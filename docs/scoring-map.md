@@ -9,7 +9,7 @@ observable actions. It is an execution guide, not a claim of an official score.
 | Originality | Payment is conditional on verified work, not merely a successful tool call | `docs/ethonline-before-after.md`, `docs/architecture.md` | “Tool succeeded, payout still waits” |
 | Practicality | A treasury hires YieldScout from a dedicated policy-limited wallet using live seller history | `evidence/arc-testnet-privy-authorized-task.json`, `docs/business-case.md` | One real Privy-authorized 1 USDC YieldScout task |
 | Usability / DX | A judge can reproduce checks without credentials and inspect every status label | `docs/judge-guide.md`, `src/ethonline/workflow.ts`, `src/ethonline/receipt.ts`, `test/ethonline-workflow.test.ts`, `scripts/verify-ethonline-manifest.ts` | `npm run ethonline:check` |
-| WOW factor | Three sponsor technologies are load-bearing in one payment, with release separated from execution | `evidence/arc-testnet-privy-authorized-task.json`, `scripts/ethonline-demo.ts`, `site/index.html` | live Graph signal → Privy authorization → Arc VERIFIED → simulated BLOCKED/FROZEN |
+| WOW factor | Three sponsor technologies are load-bearing, and all three settlement outcomes have public receipts | `evidence/arc-testnet-privy-authorized-task.json`, `evidence/arc-testnet-live-failure-outcomes.json`, `site/index.html` | live Graph signal → Privy authorization → Arc VERIFIED / BLOCKED / FROZEN |
 
 ## Scoring guardrails
 
@@ -27,3 +27,6 @@ observable actions. It is an execution guide, not a claim of an official score.
   The Graph seller history produced evidence hash `0xf3b6…3d42`, policy returned
   `ALLOW`, Privy authorized the buyer writes, and Arc released 1 USDC in
   transaction `0x94b1…1fc8`.
+- Live failure evidence adds a refunded BLOCKED task in `0x6de4…fe6f` and an
+  independently rejected FROZEN task in `0xb94f…ced1`; neither is presented as
+  a browser-only sponsor claim.

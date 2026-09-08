@@ -1,7 +1,7 @@
 # Privy feedback
 
-Status: `LIVE_TESTNET`; a dedicated Privy wallet authorized five bounded Arc
-writes and created a 1 USDC task that settled as VERIFIED.
+Status: `LIVE_TESTNET`; a dedicated Privy wallet authorized nine bounded Arc
+writes across VERIFIED, BLOCKED and FROZEN task paths.
 
 Record after testing:
 
@@ -23,3 +23,6 @@ Record after testing:
   `0x7ec5e29f0ad2cfc210a72fd4e5220c580b2e6407eb21080ee0947990b9cd06f6`;
   authorization evidence hash
   `0x80d0f8ec6e8beb2f48a002c94cfc260d200df1a7cc2075daa1d4c8b831a0e0e8`.
+  Failure-state authorization evidence is in
+  `evidence/arc-testnet-live-failure-outcomes.json` with hash
+  `0x02a2edc11820b0d5e780bb1003ff3c0f75ca5ced69a3c6f58996c2f8397af6a2`.

@@ -1,7 +1,9 @@
 # External wallet pilot
 
-This pilot lets a real third-party wallet create one bounded Monad Testnet task
-without receiving any seller, verifier or repository credential.
+This pilot lets a real third-party wallet test AgentGuard without receiving
+any seller, verifier, Privy or repository credential. The existing public path
+uses Monad Testnet; an Arc participant path can be added only when the browser
+wallet integration is ready and must not be simulated as an external user.
 
 ## Participant steps
 
@@ -37,3 +39,10 @@ persists those keys.
   completed users.
 - The project currently makes no numerical external-user claim until such
   receipts exist.
+
+## ETHOnline evidence record
+
+For each genuine participant, preserve the issue URL, public buyer address,
+creation transaction, completion transaction, task receipt and one sentence
+of feedback. Accounts or wallets controlled by the maintainer do not count as
+external adoption, even if they use different profiles.

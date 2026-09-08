@@ -30,10 +30,12 @@
         "0x72c5312c1763065c789597632fc633b17e78578171cd748f094ddb47d562a341",
         "0x7ec5e29f0ad2cfc210a72fd4e5220c580b2e6407eb21080ee0947990b9cd06f6",
         "0x1b9954b64963e9f153884556b87845e90e2021ebfa2f6c31bf656ad3851c1fe4",
-        "0x94b172ee29faadbf4a48d0d752685358fff082df9d65bf3753ac779a146d1fc8"
+        "0x94b172ee29faadbf4a48d0d752685358fff082df9d65bf3753ac779a146d1fc8",
+        "0x6de48ef03a65fd0ca8c993d1179a235cbe23392d7a7a872b43f3eff92712fe6f",
+        "0xb94f9e76a88aedfbd71cf8bac77b04a135674e38468db9ee5474a7d05539ced1"
       ],
       "evidenceHash": "0x8e285743668e16c24a5de71b9408261d549a20bf81e675fc089ac4e6def787d7",
-      "nextProof": "Complete: a Privy-controlled buyer approved USDC, created the task, received the seller result and released 1 USDC only after independent verification."
+      "nextProof": "Complete: public Arc receipts now cover VERIFIED release, BLOCKED refund before seller execution and FROZEN containment after verifier rejection."
     },
     {
       "name": "The Graph",
@@ -43,7 +45,7 @@
       "contract": "0x85b6df0684529fFAB07C6B62eDB6F04a3eC4E67d",
       "transactions": [],
       "evidenceHash": "0xf3b6f231a396733f4f0605a02f946752bcf2628d05e9bab0480337e320653d42",
-      "nextProof": "Complete: live indexed seller history produced the task-bound Graph evidence hash used by the Privy-authorized policy decision; all three tasks are now indexed VERIFIED without errors."
+      "nextProof": "Complete: the live pre-task snapshot contained three indexed VERIFIED tasks without errors; that seller history produced the task-bound Graph evidence hash used by the Privy-authorized policy decision. Later BLOCKED and FROZEN tasks are recorded separately and are not retroactively included in this snapshot."
     },
     {
       "name": "Privy",
@@ -56,16 +58,20 @@
         "0x8eea6b0f1d8b41ca758d77315676b25d62ec657222ea36c258bce619c04f3d22",
         "0xd1e62b7572901c22f4fdaee715c57bb177a67e6e43ff4176adf40c205ddb2fd4",
         "0x72c5312c1763065c789597632fc633b17e78578171cd748f094ddb47d562a341",
-        "0x7ec5e29f0ad2cfc210a72fd4e5220c580b2e6407eb21080ee0947990b9cd06f6"
+        "0x7ec5e29f0ad2cfc210a72fd4e5220c580b2e6407eb21080ee0947990b9cd06f6",
+        "0x5b7050a0d3352264cfcb86b166b8b595a398e710cfbaf86a553d170c3b13e69a",
+        "0xbcbaa3940a4c8134f1d577d8d00b9649480817b28215667eeef8d3fa0b2a3c9f",
+        "0x6de48ef03a65fd0ca8c993d1179a235cbe23392d7a7a872b43f3eff92712fe6f",
+        "0xfb00f745a82ae90703872698691db5771028edd9c2890319a9a15cd9d60f25fd"
       ],
       "evidenceHash": "0x80d0f8ec6e8beb2f48a002c94cfc260d200df1a7cc2075daa1d4c8b831a0e0e8",
-      "nextProof": "Complete: Privy policy gim53hj8mv9xhxizrn5ukruq authorized five bounded Arc writes from wallet 0x8b9cD36D829fC658feD8938a057c27CE072bd554."
+      "nextProof": "Complete: the same Privy policy authorized nine bounded writes across VERIFIED, BLOCKED and FROZEN Arc tasks from wallet 0x8b9cD36D829fC658feD8938a057c27CE072bd554."
     }
   ],
   "outcomes": {
     "VERIFIED": { "status": "LIVE_TESTNET", "evidence": "evidence/arc-testnet-privy-authorized-task.json" },
-    "BLOCKED": { "status": "SIMULATION", "evidence": "scripts/ethonline-demo.ts" },
-    "FROZEN": { "status": "SIMULATION", "evidence": "scripts/ethonline-demo.ts" }
+    "BLOCKED": { "status": "LIVE_TESTNET", "evidence": "evidence/arc-testnet-live-failure-outcomes.json" },
+    "FROZEN": { "status": "LIVE_TESTNET", "evidence": "evidence/arc-testnet-live-failure-outcomes.json" }
   },
   "continuity": {
     "foundation": "Monad policy, escrow state machine and verifier were built before ETHOnline.",
@@ -76,5 +82,5 @@
       "ETHOnline judge surface and submission package"
     ]
   },
-  "lastUpdated": "2026-09-07"
+  "lastUpdated": "2026-09-08"
 }

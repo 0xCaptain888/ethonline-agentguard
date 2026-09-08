@@ -28,21 +28,22 @@ before/after table and commit history showing the new feature work.
 `TreasuryPlanner → Graph data query → policy decision → Arc USDC escrow →
 Seller Agent → independent verifier → VERIFIED / BLOCKED / FROZEN → receipt`
 
-The 2–4 minute video will show one successful payment, one pre-execution
-block, and one post-execution freeze, with the Arc transaction and evidence
-hash visible. The fallback path is a deterministic local replay if a sponsor
-testnet service is unavailable; it will be labelled `SIMULATION`.
+The 2–4 minute video will show one successful payment, one pre-seller
+BLOCKED refund and one post-execution FROZEN containment, with each Arc
+transaction and evidence hash visible. A deterministic browser replay remains
+available for judge interaction without requiring a wallet.
 
 ## New work required
 
-- [x] Arc Testnet adapter and three real USDC escrow flows.
+- [x] Arc Testnet adapter and five real USDC escrow flows, including public
+  VERIFIED, BLOCKED and FROZEN outcomes.
 - [x] Graph live-data adapter, custom Subgraph and provenance fields in the
   Graph-driven YieldScout receipt.
 - [x] Privy policy-controlled wallet and live Arc signer/intent flow.
 - Optional Bazantic gateway/Recipe integration and a before/after agent run.
-- Public architecture diagram, partner-specific integration notes, and
-  `FEEDBACK.md` documents.
-- Judge-run command that verifies all hashes without private keys.
+- [x] Public one-page architecture diagram, partner-specific integration notes
+  and feedback documents.
+- [x] Judge-run commands that verify hashes without private keys.
 
 ## Eligibility checklist
 

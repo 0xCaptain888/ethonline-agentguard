@@ -56,8 +56,10 @@ holds and conditionally releases USDC.
    the Arc task-creation transaction.
 5. Open the seller result and independent verification transactions.
 6. Show the live `VERIFIED` release, 1 USDC settlement and evidence hash.
-7. Change the budget and show `BLOCKED` before any write.
-8. Corrupt the result and show `FROZEN` with the recovery boundary.
+7. Change the browser budget to show the interactive BLOCKED rule, then open
+   the live Arc BLOCKED refund transaction `0x6de4…fe6f`.
+8. Corrupt the browser result to show FROZEN, then open the live independent
+   verifier rejection transaction `0xb94f…ced1`.
 
 ## Submission honesty rule
 
@@ -83,9 +85,9 @@ For an additional integrity check, run:
 
 ```bash
 npm run ethonline:receipt:verify
+npm run ethonline:failure:evidence:verify
 ```
 
-This recomputes the evidence hash for all three deterministic receipts and
-checks that release eligibility matches the state. It is intentionally
-credential-free and labelled `SIMULATION`; it does not replace public Arc,
-Graph or Privy evidence.
+The first command checks deterministic receipt invariants. The second
+recomputes the live failure evidence and queries Arc for the current BLOCKED
+and FROZEN contract states. Neither command requires a signing credential.

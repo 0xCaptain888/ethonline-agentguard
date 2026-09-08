@@ -1,0 +1,165 @@
+{
+  "evidenceVersion": "1",
+  "evidenceClass": "LIVE_TESTNET+LIVE_PRIVY_AUTHORIZATION",
+  "network": "Arc Testnet",
+  "chainId": "5042002",
+  "contract": "0x85b6df0684529fFAB07C6B62eDB6F04a3eC4E67d",
+  "settlementToken": "0x3600000000000000000000000000000000000000",
+  "buyer": "0x8b9cD36D829fC658feD8938a057c27CE072bd554",
+  "seller": "0xC8DAe1757EE08e23E4ead8F9099C01855a749a59",
+  "verifier": "0xae6034823d7Ff505C87a44e33D58677E1eDa740D",
+  "valuePerTask": "250000",
+  "outcomes": {
+    "BLOCKED": {
+      "taskId": "751032723604018145612354418748000548564483670623065072808240271240878241076",
+      "state": "BLOCKED",
+      "semantics": "Escrow reservation cancelled and refunded before seller execution.",
+      "intent": {
+        "task": "YieldScout execution reservation",
+        "expectedOutcome": "BLOCKED",
+        "reason": "Policy drift detected before seller execution",
+        "buyerAgent": "TreasuryPlanner",
+        "sellerAgent": "YieldScout",
+        "valueUSDC": "0.250000"
+      },
+      "intentHash": "0xacc504c65f0b84bc59bf176a11196b946fc217cd51b3e3b08df00049075389e7",
+      "policyHash": "0xf112b53165787fbd47d2b3cfd36ea2d95e868f6c9d846c6aaa4beaa7eb0c1479",
+      "reasonHash": "0x00b041d1e6623428d5be3684906287d20eaec563970b535e924116c1ee647530",
+      "createTransaction": {
+        "hash": "0xbcbaa3940a4c8134f1d577d8d00b9649480817b28215667eeef8d3fa0b2a3c9f",
+        "blockNumber": 61000003,
+        "explorer": "https://testnet.arcscan.app/tx/0xbcbaa3940a4c8134f1d577d8d00b9649480817b28215667eeef8d3fa0b2a3c9f"
+      },
+      "outcomeTransaction": {
+        "hash": "0x6de48ef03a65fd0ca8c993d1179a235cbe23392d7a7a872b43f3eff92712fe6f",
+        "blockNumber": 61000009,
+        "explorer": "https://testnet.arcscan.app/tx/0x6de48ef03a65fd0ca8c993d1179a235cbe23392d7a7a872b43f3eff92712fe6f"
+      }
+    },
+    "FROZEN": {
+      "taskId": "91763422670729873291418490499372376227515530885224479520711552400109184723901",
+      "state": "FROZEN",
+      "semantics": "Seller executed, independent verifier rejected the output, and funds remain isolated.",
+      "intent": {
+        "task": "YieldScout execution with independent output verification",
+        "expectedOutcome": "FROZEN",
+        "reason": "Seller output intentionally fails the independent verifier fixture",
+        "buyerAgent": "TreasuryPlanner",
+        "sellerAgent": "YieldScout",
+        "valueUSDC": "0.250000"
+      },
+      "intentHash": "0xbc6b7f4496fb6cd53669bb3e002e11817674ab1addd873891d0a030c1d5de172",
+      "policyHash": "0xf112b53165787fbd47d2b3cfd36ea2d95e868f6c9d846c6aaa4beaa7eb0c1479",
+      "badResult": {
+        "taskId": "91763422670729873291418490499372376227515530885224479520711552400109184723901",
+        "seller": "0xC8DAe1757EE08e23E4ead8F9099C01855a749a59",
+        "recommendation": "unbounded-position",
+        "maximumExposureUSDC": null,
+        "verificationFixture": "missing required bounded-risk fields"
+      },
+      "resultHash": "0xf8b842becc6dab6ce187d737457161f78d1cea8c6b7868d04381c38ea075e591",
+      "createTransaction": {
+        "hash": "0xfb00f745a82ae90703872698691db5771028edd9c2890319a9a15cd9d60f25fd",
+        "blockNumber": 61000014,
+        "explorer": "https://testnet.arcscan.app/tx/0xfb00f745a82ae90703872698691db5771028edd9c2890319a9a15cd9d60f25fd"
+      },
+      "submitTransaction": {
+        "hash": "0x8ba252d6afc88900fbb4604e840bc7efd7f4790b2ed6ce444ba471aea8dbbed2",
+        "blockNumber": 61000019,
+        "explorer": "https://testnet.arcscan.app/tx/0x8ba252d6afc88900fbb4604e840bc7efd7f4790b2ed6ce444ba471aea8dbbed2"
+      },
+      "outcomeTransaction": {
+        "hash": "0xb94f9e76a88aedfbd71cf8bac77b04a135674e38468db9ee5474a7d05539ced1",
+        "blockNumber": 61000024,
+        "explorer": "https://testnet.arcscan.app/tx/0xb94f9e76a88aedfbd71cf8bac77b04a135674e38468db9ee5474a7d05539ced1"
+      }
+    }
+  },
+  "privyAuthorization": {
+    "provider": "Privy",
+    "walletId": "s5oh35djv0pjiyhp4dzineeo",
+    "walletAddress": "0x8b9cD36D829fC658feD8938a057c27CE072bd554",
+    "policyId": "gim53hj8mv9xhxizrn5ukruq",
+    "authorizedTransactions": [
+      {
+        "label": "approveFailureBudget",
+        "provider": "Privy",
+        "method": "eth_signTransaction",
+        "walletId": "s5oh35djv0pjiyhp4dzineeo",
+        "policyId": "gim53hj8mv9xhxizrn5ukruq",
+        "chainId": "5042002",
+        "target": "0x3600000000000000000000000000000000000000",
+        "sender": "0x8b9cD36D829fC658feD8938a057c27CE072bd554",
+        "transactionHash": "0x5b7050a0d3352264cfcb86b166b8b595a398e710cfbaf86a553d170c3b13e69a"
+      },
+      {
+        "label": "createBlockedTask",
+        "provider": "Privy",
+        "method": "eth_signTransaction",
+        "walletId": "s5oh35djv0pjiyhp4dzineeo",
+        "policyId": "gim53hj8mv9xhxizrn5ukruq",
+        "chainId": "5042002",
+        "target": "0x85b6df0684529fFAB07C6B62eDB6F04a3eC4E67d",
+        "sender": "0x8b9cD36D829fC658feD8938a057c27CE072bd554",
+        "transactionHash": "0xbcbaa3940a4c8134f1d577d8d00b9649480817b28215667eeef8d3fa0b2a3c9f"
+      },
+      {
+        "label": "blockTask",
+        "provider": "Privy",
+        "method": "eth_signTransaction",
+        "walletId": "s5oh35djv0pjiyhp4dzineeo",
+        "policyId": "gim53hj8mv9xhxizrn5ukruq",
+        "chainId": "5042002",
+        "target": "0x85b6df0684529fFAB07C6B62eDB6F04a3eC4E67d",
+        "sender": "0x8b9cD36D829fC658feD8938a057c27CE072bd554",
+        "transactionHash": "0x6de48ef03a65fd0ca8c993d1179a235cbe23392d7a7a872b43f3eff92712fe6f"
+      },
+      {
+        "label": "createFrozenTask",
+        "provider": "Privy",
+        "method": "eth_signTransaction",
+        "walletId": "s5oh35djv0pjiyhp4dzineeo",
+        "policyId": "gim53hj8mv9xhxizrn5ukruq",
+        "chainId": "5042002",
+        "target": "0x85b6df0684529fFAB07C6B62eDB6F04a3eC4E67d",
+        "sender": "0x8b9cD36D829fC658feD8938a057c27CE072bd554",
+        "transactionHash": "0xfb00f745a82ae90703872698691db5771028edd9c2890319a9a15cd9d60f25fd"
+      }
+    ],
+    "authorizationEvidenceHash": "0x02a2edc11820b0d5e780bb1003ff3c0f75ca5ced69a3c6f58996c2f8397af6a2"
+  },
+  "transactions": {
+    "approveFailureBudget": {
+      "hash": "0x5b7050a0d3352264cfcb86b166b8b595a398e710cfbaf86a553d170c3b13e69a",
+      "blockNumber": 60999995,
+      "explorer": "https://testnet.arcscan.app/tx/0x5b7050a0d3352264cfcb86b166b8b595a398e710cfbaf86a553d170c3b13e69a"
+    },
+    "createBlockedTask": {
+      "hash": "0xbcbaa3940a4c8134f1d577d8d00b9649480817b28215667eeef8d3fa0b2a3c9f",
+      "blockNumber": 61000003,
+      "explorer": "https://testnet.arcscan.app/tx/0xbcbaa3940a4c8134f1d577d8d00b9649480817b28215667eeef8d3fa0b2a3c9f"
+    },
+    "blockTask": {
+      "hash": "0x6de48ef03a65fd0ca8c993d1179a235cbe23392d7a7a872b43f3eff92712fe6f",
+      "blockNumber": 61000009,
+      "explorer": "https://testnet.arcscan.app/tx/0x6de48ef03a65fd0ca8c993d1179a235cbe23392d7a7a872b43f3eff92712fe6f"
+    },
+    "createFrozenTask": {
+      "hash": "0xfb00f745a82ae90703872698691db5771028edd9c2890319a9a15cd9d60f25fd",
+      "blockNumber": 61000014,
+      "explorer": "https://testnet.arcscan.app/tx/0xfb00f745a82ae90703872698691db5771028edd9c2890319a9a15cd9d60f25fd"
+    },
+    "submitBadResult": {
+      "hash": "0x8ba252d6afc88900fbb4604e840bc7efd7f4790b2ed6ce444ba471aea8dbbed2",
+      "blockNumber": 61000019,
+      "explorer": "https://testnet.arcscan.app/tx/0x8ba252d6afc88900fbb4604e840bc7efd7f4790b2ed6ce444ba471aea8dbbed2"
+    },
+    "verifyAndFreeze": {
+      "hash": "0xb94f9e76a88aedfbd71cf8bac77b04a135674e38468db9ee5474a7d05539ced1",
+      "blockNumber": 61000024,
+      "explorer": "https://testnet.arcscan.app/tx/0xb94f9e76a88aedfbd71cf8bac77b04a135674e38468db9ee5474a7d05539ced1"
+    }
+  },
+  "generatedAt": "2026-09-08T01:40:17.542Z",
+  "evidenceHash": "0x8b7f6d7cb245ab2cfc778e5a92298e9f9ae752e8a1d9aede01605b90e24997c1"
+}

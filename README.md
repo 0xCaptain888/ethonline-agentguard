@@ -38,9 +38,12 @@ TreasuryPlanner
 ```
 
 The planner proposes. It does not authorize its own spending and it does not
-grade its own work. A policy violation is blocked before execution. A bad
-post-execution result is isolated as `FROZEN`; funds are not released by
-default. Every decision is bound to hashes that a judge can recompute.
+grade its own work. A policy drift is cancelled and refunded before seller
+execution. A bad post-execution result is isolated as `FROZEN`; funds are not
+released by default. Every decision is bound to hashes that a judge can
+recompute, and all three outcomes now have public Arc Testnet receipts.
+
+![ETHOnline AgentGuard architecture](docs/assets/ethonline-agentguard-architecture.svg)
 
 The deterministic orchestration path is implemented in
 [`src/ethonline/workflow.ts`](src/ethonline/workflow.ts). It is the narrow
@@ -56,7 +59,7 @@ into the on-chain task intent before USDC settlement.
 | --- | --- | --- |
 | Arc / Circle | USDC escrow and conditional Agent-to-Agent settlement | `LIVE_TESTNET` · Privy-authorized 1 USDC task settled as VERIFIED |
 | The Graph | Live indexed data drives YieldScout's decision and receipt | `LIVE_EXTERNAL_DATA` · seller history is bound into the live task intent |
-| Privy | Policy-controlled buyer wallet and transaction authorization | `LIVE_TESTNET` · five bounded Arc writes signed by a Privy wallet |
+| Privy | Policy-controlled buyer wallet and transaction authorization | `LIVE_TESTNET` · nine bounded Arc writes across all three outcomes |
 
 The submission will name only partners that are actually used in the final
 demo. Sponsor SDKs, accounts and network writes are never simulated as live
@@ -86,14 +89,14 @@ scope. No pre-existing Monad transaction is presented as Arc evidence.
 | Surface | Current state | Evidence label |
 | --- | --- | --- |
 | Policy engine and independent verification | Working and tested on the Monad foundation | `LIVE_TESTNET` (Monad foundation) |
-| VERIFIED / BLOCKED / FROZEN state model | Working and tested | `LIVE_TESTNET` / `SIMULATION` where explicitly marked |
+| VERIFIED / BLOCKED / FROZEN state model | Three public Arc tasks with distinct settlement behavior | `LIVE_TESTNET` |
 | ETHOnline workflow orchestrator | Deterministic end-to-end join with four regression cases | `SIMULATION` |
 | The Graph adapter | Live Studio query with deterministic provenance hash | `LIVE_EXTERNAL_DATA` |
-| Arc task-index Subgraph | Version `v0.1.0`, 11 event handlers, 3 tasks / 3 VERIFIED with no indexing errors | `LIVE_EXTERNAL_DATA` |
+| Arc task-index Subgraph | Version `v0.1.0`, 11 event handlers; the decision snapshot used 3 indexed tasks / 3 VERIFIED with no indexing errors | `LIVE_EXTERNAL_DATA` |
 | Arc escrow deployment | Contract `0x85b6…E67d` deployed at block `60909613` | `LIVE_TESTNET` |
 | Arc USDC task settlement | Graph-informed approve/create/submit/verify/release complete | `LIVE_TESTNET` |
-| Privy wallet control | Policy-bound wallet signed register, policy, verifier, approval and task creation writes | `LIVE_TESTNET` |
-| ETHOnline browser demo | Live Arc, The Graph and Privy evidence plus interactive failure-state replay | `LIVE_TESTNET` + `LIVE_EXTERNAL_DATA` + `SIMULATION` |
+| Privy wallet control | One policy-bound wallet signed nine constrained writes across VERIFIED, BLOCKED and FROZEN | `LIVE_TESTNET` |
+| ETHOnline browser demo | Live Arc, The Graph and Privy evidence plus an explicitly labelled interactive replay | `LIVE_TESTNET` + `LIVE_EXTERNAL_DATA` + `SIMULATION` |
 
 The machine-readable source of truth for these labels is
 [`evidence/ethonline-manifest.json`](evidence/ethonline-manifest.json). Run
@@ -119,6 +122,16 @@ history consumed by that decision.
 - Privy authorization hash: `0x80d0f8ec6e8beb2f48a002c94cfc260d200df1a7cc2075daa1d4c8b831a0e0e8`
 - Task-bound Graph hash: `0xf3b6f231a396733f4f0605a02f946752bcf2628d05e9bab0480337e320653d42`
 - Subgraph: [AgentGuard Arc task index v0.1.0](https://thegraph.com/studio/subgraph/0-x-captain-888)
+
+### Live failure-path proof
+
+- BLOCKED task: `751032723604018145612354418748000548564483670623065072808240271240878241076`
+- BLOCKED refund: [`0x6de4…fe6f`](https://testnet.arcscan.app/tx/0x6de48ef03a65fd0ca8c993d1179a235cbe23392d7a7a872b43f3eff92712fe6f)
+- FROZEN task: `91763422670729873291418490499372376227515530885224479520711552400109184723901`
+- Seller bad-output submission: [`0x8ba2…bed2`](https://testnet.arcscan.app/tx/0x8ba252d6afc88900fbb4604e840bc7efd7f4790b2ed6ce444ba471aea8dbbed2)
+- FROZEN verifier decision: [`0xb94f…ced1`](https://testnet.arcscan.app/tx/0xb94f9e76a88aedfbd71cf8bac77b04a135674e38468db9ee5474a7d05539ced1)
+- Failure evidence hash: `0x8b7f6d7cb245ab2cfc778e5a92298e9f9ae752e8a1d9aede01605b90e24997c1`
+- Full receipt: [`evidence/arc-testnet-live-failure-outcomes.json`](evidence/arc-testnet-live-failure-outcomes.json)
 
 ## Why this repository is the ETHOnline entry point
 
@@ -205,15 +218,16 @@ Read [SECURITY.md](SECURITY.md) and [dependency security notes](docs/dependency-
 The ETHOnline demo is a separate browser surface with:
 
 1. One live Arc Testnet `VERIFIED` task driven by real Graph data.
-2. One `BLOCKED` policy decision before any write.
-3. One `FROZEN` bad-output path with recovery boundary shown.
+2. One live Arc Testnet `BLOCKED` cancellation and refund before seller work.
+3. One live Arc Testnet `FROZEN` bad-output path with funds held.
 4. Arc transaction and receipt evidence visible to the judge.
 5. A Graph provenance panel and the real Privy wallet authorization proof.
 
 The final submission will include a 2–4 minute video, public source, sponsor
 feedback documents, an architecture diagram and a machine-readable evidence
-manifest. Arc, The Graph and Privy now meet the repository's live-evidence
-rule; `BLOCKED` and `FROZEN` remain explicitly labelled deterministic replay.
+manifest. Arc, The Graph and Privy meet the repository's live-evidence rule,
+and VERIFIED, BLOCKED and FROZEN all have public transaction receipts. The
+browser controls remain a safe deterministic replay of those state boundaries.
 
 ## Five-minute judge path
 
@@ -237,11 +251,9 @@ cannot produce a result hash, and a bad seller result becomes `FROZEN` rather
 than eligible for release.
 
 Receipt integrity can be checked independently with
-`npm run ethonline:receipt:verify`. The verifier recomputes each evidence hash
-and checks the state invariants: `VERIFIED` must be release-eligible,
-`BLOCKED` must have no result hash, and `FROZEN` must hold a result without
-making it eligible for release. This command is a local `SIMULATION`; it does
-not contact sponsor APIs or broadcast a transaction.
+`npm run ethonline:receipt:verify`. The Arc failure receipts and live contract
+states can be checked with `npm run ethonline:failure:evidence:verify`. Neither
+command broadcasts a transaction or needs sponsor signing credentials.
 
 For the final form, use the [submission checklist](docs/ethonline-submission-checklist.md)
 and run `npm run ethonline:submission:check` first.
@@ -256,6 +268,8 @@ and run `npm run ethonline:submission:check` first.
 - [The Graph adapter](src/ethonline/graph-agent.ts)
 - [Architecture](docs/architecture.md)
 - [ETHOnline architecture](docs/ethonline-architecture.md)
+- [One-page submission architecture](docs/assets/ethonline-agentguard-architecture.svg)
+- [Final ETHGlobal form copy](docs/ethonline-form-copy.md)
 - [Judge guide](docs/judge-guide.md)
 - [Existing Monad foundation](https://github.com/0xCaptain888/monad-agentguard)
 

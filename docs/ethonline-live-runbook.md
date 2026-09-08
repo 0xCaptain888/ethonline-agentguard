@@ -62,8 +62,22 @@ Completed with a dedicated Privy wallet and P-256 authorization key:
    `evidence/arc-testnet-privy-authorized-task.json`. No App Secret or private
    authorization material is printed or committed.
 
+## 4. Live failure outcomes
+
+Completed from the same Privy-controlled buyer:
+
+1. A 0.25 test USDC reservation was created and then moved to `BLOCKED` before
+   seller execution; the escrow refunded the buyer in `0x6de4…fe6f`.
+2. A separate 0.25 test USDC task received an intentionally invalid seller
+   result; the independent verifier rejected it and moved the task to `FROZEN`
+   in `0xb94f…ced1`.
+3. The complete evidence and authorization hashes are stored in
+   `evidence/arc-testnet-live-failure-outcomes.json`.
+4. Run `npm run ethonline:failure:evidence:verify` to re-hash the receipt and
+   query the two current contract states without a Privy credential.
+
 ## Evidence rule
 
 Arc and Privy writes are `LIVE_TESTNET`; The Graph is `LIVE_EXTERNAL_DATA`.
-The browser's `BLOCKED` and `FROZEN` paths remain `SIMULATION` and are never
-presented as sponsor network writes.
+The browser is a safe replay surface, while VERIFIED, BLOCKED and FROZEN are
+all backed by separate public Arc transactions.

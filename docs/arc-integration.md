@@ -14,4 +14,5 @@ The browser demo never contains a private key. The live proof uses contract
 `0x85b6df0684529fFAB07C6B62eDB6F04a3eC4E67d` and Arc's test USDC at
 `0x3600000000000000000000000000000000000000`. The primary receipt is
 `evidence/arc-testnet-graph-driven-task.json`; browser failure-path replay
-remains labelled `SIMULATION`.
+is replayable in the browser, while the committed failure receipt separately
+proves live BLOCKED and FROZEN Arc states.

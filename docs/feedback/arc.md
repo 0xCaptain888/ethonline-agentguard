@@ -2,6 +2,11 @@
 
 Status: live Arc Testnet integration completed.
 
+The public evidence now covers all three task outcomes: VERIFIED release,
+BLOCKED cancellation/refund and FROZEN containment after independent verifier
+rejection. The failure-path receipt is
+`evidence/arc-testnet-live-failure-outcomes.json`.
+
 Record after testing:
 
 - Arc docs / SDK path used: Arc Testnet JSON-RPC, chain `5042002`, native test

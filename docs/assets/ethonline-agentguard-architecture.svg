@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">ETHOnline AgentGuard architecture</title>
+  <desc id="desc">A single live workflow connects The Graph seller history, policy evaluation, Privy transaction authorization, Arc USDC escrow, seller execution and independent verification. The verified result releases funds while blocked and frozen paths hold funds.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#172554"/>
+      <stop offset="0.48" stop-color="#080b14"/>
+      <stop offset="1" stop-color="#10172a"/>
+    </linearGradient>
+    <linearGradient id="live" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7dd3fc"/>
+      <stop offset="1" stop-color="#36d399"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#020617" flood-opacity="0.55"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#7dd3fc"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#36d399"/>
+    </marker>
+    <style>
+      .title{font:800 46px Inter,Arial,sans-serif;fill:#f8fafc;letter-spacing:-1px}.subtitle{font:400 20px Inter,Arial,sans-serif;fill:#a5b4cf}.eyebrow{font:800 15px Inter,Arial,sans-serif;fill:#7dd3fc;letter-spacing:3px}.box{fill:#101827;stroke:#31405d;stroke-width:2}.box-live{fill:#101827;stroke:url(#live);stroke-width:3}.num{font:800 13px Inter,Arial,sans-serif;fill:#7dd3fc;letter-spacing:2px}.label{font:800 23px Inter,Arial,sans-serif;fill:#f8fafc}.body{font:400 15px Inter,Arial,sans-serif;fill:#9aa8c2}.mini{font:600 13px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#cbd5e1}.live{font:800 13px Inter,Arial,sans-serif;fill:#36d399;letter-spacing:1px}.sim{font:800 13px Inter,Arial,sans-serif;fill:#fbbf24;letter-spacing:1px}.bad{font:800 13px Inter,Arial,sans-serif;fill:#fb7185;letter-spacing:1px}.flow{fill:none;stroke:#7dd3fc;stroke-width:3;marker-end:url(#arrow)}.flow-green{fill:none;stroke:#36d399;stroke-width:3;marker-end:url(#arrowGreen)}.divider{stroke:#263249;stroke-width:2}.pill{fill:#111d31;stroke:#31405d;stroke-width:1.5}.footer{font:500 13px Inter,Arial,sans-serif;fill:#7f8da8}
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="1450" cy="-40" r="360" fill="#1e3a8a" opacity="0.18"/>
+  <circle cx="80" cy="850" r="320" fill="#0e7490" opacity="0.10"/>
+
+  <text x="70" y="70" class="eyebrow">ETHONLINE 2026 · CONTINUITY SUBMISSION</text>
+  <text x="70" y="126" class="title">AgentGuard — Authorization Firewall for Agent Commerce</text>
+  <text x="70" y="164" class="subtitle">Live data informs the decision. Privy bounds authority. Arc holds USDC. Independent verification releases payment.</text>
+
+  <rect x="1240" y="54" width="285" height="82" rx="18" class="pill"/>
+  <circle cx="1276" cy="83" r="7" fill="#36d399"/>
+  <text x="1294" y="88" class="live">ONE COMPOSED LIVE PROOF</text>
+  <text x="1276" y="116" class="mini">Arc + The Graph + Privy</text>
+
+  <g filter="url(#shadow)">
+    <rect x="70" y="222" width="210" height="178" rx="20" class="box-live"/>
+    <text x="94" y="252" class="num">01 · OBSERVE</text>
+    <text x="94" y="292" class="label">The Graph</text>
+    <text x="94" y="322" class="body">Indexes seller history</text>
+    <text x="94" y="346" class="body">3 tasks · 3 VERIFIED</text>
+    <text x="94" y="376" class="live">LIVE_EXTERNAL_DATA</text>
+
+    <rect x="326" y="222" width="210" height="178" rx="20" class="box"/>
+    <text x="350" y="252" class="num">02 · PLAN</text>
+    <text x="350" y="292" class="label">TreasuryPlanner</text>
+    <text x="350" y="322" class="body">Proposes YieldScout job</text>
+    <text x="350" y="346" class="body">Value: 1 test USDC</text>
+    <text x="350" y="376" class="mini">intentHash</text>
+
+    <rect x="582" y="222" width="210" height="178" rx="20" class="box"/>
+    <text x="606" y="252" class="num">03 · DECIDE</text>
+    <text x="606" y="292" class="label">Policy Engine</text>
+    <text x="606" y="322" class="body">Budget · permission</text>
+    <text x="606" y="346" class="body">risk · confirmation</text>
+    <text x="606" y="376" class="live">ALLOW</text>
+
+    <rect x="838" y="222" width="210" height="178" rx="20" class="box-live"/>
+    <text x="862" y="252" class="num">04 · AUTHORIZE</text>
+    <text x="862" y="292" class="label">Privy Wallet</text>
+    <text x="862" y="322" class="body">P-256 owner + policy</text>
+    <text x="862" y="346" class="body">5 bounded Arc writes</text>
+    <text x="862" y="376" class="live">LIVE_TESTNET</text>
+
+    <rect x="1094" y="222" width="210" height="178" rx="20" class="box-live"/>
+    <text x="1118" y="252" class="num">05 · ESCROW</text>
+    <text x="1118" y="292" class="label">Arc USDC</text>
+    <text x="1118" y="322" class="body">PolicyEscrowERC20</text>
+    <text x="1118" y="346" class="body">Funds held before work</text>
+    <text x="1118" y="376" class="live">LIVE_TESTNET</text>
+
+    <rect x="1350" y="222" width="180" height="178" rx="20" class="box"/>
+    <text x="1374" y="252" class="num">06 · EXECUTE</text>
+    <text x="1374" y="292" class="label">YieldScout</text>
+    <text x="1374" y="322" class="body">Returns resultHash</text>
+    <text x="1374" y="346" class="body">Cannot release funds</text>
+    <text x="1374" y="376" class="mini">seller role</text>
+  </g>
+
+  <path d="M280 311 H316" class="flow"/>
+  <path d="M536 311 H572" class="flow"/>
+  <path d="M792 311 H828" class="flow"/>
+  <path d="M1048 311 H1084" class="flow"/>
+  <path d="M1304 311 H1340" class="flow"/>
+
+  <path d="M1440 400 V458 H1170" class="flow"/>
+  <rect x="970" y="440" width="400" height="118" rx="20" class="box" filter="url(#shadow)"/>
+  <text x="994" y="471" class="num">07 · INDEPENDENT VERIFICATION</text>
+  <text x="994" y="509" class="label">Verifier checks output before release</text>
+  <text x="994" y="536" class="body">Separate key · signature-bound result · seller cannot self-grade</text>
+
+  <path d="M1170 558 V605" class="flow-green"/>
+  <line x1="70" y1="596" x2="1530" y2="596" class="divider"/>
+
+  <g filter="url(#shadow)">
+    <rect x="70" y="630" width="450" height="154" rx="22" class="box-live"/>
+    <circle cx="104" cy="672" r="12" fill="#36d399"/>
+    <text x="132" y="680" class="label">VERIFIED → release 1 USDC</text>
+    <text x="104" y="718" class="body">Public Arc settlement after all checks pass</text>
+    <text x="104" y="750" class="mini">release tx 0x94b172ee…d1fc8</text>
+
+    <rect x="575" y="630" width="450" height="154" rx="22" class="box"/>
+    <circle cx="609" cy="672" r="12" fill="#fbbf24"/>
+    <text x="637" y="680" class="label">BLOCKED → no execution</text>
+    <text x="609" y="718" class="body">Policy fails before the seller or payment write</text>
+    <text x="609" y="750" class="live">LIVE_TESTNET · refund 0x6de48ef0…12fe6f</text>
+
+    <rect x="1080" y="630" width="450" height="154" rx="22" class="box"/>
+    <circle cx="1114" cy="672" r="12" fill="#fb7185"/>
+    <text x="1142" y="680" class="label">FROZEN → funds isolated</text>
+    <text x="1114" y="718" class="body">Execution returned bad output; recovery requires both parties</text>
+    <text x="1114" y="750" class="live">LIVE_TESTNET · freeze 0xb94f9e76…39ced1</text>
+  </g>
+
+  <rect x="70" y="818" width="1460" height="2" fill="url(#live)" opacity="0.65"/>
+  <text x="70" y="853" class="footer">PUBLIC PROOF · VERIFIED 0x94b172ee…d1fc8 · BLOCKED 0x6de48ef0…12fe6f · FROZEN 0xb94f9e76…39ced1</text>
+  <text x="70" y="878" class="footer">Evidence 0x8b7f6d7c…24997c1 · Contract 0x85b6df06…4e67d · Chain 5042002 · github.com/0xCaptain888/ethonline-agentguard</text>
+</svg>
