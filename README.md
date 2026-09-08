@@ -4,6 +4,17 @@
 > autonomous buyer, bounded authority controls the spend, and an independent
 > verifier decides whether USDC is released.
 
+## [▶ Open the Public Demo](https://0xcaptain888.github.io/ethonline-agentguard/)
+
+**Judge-ready and no wallet required.** Adjust the policy and seller result in
+the browser, inspect `VERIFIED`, `BLOCKED` and `FROZEN`, then open the linked
+Arc Testnet transactions and machine-verifiable evidence.
+
+[Public Demo](https://0xcaptain888.github.io/ethonline-agentguard/) ·
+[Fixed v1.0.0 Release](https://github.com/0xCaptain888/ethonline-agentguard/releases/tag/ethonline-v1.0.0) ·
+[Evidence Manifest](evidence/ethonline-manifest.json) ·
+[Five-minute Judge Path](docs/ethonline-submission-kit.md)
+
 This is the dedicated **ETHOnline 2026 Continuity** submission repository for
 AgentGuard. The pre-existing Monad implementation is the policy, escrow and
 verification foundation. The ETHOnline feature work is being added in dated
